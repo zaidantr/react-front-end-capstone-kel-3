@@ -4,8 +4,12 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import ManageMembership from './ManageMembership';
+import ManageOnlineBooking from './ManageOnlineBooking';
+import ManageOfflineBooking from './ManageOfflineBooking';
 import ManageAdmin from './ManageAdmin';
+import ManageMembership from './ManageMembership';
+import ManageTransaction from './ManageTransaction';
+import logo from './logo.svg';
 
 
 function TabPanel(props) {
@@ -49,45 +53,76 @@ export default function VerticalTabs() {
   };
 
   return (
+    
     <Box
-      sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: 224 }}
-    >
+      sx={{ 
+        flexGrow: 3, 
+        bgcolor: 'background.paper', 
+        display: 'flex', 
+        height: 900,
+      }}
+      
+      >
+      <img 
+      src={logo} 
+      style={{
+        width: 139,
+        height: 139,
+        textAlign: 'center',
+        position: 'absolute',
+        top: 50,
+        left: 75,
+      }}
+      /> 
+      
       <Tabs
         orientation="vertical"
         variant="scrollable"
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs example"
-        sx={{ borderRight: 1, borderColor: 'divider' }}
+        sx={{ 
+          borderRight: 1, 
+          borderColor: 'divider' 
+        }}
+        style={{
+          paddingTop: 200
+        }}
       >
-        <Tab label="Manage Admin" {...a11yProps(0)} />
-        <Tab label="Manage Online Classes Membership" {...a11yProps(1)} />
-        <Tab label="Item Three" {...a11yProps(2)} />
-        <Tab label="Item Four" {...a11yProps(3)} />
-        <Tab label="Item Five" {...a11yProps(4)} />
-        <Tab label="Item Six" {...a11yProps(5)} />
-        <Tab label="Item Seven" {...a11yProps(6)} />
+        <Tab label="Home" {...a11yProps(0)} 
+        />
+        <Tab label="Manage Admin" {...a11yProps(1)} 
+        />
+        <Tab label="Manage Membership" {...a11yProps(2)} />
+        <Tab label="Manage Offline Classes" {...a11yProps(3)} />
+        <Tab label="Manage Offline Classes Booking" {...a11yProps(4)} />
+        <Tab label="Manage Online Classes" {...a11yProps(5)} />
+        <Tab label="Manage Online CLasses Booking" {...a11yProps(6)} />
+        <Tab label="Manage Transaction" {...a11yProps(7)} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <ManageAdmin />
+        Home
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <ManageMembership />
+        <ManageAdmin />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+        <ManageMembership/>
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Item Four
+        Manage Offline Classes
       </TabPanel>
       <TabPanel value={value} index={4}>
-        Item Five
+        <ManageOfflineBooking />
       </TabPanel>
       <TabPanel value={value} index={5}>
-        Item Six
+        Manage Online Classes
       </TabPanel>
       <TabPanel value={value} index={6}>
-        Item Seven
+        <ManageOnlineBooking />
+      </TabPanel>
+      <TabPanel value={value} index={7}>
+        <ManageTransaction />
       </TabPanel>
     </Box>
   );

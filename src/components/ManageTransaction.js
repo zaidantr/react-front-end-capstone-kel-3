@@ -1,7 +1,7 @@
 import { Space, Table, Tag, Button, Modal, Input, Form } from 'antd';
 import React, { useState }from 'react';
 
-export default function ManageMembership() {
+export default function ManageTransaction() {
 
 
 // Tabel 1
@@ -181,13 +181,13 @@ const onDeleteAdmin = (record) => {
           style={{
             fontSize: '2rem',
           }}>
-          Manage Membership
+          Manage Transaction
         </h1>
         <h1
           style={{
             fontSize: '1.5rem',
           }}>
-          Waiting Membership
+          Waiting Transaction
         </h1>
         <Table 
         columns={columns1} 
@@ -201,7 +201,7 @@ const onDeleteAdmin = (record) => {
           style={{
             fontSize: '1.5rem',
           }}>
-          List Membership
+          List Transaction
         </h1>
         <Table 
         columns={columns2} 
