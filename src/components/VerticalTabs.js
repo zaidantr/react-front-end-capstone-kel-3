@@ -1,16 +1,15 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import ManageOnlineBooking from './ManageOnlineBooking';
-import ManageOfflineBooking from './ManageOfflineBooking';
-import ManageAdmin from './ManageAdmin';
-import ManageMembership from './ManageMembership';
-import ManageTransaction from './ManageTransaction';
-import logo from './logo.svg';
-
+import * as React from "react";
+import PropTypes from "prop-types";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import ManageOnlineBooking from "./ManageOnlineBooking";
+import ManageOfflineBooking from "./ManageOfflineBooking";
+import ManageAdmin from "./ManageAdmin";
+import ManageMembership from "./ManageMembership";
+import ManageTransaction from "./ManageTransaction";
+import logo from "./logo.svg";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -41,7 +40,7 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `vertical-tab-${index}`,
-    'aria-controls': `vertical-tabpanel-${index}`,
+    "aria-controls": `vertical-tabpanel-${index}`,
   };
 }
 
@@ -53,46 +52,42 @@ export default function VerticalTabs() {
   };
 
   return (
-    
     <Box
-      sx={{ 
-        flexGrow: 3, 
-        bgcolor: 'background.paper', 
-        display: 'flex', 
+      sx={{
+        flexGrow: 3,
+        bgcolor: "background.paper",
+        display: "flex",
         height: 900,
       }}
-      
-      >
-      <img 
-      src={logo} 
-      style={{
-        width: 139,
-        height: 139,
-        textAlign: 'center',
-        position: 'absolute',
-        top: 50,
-        left: 75,
-      }}
-      /> 
-      
+    >
+      <img
+        src={logo}
+        alt="logo"
+        style={{
+          width: "8vw",
+          display: "flex",
+          justifyContent: "center",
+          position: "absolute",
+          margin: "50px 0px 0px 75px",
+        }}
+      />
+
       <Tabs
         orientation="vertical"
         variant="scrollable"
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs example"
-        sx={{ 
-          borderRight: 1, 
-          borderColor: 'divider' 
+        sx={{
+          borderRight: 1,
+          borderColor: "divider",
         }}
         style={{
-          paddingTop: 200
+          paddingTop: 200,
         }}
       >
-        <Tab label="Home" {...a11yProps(0)} 
-        />
-        <Tab label="Manage Admin" {...a11yProps(1)} 
-        />
+        <Tab label="Home" {...a11yProps(0)} />
+        <Tab label="Manage Admin" {...a11yProps(1)} />
         <Tab label="Manage Membership" {...a11yProps(2)} />
         <Tab label="Manage Offline Classes" {...a11yProps(3)} />
         <Tab label="Manage Offline Classes Booking" {...a11yProps(4)} />
@@ -107,7 +102,7 @@ export default function VerticalTabs() {
         <ManageAdmin />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <ManageMembership/>
+        <ManageMembership />
       </TabPanel>
       <TabPanel value={value} index={3}>
         Manage Offline Classes

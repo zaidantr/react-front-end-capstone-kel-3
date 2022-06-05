@@ -1,7 +1,11 @@
+import { Box } from "@mui/system";
 import { Space, Table, Tag, Button, Modal, Input, Form } from "antd";
 import React, { useState } from "react";
+import Button1 from "@mui/material/Button";
 
 export default function ManageOfflineBooking() {
+  const [openDelete, setOpenDelete] = useState(false);
+  const [deleteId, setDeleteId] = useState(-1);
   const [dataSource, setDataSource] = useState([
     {
       id: "1",
@@ -25,6 +29,14 @@ export default function ManageOfflineBooking() {
       status: "active",
     },
   ]);
+
+  const handleOk = () => {
+    setOpenDelete(false);
+  };
+
+  const handleCancel = () => {
+    setOpenDelete(false);
+  };
 
   const columns = [
     {
@@ -62,7 +74,8 @@ export default function ManageOfflineBooking() {
             </Button>
             <Button
               onClick={() => {
-                onDeleteAdmin(record);
+                setOpenDelete(!openDelete);
+                setDeleteId(record.id);
               }}
               style={{
                 color: "red",
@@ -82,8 +95,19 @@ export default function ManageOfflineBooking() {
     console.log(viewData, "data");
     Modal.info({
       title: "",
+      icon: null,
+      okText: "Cancel",
+      okButtonProps: {
+        type: "primary",
+        style: {
+          color: "black",
+          backgroundColor: "white",
+          border: "2px solid black",
+        },
+      },
       content: (
         <div>
+          <h1 style={{ fontSize: "26px" }}>View Booking Status</h1>
           <p>Name: {viewData.username}</p>
           <p>Class: {viewData.class}</p>
           <p>Date: {viewData.date}</p>
@@ -92,19 +116,6 @@ export default function ManageOfflineBooking() {
       ),
 
       onOk() {},
-    });
-  };
-
-  const onDeleteAdmin = (record) => {
-    Modal.confirm({
-      title: "Are you sure delete this admin record?",
-      okText: "Yes",
-      okType: "danger",
-      onOk: () => {
-        setDataSource((pre) => {
-          return pre.filter((admin) => admin.id !== record.id);
-        });
-      },
     });
   };
 
@@ -125,6 +136,43 @@ export default function ManageOfflineBooking() {
           paddingTop: 30,
         }}
       />
+      <Modal visible={openDelete} footer={null} onCancel={handleCancel}>
+        <Box display="flex" justifyContent="center">
+          <img src="/asset/icondelete.svg" alt="icondelete" width="125vw"></img>
+        </Box>
+        <p style={{ textAlign: "center", padding: "30px", fontSize: "24px" }}>
+          Are sure to delete this Admin?
+        </p>
+        <Box display="flex" justifyContent="center">
+          <Button1
+            style={{
+              color: "white",
+              backgroundColor: "black",
+              border: "3px solid black",
+              marginRight: "20px",
+            }}
+            onClick={() => {
+              setOpenDelete(false);
+              setDataSource((pre) => {
+                return pre.filter((admin) => admin.id !== deleteId);
+              });
+            }}
+          >
+            Delete
+          </Button1>
+          <Button1
+            variant="outlined"
+            style={{
+              color: "black",
+              border: "2px solid black",
+            }}
+            onClick={handleCancel}
+          >
+            Cancel
+          </Button1>
+        </Box>
+      </Modal>
+      ;
     </>
   );
 }
