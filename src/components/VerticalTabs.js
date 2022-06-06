@@ -57,21 +57,22 @@ export default function VerticalTabs() {
     <Box
       sx={{ 
         flexGrow: 3, 
-        bgcolor: 'background.paper', 
+        // bgcolor: 'blue', 
         display: 'flex', 
-        height: 900,
+        height: 1024,
+        color: 'white',
       }}
       
       >
       <img 
       src={logo} 
+      alt='logo'
       style={{
-        width: 139,
-        height: 139,
-        textAlign: 'center',
-        position: 'absolute',
-        top: 50,
-        left: 75,
+         width: "8vw",
+          display: "flex",
+          justifyContent: "center",
+          position: "absolute",
+          margin: "50px 0px 0px 120px",
       }}
       /> 
       
@@ -86,19 +87,102 @@ export default function VerticalTabs() {
           borderColor: 'divider' 
         }}
         style={{
-          paddingTop: 200
+          paddingTop: 200,
+          backgroundColor: '#F27370',
+          width: 400,
+          color: 'white',
         }}
       >
-        <Tab label="Home" {...a11yProps(0)} 
+        
+        <Tab 
+        label="Home" {...a11yProps(0)} 
+        style={{
+          color: 'white',
+          fontFamily: 'Roboto',
+          fontStyle: 'normal',
+          fontWeight: '700',
+          fontSize: '16px',
+          lineHeight: '23px',
+        }}
         />
-        <Tab label="Manage Admin" {...a11yProps(1)} 
+        <Tab 
+        label="Manage Admin" {...a11yProps(1)} 
+        style={{
+          color: 'white',
+          fontFamily: 'Roboto',
+          fontStyle: 'normal',
+          fontWeight: '700',
+          fontSize: '16px',
+          lineHeight: '23px',
+        }}
         />
-        <Tab label="Manage Membership" {...a11yProps(2)} />
-        <Tab label="Manage Offline Classes" {...a11yProps(3)} />
-        <Tab label="Manage Offline Classes Booking" {...a11yProps(4)} />
-        <Tab label="Manage Online Classes" {...a11yProps(5)} />
-        <Tab label="Manage Online CLasses Booking" {...a11yProps(6)} />
-        <Tab label="Manage Transaction" {...a11yProps(7)} />
+        <Tab 
+        label="Manage Membership" {...a11yProps(2)} 
+        style={{
+          color: 'white',
+          fontFamily: 'Roboto',
+          fontStyle: 'normal',
+          fontWeight: '700',
+          fontSize: '16px',
+          lineHeight: '23px',
+        }}
+        />
+        <Tab 
+        label="Manage Offline Classes" {...a11yProps(3)}
+        style={{
+          color: 'white',
+          fontFamily: 'Roboto',
+          fontStyle: 'normal',
+          fontWeight: '700',
+          fontSize: '16px',
+          lineHeight: '23px',
+        }}
+        />
+        <Tab 
+        label="Manage Offline Classes Booking" {...a11yProps(4)} 
+        style={{
+          color: 'white',
+          fontFamily: 'Roboto',
+          fontStyle: 'normal',
+          fontWeight: '700',
+          fontSize: '16px',
+          lineHeight: '23px',
+        }}
+        />
+        <Tab 
+        label="Manage Online Classes" {...a11yProps(5)} 
+        style={{
+          color: 'white',
+          fontFamily: 'Roboto',
+          fontStyle: 'normal',
+          fontWeight: '700',
+          fontSize: '16px',
+          lineHeight: '23px',
+        }}
+        />
+        <Tab 
+        label="Manage Online CLasses Booking" {...a11yProps(6)} 
+        style={{
+          color: 'white',
+          fontFamily: 'Roboto',
+          fontStyle: 'normal',
+          fontWeight: '700',
+          fontSize: '16px',
+          lineHeight: '23px',
+        }}
+        />
+        <Tab 
+        label="Manage Transaction" {...a11yProps(7)} 
+        style={{
+          color: 'white',
+          fontFamily: 'Roboto',
+          fontStyle: 'normal',
+          fontWeight: '700',
+          fontSize: '16px',
+          lineHeight: '23px',
+        }}
+        />
+      
       </Tabs>
       <TabPanel value={value} index={0}>
         Home

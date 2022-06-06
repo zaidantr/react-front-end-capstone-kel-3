@@ -1,9 +1,10 @@
 import 'antd/dist/antd.css';
 import '../App.css';
-import {Table, Button, Modal, Input, Space, Form } from 'antd';
+import {Table, Button, Modal, Input, Form } from 'antd';
 import { useState} from 'react';
-import { EditOutlined, DeleteOutlined, InfoCircleOutlined} from '@ant-design/icons';
-import { height } from '@mui/system';
+import './antd.css';
+// import { EditOutlined, DeleteOutlined, InfoCircleOutlined} from '@ant-design/icons';
+// import { height } from '@mui/system';
 
 function App() {
   const [isEditing, setIsEditing] = useState(false);
@@ -70,13 +71,19 @@ function App() {
           onClick={() => {
             info(record.id);
           }}
+          style={{
+            border: '1px solid #1A1A1A',
+            borderRadius: '4px',
+          }}
           >VIEW</Button>
           <Button
           onClick={() => {
             onEditAdmin(record);
           }}
           style={{
-            marginLeft: 12
+            border: '1px solid #1A1A1A',
+            borderRadius: '4px',
+            marginLeft: 12,
           }}
           >EDIT</Button>
           <Button 
@@ -84,8 +91,9 @@ function App() {
             onDeleteAdmin(record)
           }}
           style={{
-            color: 'red',
-            marginLeft: 12
+            border: '1px solid #1A1A1A',
+            borderRadius: '4px',
+            marginLeft: 12,
           }}
           >DELETE</Button>
           {/* <EditOutlined
@@ -115,8 +123,8 @@ function App() {
 
   const onDeleteAdmin = (record) => {
     Modal.confirm({
-      title: 'Are you sure delete this admin record?',
-      okText: 'Yes',
+      title: 'Are you sure delete this admin?',
+      okText: 'Delete',
       okType: 'danger',
       onOk:() => {
         setDataSource((pre)=> {
@@ -145,11 +153,28 @@ function App() {
     const viewData = dataSource.find(item =>  item.id === id)
     console.log(viewData, 'data')
     Modal.info({
-      title: 'This is a notification message',
+      okText:'Cancel',
+      title: 'View Admin',
+      className: 'view-admin-modal',
       content: (
-        <Modal
-        dataSource={dataSource}
-        />
+        <div
+        style={{
+          fontSize: '20px',
+          lineHeight: '23px',
+          fontFamily: 'Roboto',
+          fontWeight: '400px',
+          fontStyle: 'normal',
+          color: '#585858',
+          paddingTop:'34px',
+        }}
+        >
+        <p 
+        >Name <br></br>{viewData.name}</p>
+        <p
+        >Username <br></br>{viewData.username}</p>
+        <p
+        >Password <br></br>{viewData.password}</p>
+      </div>
       ),
   
       onOk() {},
@@ -159,6 +184,13 @@ function App() {
   return (
     <div className="">
       <header className="">
+        <div style={{
+          minWidth: 1046,
+          // backgroundColor: 'black',
+          paddingLeft: 62,
+          paddingRight: 60,
+          paddingTop: 170,
+        }}>
         <h1 
         style={{
           fontSize: '2rem',
@@ -172,19 +204,21 @@ function App() {
           position: 'relative',
           left: 0,
           backgroundColor: 'black',
-          color: 'white'
+          color: 'white',
+          border: '1px solid #1A1A1A',
+          borderRadius: '4px',
         }}
         >+ NEW</Button>
-          
-        <Table
-        columns={columns}
-        dataSource={dataSource}
-        style={{
-          paddingTop: 30,
-          margin: 0,
-          minWidth: 1120,
-        }}
-        ></ Table>
+        
+          <Table
+          columns={columns}
+          dataSource={dataSource}
+          style={{
+            paddingTop: 30,
+            margin: 0,
+          }}
+          ></ Table>
+        </div>
 
         <Modal
         title="Edit Admin"
@@ -217,11 +251,11 @@ function App() {
             <Input 
             placeholder='Edit your name' 
             value={editingAdmin?.name} 
-          onChange={(e) => {
-            setEditingAdmin((pre) => {
-              return {...pre, name: e.target.value };
-            });
-          }}
+            onChange={(e) => {
+              setEditingAdmin((pre) => {
+                return {...pre, name: e.target.value };
+              });
+            }}
             />
           </Form.Item>
 

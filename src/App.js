@@ -1,22 +1,44 @@
-import './App.css';
-import {Route, BrowserRouter as Router, Routes, Link} from 'react-router-dom'
-import VerticalTabs from './components/VerticalTabs'
+import "./App.css";
+import { Route, BrowserRouter as Router, Routes, Link } from "react-router-dom";
+import VerticalTabs from "./components/VerticalTabs";
+import Login from "./components/Login";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ConfigProvider } from 'antd';
+
+ConfigProvider.config({
+  theme: {
+    primaryColor: '#F27370',
+  },
+});
+
 // import ManageAdmin from './components/ManageAdmin'
 // import ManageMembership from './components/ManageMembership'
 // import Sidebar from './components/Sidebar'
 
+const theme = createTheme({
+  palette: {
+    black: {
+      main: "#000000",
+      contrastText: "#ffffff",
+    },
+  },
+});
+
+
+
 function App() {
   return (
     <>
-    {/* <Sidebar/> */}
-    <VerticalTabs />
-      {/* <Router>
-        <Routes>
-          <Route path="/" element={<Sidebar/>}/>
-          <Route path="/admin" element={<ManageAdmin/>}/>
-          <Route path="/offline" element={<ManageMembership/>}/>
-        </Routes>
-      </Router> */}
+      <ThemeProvider theme={theme}>
+        <ConfigProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<VerticalTabs />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </Router>
+        </ConfigProvider>
+      </ThemeProvider>
     </>
   );
 }
