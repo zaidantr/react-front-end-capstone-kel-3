@@ -59,6 +59,7 @@ export default function ManageOfflineBooking() {
       title: "Status",
       key: "status",
       dataIndex: "status",
+      
     },
     {
       key: 4,
@@ -71,8 +72,10 @@ export default function ManageOfflineBooking() {
                 info(record.id);
               }}
               style={{
-                border: '1px solid #1A1A1A',
+                border: '1px solid #F27370',
                 borderRadius: '4px',
+                color: 'white',
+                backgroundColor: '#F27370',
               }}
             >
               VIEW
@@ -83,8 +86,10 @@ export default function ManageOfflineBooking() {
                 setDeleteId(record.id);
               }}
               style={{
-                border: '1px solid #1A1A1A',
+                border: '1px solid #F27370',
                 borderRadius: '4px',
+                color: 'white',
+                backgroundColor: '#F27370',
                 marginLeft: 12,
               }}
             >
@@ -110,7 +115,7 @@ export default function ManageOfflineBooking() {
           color: "#F27370",
           backgroundColor: "white",
           borderRadius: "8px",
-          paddingBottom: '2px',
+          // paddingBottom: '2px',
         },
       },
       content: (
@@ -151,18 +156,21 @@ export default function ManageOfflineBooking() {
           // backgroundColor: 'black',
           paddingLeft: 62,
           paddingRight: 60,
+          paddingTop: 187,
         }}>
 
       <h1
         style={{
-          fontSize: "2rem",
+          fontSize: "32px",
+          fontWeight: "bold",
+          fontFamily: "Roboto",
         }}
         >
-        Manage Offline Booking
+        Manage Offline Classes Booking
       </h1>
       <div
       style={{
-        border: '1px solid #1A1A1A',
+        border: '1px solid #F27370',
         paddingLeft: 23,
         paddingRight: 23,
       }}
@@ -170,7 +178,7 @@ export default function ManageOfflineBooking() {
         <h3
         style={{
           paddingTop: 23,
-          fontSize: '23',
+          fontSize: '24px',
         }}
         >List Booking Status</h3>
       <Table
@@ -205,7 +213,7 @@ export default function ManageOfflineBooking() {
         <Box 
         display="flex" 
         justifyContent="center">
-                 <Button1
+          <Button1
             style={{
               color: "white",
               fontSize: "16px",
@@ -236,7 +244,6 @@ export default function ManageOfflineBooking() {
           </Button1>
         </Box>
       </Modal>
-      ;
     </div>
     </>
   );

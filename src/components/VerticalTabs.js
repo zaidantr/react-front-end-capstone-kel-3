@@ -10,6 +10,7 @@ import ManageAdmin from './ManageAdmin';
 import ManageMembership from './ManageMembership';
 import ManageTransaction from './ManageTransaction';
 import logo from './logo.svg';
+import ManageOnlineClass from './ManageOnlineClass';
 
 
 function TabPanel(props) {
@@ -200,7 +201,7 @@ export default function VerticalTabs() {
         <ManageOfflineBooking />
       </TabPanel>
       <TabPanel value={value} index={5}>
-        Manage Online Classes
+        <ManageOnlineClass />
       </TabPanel>
       <TabPanel value={value} index={6}>
         <ManageOnlineBooking />

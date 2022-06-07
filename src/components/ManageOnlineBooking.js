@@ -71,8 +71,10 @@ export default function ManageOnlineBooking() {
                 info(record.id);
               }}
               style={{
-                border: '1px solid #1A1A1A',
+                border: '1px solid #F27370',
                 borderRadius: '4px',
+                color: 'white',
+                backgroundColor: '#F27370',
               }}
               >VIEW
               </Button>
@@ -82,9 +84,11 @@ export default function ManageOnlineBooking() {
                 setDeleteId(record.id);              
               }}
               style={{
-                border: '1px solid #1A1A1A',
+                border: '1px solid #F27370',
                 borderRadius: '4px',
-                marginLeft: 12
+                color: 'white',
+                backgroundColor: '#F27370',
+                marginLeft: 12,
               }}
               >DELETE</Button>
             </>
@@ -108,7 +112,7 @@ const info = (id) => {
         color: "#F27370",
         backgroundColor: "white",
         borderRadius: "8px",
-        paddingBottom: '2px',
+        // paddingBottom: '2px',
       },
     },
     content: (
@@ -150,15 +154,33 @@ const info = (id) => {
           // backgroundColor: 'black',
           paddingLeft: 62,
           paddingRight: 60,
+          paddingTop: 187,
         }}>
 
       <h1
         style={{
-          fontSize: "2rem",
+          fontSize: "32px",
+          fontWeight: "bold",
+          fontFamily: "Roboto",
         }}
         >
         Manage Online Booking
       </h1>
+
+      <div
+      style={{
+        border: '1px solid #F27370',
+        paddingLeft: 23,
+        paddingRight: 23,
+      }}
+      >
+        <h3
+        style={{
+          paddingTop: 23,
+          fontSize: '24px',
+        }}
+        >List Booking Status</h3>
+
       <Table
         columns={columns}
         dataSource={dataSource}
@@ -166,6 +188,7 @@ const info = (id) => {
           paddingTop: 30,
         }}
         />
+      </div>
       <Modal 
       visible={openDelete} 
       footer={null} 
@@ -222,7 +245,6 @@ const info = (id) => {
           </Button1>
         </Box>
       </Modal>
-      ;
     </div>
       </>
   )

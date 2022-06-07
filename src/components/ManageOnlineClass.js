@@ -9,11 +9,11 @@ import warning from './warning.svg';
 // import { EditOutlined, DeleteOutlined, InfoCircleOutlined} from '@ant-design/icons';
 // import { height } from '@mui/system';
 
-export default function ManageAdmin() {
+export default function ManageOnlineClass() {
   const [openDelete, setOpenDelete] = useState(false);
   const [deleteId, setDeleteId] = useState(-1);
   const [isEditing, setIsEditing] = useState(false);
-  const [editingAdmin, setEditingAdmin] = useState(null);
+  const [editingOnlineClass, setEditingOnlineClass] = useState(null);
 
   const handleOk = () => {
     setOpenDelete(false);
@@ -26,54 +26,58 @@ export default function ManageAdmin() {
   const [dataSource, setDataSource] = useState([
     {
       id: 1,
-      name: 'John',
-      username: 'John55',
-      password: 'dicoba12',
+      nameClass: 'Zumba',
+      trainer: 'John55',
+      date: '02/22/2022',
+      price: 'Rp 300.000',
     }, 
     {
       id: 2,
-      name: 'David',
-      username: 'David55',
-      password: 'dicoba1245',
+      nameClass: 'Gym',
+      trainer: 'David55',
+      date: '02/22/2022',
+      price: 'Rp 300.000',
     }, 
     {
       id: 3,
-      name: 'James',
-      username: 'James232',
-      password: 'dicoba1276',
+      nameClass: 'Weightlifting',
+      trainer: 'Sam55',
+      date: '02/22/2022',
+      price: 'Rp 300.000',
     }, 
     {
       id: 4,
-      name: 'Sam',
-      username: 'Sam445',
-      password: 'dicoba1254',
+      nameClass: 'Running',
+      trainer: 'Will55',
+      date: '02/22/2022',
+      price: 'Rp 300.000',
     }, 
     
   ]);
 
   const columns = [
-    // {
-    //   key: '1',
-    //   title: 'ID',
-    //   dataIndex: 'id',
-    // },
     {
       key: '1',
-      title: 'Name',
-      dataIndex: 'name',
+      title: 'Name Class',
+      dataIndex: 'nameClass',
     },
     {
       key: '2',
-      title: 'Username',
-      dataIndex: 'username',
+      title: 'Trainer',
+      dataIndex: 'trainer',
     },
     {
       key: '3',
-      title: 'Password',
-      dataIndex: 'password',
+      title: 'Date',
+      dataIndex: 'date',
     },
     {
-      key: 4,
+      key: '4',
+      title: 'Price',
+      dataIndex: 'price',
+    },
+    {
+      key: 5,
       title: 'Actions',
       render:(record) => {
         return <>
@@ -90,7 +94,7 @@ export default function ManageAdmin() {
           >VIEW</Button>
           <Button
           onClick={() => {
-            onEditAdmin(record);
+            onEditOnlineClass(record);
           }}
           style={{
             border: '1px solid #F27370',
@@ -119,28 +123,28 @@ export default function ManageAdmin() {
     } 
   ];
 
-  const onAddAdmin = () => {
+  const onAddOnlineClass = () => {
     const randomNumber = parseInt(Math.random()*1000);
-    const newAdmin = {
+    const newOnlineClass = {
       id: randomNumber,
       username: '',
       password: '',
     }
 
     setDataSource(pre=> {
-      return  [...pre, newAdmin]
+      return  [...pre, newOnlineClass]
     })
     // setAddingAdmin(...record);
   };
 
-  const onEditAdmin = (record) => {
+  const onEditOnlineClass = (record) => {
     setIsEditing(true);
-    setEditingAdmin({...record});
+    setEditingOnlineClass({...record});
   }
 
   const resetEditing=() => {
     setIsEditing(false);
-    setEditingAdmin(null);
+    setEditingOnlineClass(null);
   }
 
 
@@ -151,7 +155,6 @@ export default function ManageAdmin() {
       okText:'',
       icon: '',
       title: '',
-      className: 'view-admin-modal',
       okText:'Cancel',
       okButtonProps: {
         type: "primary",
@@ -177,16 +180,16 @@ export default function ManageAdmin() {
         >
           <h1 
           style={{ fontSize: "26px" }}
-          >View Admin</h1>
+          >View Class</h1>
           <p
-          >Name <br></br> {viewData.username}
+          >Name Class <br></br> {viewData.nameClass}
           </p>
           <p
-          >Class <br></br> {viewData.class}</p>
+          >Trainer <br></br> {viewData.trainer}</p>
           <p
           >Date <br></br> {viewData.date}</p>
           <p
-          >Status <br></br> {viewData.status}</p>
+          >Price <br></br> {viewData.price}</p>
         </div>
       ),
   
@@ -209,7 +212,7 @@ export default function ManageAdmin() {
           fontFamily: "Roboto",
         }}
         >
-        Manage Admin
+        Manage Online Class
       </h1>
 
         <div
@@ -234,10 +237,10 @@ export default function ManageAdmin() {
             fontFamily: "Roboto",
           }}
           >
-            List Admin
+            List Online Class
           </h1>
           <Button 
-          onClick={onAddAdmin}
+          onClick={onAddOnlineClass}
           style={{
             backgroundColor: '#F27370',
             color: 'white',
@@ -260,7 +263,7 @@ export default function ManageAdmin() {
         </div>
 
         <Modal
-        title="Edit Admin"
+        title="Edit Online Class"
         visible={isEditing}
         okText="Save"
         onCancel={() => {
@@ -268,11 +271,11 @@ export default function ManageAdmin() {
         }}
         onOk={() => {
           setDataSource((pre) => {
-            return pre.map((admin) => {
-              if (admin.id === editingAdmin.id) {
-                return editingAdmin;
+            return pre.map((onlineclass) => {
+              if (onlineclass.id === editingOnlineClass.id) {
+                return editingOnlineClass;
               } else {
-                return admin;
+                return onlineclass;
               }
             });
           });
@@ -284,13 +287,13 @@ export default function ManageAdmin() {
             <div 
             style={{
             }}
-            >Name Admin</div>
+            >Name Class</div>
             <Input 
-            placeholder='Edit your name' 
-            value={editingAdmin?.name} 
+            placeholder='Edit your name class' 
+            value={editingOnlineClass?.nameClass} 
             onChange={(e) => {
-              setEditingAdmin((pre) => {
-                return {...pre, name: e.target.value };
+              setEditingOnlineClass((pre) => {
+                return {...pre, nameClass: e.target.value };
               });
             }}
             />
@@ -303,11 +306,11 @@ export default function ManageAdmin() {
             }}
             >Username</div>
             <Input 
-            placeholder='Edit your username' 
-            value={editingAdmin?.name} 
+            placeholder='Edit trainer' 
+            value={editingOnlineClass?.trainer} 
           onChange={(e) => {
-            setEditingAdmin((pre) => {
-              return {...pre, username: e.target.value };
+            setEditingOnlineClass((pre) => {
+              return {...pre, trainer: e.target.value };
             });
           }}
             />
@@ -320,11 +323,28 @@ export default function ManageAdmin() {
             }}
             >Password</div>
             <Input 
-            placeholder='Edit your password' 
-            value={editingAdmin?.password} 
+            placeholder='Edit date' 
+            value={editingOnlineClass?.date} 
             onChange={(e) => {
-              setEditingAdmin((pre) => {
-                return {...pre, password: e.target.value };
+              setEditingOnlineClass((pre) => {
+                return {...pre, date: e.target.value };
+              });
+            }}
+            />
+          </Form.Item>
+
+          <Form.Item
+          >
+             <div 
+            style={{
+            }}
+            >Password</div>
+            <Input 
+            placeholder='Edit price' 
+            value={editingOnlineClass?.price} 
+            onChange={(e) => {
+              setEditingOnlineClass((pre) => {
+                return {...pre, price: e.target.value };
               });
             }}
             />
@@ -367,7 +387,7 @@ export default function ManageAdmin() {
             onClick={() => {
               setOpenDelete(false);
               setDataSource((pre) => {
-                return pre.filter((admin) => admin.id !== deleteId);
+                return pre.filter((onlineclass) => onlineclass.id !== deleteId);
               });
             }}
           >

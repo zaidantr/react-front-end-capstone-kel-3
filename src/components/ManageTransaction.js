@@ -72,9 +72,10 @@ const columns1= [
           return <>
             <Button 
             style={{
-              border: '1px solid #1A1A1A',
+              border: '1px solid #F27370',
               borderRadius: '4px',
-              marginLeft: 12,
+              color: 'white',
+              backgroundColor: '#F27370',
             }}
             >ACCEPT</Button>
             <Button 
@@ -82,8 +83,10 @@ const columns1= [
             //   onDeleteAdmin(record)
             // }}
             style={{
-              border: '1px solid #1A1A1A',
+              border: '1px solid #F27370',
               borderRadius: '4px',
+              color: 'white',
+              backgroundColor: '#F27370',
               marginLeft: 12,
             }}
             >DECLINE</Button>
@@ -150,8 +153,10 @@ const columns2 = [
               info(record.id);
             }}
             style={{
-              border: '1px solid #1A1A1A',
+              border: '1px solid #F27370',
               borderRadius: '4px',
+              color: 'white',
+              backgroundColor: '#F27370',
             }}
             >VIEW</Button>
             <Button 
@@ -160,8 +165,10 @@ const columns2 = [
               setDeleteId(record.id);   
             }}
             style={{
-              border: '1px solid #1A1A1A',
+              border: '1px solid #F27370',
               borderRadius: '4px',
+              color: 'white',
+              backgroundColor: '#F27370',
               marginLeft: 12,
             }}
             >DELETE</Button>
@@ -185,7 +192,7 @@ const info = (id) => {
         color: "#F27370",
         backgroundColor: "white",
         borderRadius: "8px",
-        paddingBottom: '2px',
+        // paddingBottom: '2px',
       },
     },
     content: (
@@ -221,45 +228,70 @@ const info = (id) => {
   return (
       <>
 
-      <div style={{
+      <div 
+      className="manage -transaction"
+      style={{
           minWidth: 1046,
           // backgroundColor: 'black',
           paddingLeft: 62,
           paddingRight: 60,
         }}>
+
         <h1
           style={{
             fontSize: '2rem',
           }}>
           Manage Transaction
         </h1>
-        <h1
+      <div
+        style={{
+          border: '1px solid #F27370',
+          paddingLeft: 23,
+          paddingRight: 23,
+          marginTop: 32,
+        }}>
+        <h3
           style={{
-            fontSize: '1.5rem',
+            paddingTop: 23,
+          fontSize: '24px',
           }}>
           Waiting Transaction
-        </h1>
+        </h3>
         <Table 
-        columns={columns1} 
-        dataSource={dataSource1} 
-        style={{
-          paddingTop: 30,
-        }}
-        />
+          columns={columns1} 
+          dataSource={dataSource1} 
+          style={{
+            paddingTop: 30,
+          }}
+          />
+      </div>
+
+      
+      <div
+      style={{
+        border: '1px solid #F27370',
+        paddingLeft: 23,
+        paddingRight: 23,
+        marginTop: 32,
+      }}>
         <h1
           style={{
-            fontSize: '1.5rem',
-          }}>
-          List Transaction
+            paddingTop: 23,
+            fontSize: '24px',
+          }}
+        >
+        List Transaction
         </h1>
         <Table 
-        columns={columns2} 
-        dataSource={dataSource2} 
-        style={{
-          paddingTop: 30,
-        }}
-        />
-              <Modal 
+          columns={columns2} 
+          dataSource={dataSource2} 
+          style={{
+            paddingTop: 30,
+          }}
+          />
+      </div>
+
+      <Modal 
       visible={openDelete} 
       footer={null} 
       onCancel={handleCancel}>
@@ -315,7 +347,7 @@ const info = (id) => {
           </Button1>
         </Box>
       </Modal>
-      ;
+      
       </div>
       </>
   )
