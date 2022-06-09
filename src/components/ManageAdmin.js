@@ -2,10 +2,11 @@ import "antd/dist/antd.css";
 import "../App.css";
 import { Table, Button, Modal, Input, Form } from "antd";
 import { Box } from "@mui/system";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./antd.css";
 import Button1 from "@mui/material/Button";
 import warning from "./warning.svg";
+import getAPI from "../services/api/api";
 // import { EditOutlined, DeleteOutlined, InfoCircleOutlined} from '@ant-design/icons';
 // import { height } from '@mui/system';
 
@@ -25,47 +26,14 @@ export default function ManageAdmin() {
     setOpenDelete(false);
   };
 
-  const [dataSource, setDataSource] = useState([
-    {
-      id: 1,
-      name: "John",
-      username: "John55",
-      password: "dicoba12",
-      email: "testemail@email.com",
-      phoneNumber: "0812345678",
-    },
-    {
-      id: 2,
-      name: "David",
-      username: "David55",
-      password: "dicoba1245",
-      email: "testemail@email.com",
-      phoneNumber: "0812345678",
-    },
-    {
-      id: 3,
-      name: "James",
-      username: "James232",
-      password: "dicoba1276",
-      email: "testemail@email.com",
-      phoneNumber: "0812345678",
-    },
-    {
-      id: 4,
-      name: "Sam",
-      username: "Sam445",
-      password: "dicoba1254",
-      email: "testemail@email.com",
-      phoneNumber: "0812345678",
-    },
-  ]);
+  const [dataSource, setDataSource] = useState([]);
+
+  useEffect(() => {
+    const api = getAPI(true);
+    api.getAdminData().then((data) => setDataSource(data));
+  }, []);
 
   const columns = [
-    // {
-    //   key: '1',
-    //   title: 'ID',
-    //   dataIndex: 'id',
-    // },
     {
       key: "1",
       title: "Name",
