@@ -1,11 +1,12 @@
-import 'antd/dist/antd.css';
-import '../App.css';
-import {Table, Button, Modal, Input, Form } from 'antd';
+import "antd/dist/antd.css";
+import "../App.css";
+import { Table, Button, Modal, Input, Form } from "antd";
 import { Box } from "@mui/system";
-import { useState} from 'react';
-import './antd.css';
+import { useEffect, useState } from "react";
+import "./antd.css";
 import Button1 from "@mui/material/Button";
-import warning from './warning.svg';
+import warning from "./warning.svg";
+import getAPI from "../services/api/api";
 // import { EditOutlined, DeleteOutlined, InfoCircleOutlined} from '@ant-design/icons';
 // import { height } from '@mui/system';
 
@@ -13,7 +14,9 @@ export default function ManageAdmin() {
   const [openDelete, setOpenDelete] = useState(false);
   const [deleteId, setDeleteId] = useState(-1);
   const [isEditing, setIsEditing] = useState(false);
+  const [isAddingAdmin, setIsAddingAdmin] = useState(false);
   const [editingAdmin, setEditingAdmin] = useState(null);
+  const [newAdmin, setNewAdmin] = useState({});
 
   const handleOk = () => {
     setOpenDelete(false);
@@ -23,136 +26,131 @@ export default function ManageAdmin() {
     setOpenDelete(false);
   };
 
-  const [dataSource, setDataSource] = useState([
-    {
-      id: 1,
-      name: 'John',
-      username: 'John55',
-      password: 'dicoba12',
-    }, 
-    {
-      id: 2,
-      name: 'David',
-      username: 'David55',
-      password: 'dicoba1245',
-    }, 
-    {
-      id: 3,
-      name: 'James',
-      username: 'James232',
-      password: 'dicoba1276',
-    }, 
-    {
-      id: 4,
-      name: 'Sam',
-      username: 'Sam445',
-      password: 'dicoba1254',
-    }, 
-    
-  ]);
+  const [dataSource, setDataSource] = useState([]);
+
+  useEffect(() => {
+    const api = getAPI(true);
+    api.getAdminData().then((data) => setDataSource(data));
+  }, []);
 
   const columns = [
-    // {
-    //   key: '1',
-    //   title: 'ID',
-    //   dataIndex: 'id',
-    // },
     {
-      key: '1',
-      title: 'Name',
-      dataIndex: 'name',
+      key: "1",
+      title: "Name",
+      dataIndex: "name",
     },
     {
-      key: '2',
-      title: 'Username',
-      dataIndex: 'username',
+      key: "2",
+      title: "Username",
+      dataIndex: "username",
     },
     {
-      key: '3',
-      title: 'Password',
-      dataIndex: 'password',
+      key: "3",
+      title: "Password",
+      dataIndex: "password",
     },
     {
-      key: 4,
-      title: 'Actions',
-      render:(record) => {
-        return <>
-          <Button 
-          onClick={() => {
-            info(record.id);
-          }}
-          style={{
-            border: '1px solid #F27370',
-            borderRadius: '4px',
-            color: 'white',
-            backgroundColor: '#F27370',
-          }}
-          >VIEW</Button>
-          <Button
-          onClick={() => {
-            onEditAdmin(record);
-          }}
-          style={{
-            border: '1px solid #F27370',
-            borderRadius: '4px',
-            color: 'white',
-            backgroundColor: '#F27370',
-            marginLeft: 12,
-          }}
-          >EDIT</Button>
-          <Button 
-          onClick={() => {
-            setOpenDelete(!openDelete);
-            setDeleteId(record.id);
-      }}
-          style={{
-            border: '1px solid #F27370',
-            borderRadius: '4px',
-            color: 'white',
-            backgroundColor: '#F27370',
-            marginLeft: 12,
-          }}
-          >DELETE</Button>
-
-        </>
-      }
-    } 
+      key: "4",
+      title: "Email",
+      dataIndex: "email",
+    },
+    {
+      key: "5",
+      title: "Phone Number",
+      dataIndex: "phoneNumber",
+    },
+    {
+      key: 6,
+      title: "Actions",
+      render: (record) => {
+        return (
+          <>
+            <Button
+              onClick={() => {
+                info(record.id);
+              }}
+              style={{
+                border: "1px solid #F27370",
+                borderRadius: "4px",
+                color: "white",
+                backgroundColor: "#F27370",
+              }}
+            >
+              VIEW
+            </Button>
+            <Button
+              onClick={() => {
+                onEditAdmin(record);
+              }}
+              style={{
+                border: "1px solid #F27370",
+                borderRadius: "4px",
+                color: "white",
+                backgroundColor: "#F27370",
+                marginLeft: 12,
+              }}
+            >
+              EDIT
+            </Button>
+            <Button
+              onClick={() => {
+                setOpenDelete(!openDelete);
+                setDeleteId(record.id);
+              }}
+              style={{
+                border: "1px solid #F27370",
+                borderRadius: "4px",
+                color: "white",
+                backgroundColor: "#F27370",
+                marginLeft: 12,
+              }}
+            >
+              DELETE
+            </Button>
+          </>
+        );
+      },
+    },
   ];
 
   const onAddAdmin = () => {
-    const randomNumber = parseInt(Math.random()*1000);
+    const randomNumber = parseInt(Math.random() * 1000);
     const newAdmin = {
       id: randomNumber,
-      username: '',
-      password: '',
-    }
+      username: "",
+      password: "",
+    };
 
-    setDataSource(pre=> {
-      return  [...pre, newAdmin]
-    })
+    setDataSource((pre) => {
+      return [...pre, newAdmin];
+    });
     // setAddingAdmin(...record);
   };
 
   const onEditAdmin = (record) => {
     setIsEditing(true);
-    setEditingAdmin({...record});
-  }
+    setEditingAdmin({ ...record });
+  };
 
-  const resetEditing=() => {
+  const resetEditing = () => {
     setIsEditing(false);
     setEditingAdmin(null);
-  }
+  };
 
+  const resetAddAdmin = () => {
+    setIsAddingAdmin(false);
+    setNewAdmin({});
+  };
 
   const info = (id) => {
-    const viewData = dataSource.find(item =>  item.id === id)
-    console.log(viewData, 'data')
+    const viewData = dataSource.find((item) => item.id === id);
+    console.log(viewData, "data");
     Modal.info({
-      okText:'',
-      icon: '',
-      title: '',
-      className: 'view-admin-modal',
-      okText:'Cancel',
+      okText: "",
+      icon: "",
+      title: "",
+      className: "view-admin-modal",
+      okText: "Cancel",
       okButtonProps: {
         type: "primary",
         style: {
@@ -165,101 +163,109 @@ export default function ManageAdmin() {
       },
       content: (
         <div
-        style={{
-          fontSize: '20px',
-          // lineHeight: '23px',
-          // fontFamily: 'Roboto',
-          // fontWeight: '400px',
-          // fontStyle: 'normal',
-          // color: '#585858',
-          // paddingTop:'34px',
-        }}
+          style={{
+            fontSize: "20px",
+            // lineHeight: '23px',
+            // fontFamily: 'Roboto',
+            // fontWeight: '400px',
+            // fontStyle: 'normal',
+            // color: '#585858',
+            // paddingTop:'34px',
+          }}
         >
-          <h1 
-          style={{ fontSize: "26px" }}
-          >View Admin</h1>
-          <p
-          >Name <br></br> {viewData.username}
+          <h1 style={{ fontSize: "26px" }}>View Admin</h1>
+          <p>
+            Name <br></br> {viewData.name}
           </p>
-          <p
-          >Class <br></br> {viewData.class}</p>
-          <p
-          >Date <br></br> {viewData.date}</p>
-          <p
-          >Status <br></br> {viewData.status}</p>
+          <p>
+            Username <br></br> {viewData.username}
+          </p>
+          <p>
+            Password <br></br> {viewData.password}
+          </p>
+          <p>
+            Email <br></br> {viewData.email}
+          </p>
+          <p>
+            Phone Number <br></br> {viewData.phoneNumber}
+          </p>
         </div>
       ),
-  
+
       onOk() {},
     });
   };
 
   return (
-        <div style={{
-          minWidth: 1046,
-          // backgroundColor: 'black',
-          paddingLeft: 62,
-          paddingRight: 60,
-          paddingTop: 170,
-        }}>
+    <div
+      style={{
+        minWidth: 1046,
+        // backgroundColor: 'black',
+        paddingLeft: 62,
+        paddingRight: 60,
+        paddingTop: 170,
+      }}
+    >
       <h1
         style={{
           fontSize: "32px",
           fontWeight: "bold",
           fontFamily: "Roboto",
         }}
-        >
+      >
         Manage Admin
       </h1>
 
+      <div
+        style={{
+          border: "1px solid #F27370",
+          paddingLeft: 23,
+          paddingRight: 23,
+        }}
+      >
         <div
-             style={{
-              border: '1px solid #F27370',
-              paddingLeft: 23,
-              paddingRight: 23,
-            }}
+          style={{
+            display: "flex",
+            paddingRight: "44.5px",
+            paddingTop: "25px",
+          }}
         >
-
-        <div
-          style={{
-            display: 'flex',
-            paddingRight: '44.5px',
-            paddingTop: '25px'
-          }}
-          >
-          <h1 
-          style={{
-            fontSize: "32px",
-            fontWeight: "bold",
-            fontFamily: "Roboto",
-          }}
+          <h1
+            style={{
+              fontSize: "32px",
+              fontWeight: "bold",
+              fontFamily: "Roboto",
+            }}
           >
             List Admin
           </h1>
-          <Button 
-          onClick={onAddAdmin}
-          style={{
-            backgroundColor: '#F27370',
-            color: 'white',
-            border: '1px solid #F27370',
-            borderRadius: '4px',
-            marginLeft: 'auto',
-
-          }}
-          >+ NEW</Button>
-        </div>
-          
-            <Table
-            columns={columns}
-            dataSource={dataSource}
-            style={{
-              // paddingTop: 30,
-              margin: 0,
+          <Button
+            onClick={() => {
+              setIsAddingAdmin(true);
             }}
-            ></ Table>
+            style={{
+              backgroundColor: "#F27370",
+              color: "white",
+              border: "1px solid #F27370",
+              borderRadius: "4px",
+              marginLeft: "auto",
+            }}
+          >
+            + NEW
+          </Button>
         </div>
 
-        <Modal
+        <Table
+          columns={columns}
+          dataSource={dataSource}
+          style={{
+            // paddingTop: 30,
+            margin: 0,
+          }}
+        ></Table>
+      </div>
+
+      <Modal
         title="Edit Admin"
         visible={isEditing}
         okText="Save"
@@ -278,84 +284,166 @@ export default function ManageAdmin() {
           });
           resetEditing();
         }}
-        >
-          <Form.Item
-          >
-            <div 
-            style={{
-            }}
-            >Name Admin</div>
-            <Input 
-            placeholder='Edit your name' 
-            value={editingAdmin?.name} 
+      >
+        <Form.Item>
+          <div style={{}}>Name Admin</div>
+          <Input
+            placeholder="Edit your name"
+            value={editingAdmin?.name}
             onChange={(e) => {
               setEditingAdmin((pre) => {
-                return {...pre, name: e.target.value };
+                return { ...pre, name: e.target.value };
               });
             }}
-            />
-          </Form.Item>
+          />
+        </Form.Item>
 
-          <Form.Item
-          >
-             <div 
-            style={{
-            }}
-            >Username</div>
-            <Input 
-            placeholder='Edit your username' 
-            value={editingAdmin?.name} 
-          onChange={(e) => {
-            setEditingAdmin((pre) => {
-              return {...pre, username: e.target.value };
-            });
-          }}
-            />
-          </Form.Item>
-          
-          <Form.Item
-          >
-             <div 
-            style={{
-            }}
-            >Password</div>
-            <Input 
-            placeholder='Edit your password' 
-            value={editingAdmin?.password} 
+        <Form.Item>
+          <div style={{}}>Username</div>
+          <Input
+            placeholder="Edit your username"
+            value={editingAdmin?.username}
             onChange={(e) => {
               setEditingAdmin((pre) => {
-                return {...pre, password: e.target.value };
+                return { ...pre, username: e.target.value };
               });
             }}
-            />
-          </Form.Item>
+          />
+        </Form.Item>
 
-        </Modal>
+        <Form.Item>
+          <div style={{}}>Password</div>
+          <Input
+            placeholder="Edit your password"
+            value={editingAdmin?.password}
+            onChange={(e) => {
+              setEditingAdmin((pre) => {
+                return { ...pre, password: e.target.value };
+              });
+            }}
+          />
+        </Form.Item>
 
-        <Modal 
-      visible={openDelete} 
-      footer={null} 
-      onCancel={handleCancel}>
-        <Box 
-        display="flex" 
-        justifyContent="center">
-          <img 
-          src={warning} 
-          alt="iconwarning" 
-          width='300px'
-          ></img>
+        <Form.Item>
+          <div style={{}}>Email</div>
+          <Input
+            placeholder="Edit email"
+            value={editingAdmin?.email}
+            onChange={(e) => {
+              setEditingAdmin((pre) => {
+                return { ...pre, email: e.target.value };
+              });
+            }}
+          />
+        </Form.Item>
+
+        <Form.Item>
+          <div style={{}}>Phone Number</div>
+          <Input
+            placeholder="Edit phone number"
+            value={editingAdmin?.phoneNumber}
+            onChange={(e) => {
+              setEditingAdmin((pre) => {
+                return { ...pre, phoneNumber: e.target.value };
+              });
+            }}
+          />
+        </Form.Item>
+      </Modal>
+
+      <Modal
+        title="Add Admin"
+        visible={isAddingAdmin}
+        okText="Save"
+        onCancel={() => {
+          resetAddAdmin();
+        }}
+        onOk={() => {
+          setDataSource([...dataSource, newAdmin]);
+          resetAddAdmin();
+        }}
+      >
+        <Form.Item>
+          <div style={{}}>Name Admin</div>
+          <Input
+            placeholder="New admin name"
+            value={editingAdmin?.name}
+            onChange={(e) => {
+              setNewAdmin((pre) => {
+                return { ...pre, name: e.target.value };
+              });
+            }}
+          />
+        </Form.Item>
+
+        <Form.Item>
+          <div style={{}}>Username</div>
+          <Input
+            placeholder="New admin username"
+            value={editingAdmin?.username}
+            onChange={(e) => {
+              setNewAdmin((pre) => {
+                return { ...pre, username: e.target.value };
+              });
+            }}
+          />
+        </Form.Item>
+
+        <Form.Item>
+          <div style={{}}>Password</div>
+          <Input
+            placeholder="New admin password"
+            value={editingAdmin?.password}
+            onChange={(e) => {
+              setNewAdmin((pre) => {
+                return { ...pre, password: e.target.value };
+              });
+            }}
+          />
+        </Form.Item>
+
+        <Form.Item>
+          <div style={{}}>Email</div>
+          <Input
+            placeholder="New admin email"
+            value={editingAdmin?.email}
+            onChange={(e) => {
+              setNewAdmin((pre) => {
+                return { ...pre, email: e.target.value };
+              });
+            }}
+          />
+        </Form.Item>
+
+        <Form.Item>
+          <div style={{}}>Phone Number</div>
+          <Input
+            placeholder="New admin phone number"
+            value={editingAdmin?.phoneNumber}
+            onChange={(e) => {
+              setNewAdmin((pre) => {
+                return { ...pre, phoneNumber: e.target.value };
+              });
+            }}
+          />
+        </Form.Item>
+      </Modal>
+
+      <Modal visible={openDelete} footer={null} onCancel={handleCancel}>
+        <Box display="flex" justifyContent="center">
+          <img src={warning} alt="iconwarning" width="300px"></img>
         </Box>
-        <p 
-        style={{ 
-          textAlign: "center", 
-          padding: "30px", 
-          fontSize: "24px" }}>
+        <p
+          style={{
+            textAlign: "center",
+            padding: "30px",
+            fontSize: "24px",
+          }}
+        >
           Are sure to delete this?
         </p>
-        <Box 
-        display="flex" 
-        justifyContent="center">
-                 <Button1
+        <Box display="flex" justifyContent="center">
+          <Button1
             style={{
               color: "white",
               fontSize: "16px",
@@ -386,8 +474,6 @@ export default function ManageAdmin() {
           </Button1>
         </Box>
       </Modal>
-
     </div>
   );
 }
-
