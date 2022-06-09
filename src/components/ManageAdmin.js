@@ -31,24 +31,32 @@ export default function ManageAdmin() {
       name: "John",
       username: "John55",
       password: "dicoba12",
+      email: "testemail@email.com",
+      phoneNumber: "0812345678",
     },
     {
       id: 2,
       name: "David",
       username: "David55",
       password: "dicoba1245",
+      email: "testemail@email.com",
+      phoneNumber: "0812345678",
     },
     {
       id: 3,
       name: "James",
       username: "James232",
       password: "dicoba1276",
+      email: "testemail@email.com",
+      phoneNumber: "0812345678",
     },
     {
       id: 4,
       name: "Sam",
       username: "Sam445",
       password: "dicoba1254",
+      email: "testemail@email.com",
+      phoneNumber: "0812345678",
     },
   ]);
 
@@ -74,7 +82,17 @@ export default function ManageAdmin() {
       dataIndex: "password",
     },
     {
-      key: 4,
+      key: "4",
+      title: "Email",
+      dataIndex: "email",
+    },
+    {
+      key: "5",
+      title: "Phone Number",
+      dataIndex: "phoneNumber",
+    },
+    {
+      key: 6,
       title: "Actions",
       render: (record) => {
         return (
@@ -189,16 +207,19 @@ export default function ManageAdmin() {
         >
           <h1 style={{ fontSize: "26px" }}>View Admin</h1>
           <p>
-            Name <br></br> {viewData.username}
+            Name <br></br> {viewData.name}
           </p>
           <p>
-            Class <br></br> {viewData.class}
+            Username <br></br> {viewData.username}
           </p>
           <p>
-            Date <br></br> {viewData.date}
+            Password <br></br> {viewData.password}
           </p>
           <p>
-            Status <br></br> {viewData.status}
+            Email <br></br> {viewData.email}
+          </p>
+          <p>
+            Phone Number <br></br> {viewData.phoneNumber}
           </p>
         </div>
       ),
@@ -334,6 +355,32 @@ export default function ManageAdmin() {
             }}
           />
         </Form.Item>
+
+        <Form.Item>
+          <div style={{}}>Email</div>
+          <Input
+            placeholder="Edit email"
+            value={editingAdmin?.email}
+            onChange={(e) => {
+              setEditingAdmin((pre) => {
+                return { ...pre, email: e.target.value };
+              });
+            }}
+          />
+        </Form.Item>
+
+        <Form.Item>
+          <div style={{}}>Phone Number</div>
+          <Input
+            placeholder="Edit phone number"
+            value={editingAdmin?.phoneNumber}
+            onChange={(e) => {
+              setEditingAdmin((pre) => {
+                return { ...pre, phoneNumber: e.target.value };
+              });
+            }}
+          />
+        </Form.Item>
       </Modal>
 
       <Modal
@@ -382,6 +429,32 @@ export default function ManageAdmin() {
             onChange={(e) => {
               setNewAdmin((pre) => {
                 return { ...pre, password: e.target.value };
+              });
+            }}
+          />
+        </Form.Item>
+
+        <Form.Item>
+          <div style={{}}>Email</div>
+          <Input
+            placeholder="New admin email"
+            value={editingAdmin?.email}
+            onChange={(e) => {
+              setNewAdmin((pre) => {
+                return { ...pre, email: e.target.value };
+              });
+            }}
+          />
+        </Form.Item>
+
+        <Form.Item>
+          <div style={{}}>Phone Number</div>
+          <Input
+            placeholder="New admin phone number"
+            value={editingAdmin?.phoneNumber}
+            onChange={(e) => {
+              setNewAdmin((pre) => {
+                return { ...pre, phoneNumber: e.target.value };
               });
             }}
           />
