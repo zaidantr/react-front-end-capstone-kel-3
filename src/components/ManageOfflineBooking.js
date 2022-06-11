@@ -207,8 +207,9 @@ export default function ManageOfflineBooking() {
         style={{ 
           textAlign: "center", 
           padding: "30px", 
-          fontSize: "24px" }}>
-          Are sure to delete this?
+          fontSize: "24px" 
+          }}>
+          Are you sure want to delete this?
         </p>
         <Box 
         display="flex" 

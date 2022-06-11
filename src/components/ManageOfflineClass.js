@@ -2,10 +2,11 @@ import 'antd/dist/antd.css';
 import '../App.css';
 import {Table, Button, Modal, Input, Form } from 'antd';
 import { Box } from "@mui/system";
-import { useState} from 'react';
+import { useEffect, useState} from 'react';
 import './antd.css';
 import Button1 from "@mui/material/Button";
 import warning from '../assets/warning.svg';
+import getAPI from "../services/api/api";
 // import { EditOutlined, DeleteOutlined, InfoCircleOutlined} from '@ant-design/icons';
 // import { height } from '@mui/system';
 
@@ -26,49 +27,12 @@ export default function ManageOfflineClass() {
     setOpenDelete(false);
   };
 
-  const [dataSource, setDataSource] = useState([
-    {
-      id: 1,
-      nameClass: 'Zumba',
-      trainer: 'John55',
-      date: '02/22/2022',
-      price: 'Rp 300.000',
-      location: 'Jakarta',
-      time: '10:00 - 12:00',
-      description: 'Zumba is a group fitness class that focuses on strengthening the body and mind.',
-    }, 
-    {
-      id: 2,
-      nameClass: 'Gym',
-      trainer: 'David55',
-      date: '02/22/2022',
-      price: 'Rp 300.000',
-      location: 'Jakarta',
-      time: '10:00 - 12:00',
-      description: 'Gym is a group fitness class that focuses on strengthening the body and mind.',
-    }, 
-    {
-      id: 3,
-      nameClass: 'Weightlifting',
-      trainer: 'Sam55',
-      date: '02/22/2022',
-      price: 'Rp 300.000',
-      location: 'Jakarta',
-      time: '10:00 - 12:00',
-      description: 'Weightlifting is a group fitness class that focuses on strengthening the body and mind.',
-    }, 
-    {
-      id: 4,
-      nameClass: 'Running',
-      trainer: 'Will55',
-      date: '02/22/2022',
-      price: 'Rp 300.000',
-      location: 'Jakarta',
-      time: '10:00 - 12:00',
-      description: 'Running is a group fitness class that focuses on strengthening the body and mind.',
-    }, 
-    
-  ]);
+  const [dataSource, setDataSource] = useState([]);
+
+  useEffect(() => {
+    const api = getAPI(true);
+    api.getOfflineClassData().then((data) => setDataSource(data));
+  }, []);
 
   const columns = [
     {
@@ -785,7 +749,7 @@ export default function ManageOfflineClass() {
           textAlign: "center", 
           padding: "30px", 
           fontSize: "24px" }}>
-          Are sure to delete this?
+          Are you sure want to delete this?
         </p>
         <Box 
         display="flex" 

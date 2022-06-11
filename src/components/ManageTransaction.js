@@ -309,9 +309,8 @@ const info = (id) => {
           textAlign: "center", 
           padding: "30px", 
           fontSize: "24px",
-          fontWeight: "700",
           }}>
-          Are sure to delete this?
+         Are you sure want to delete this?
         </p>
         <Box 
         display="flex" 

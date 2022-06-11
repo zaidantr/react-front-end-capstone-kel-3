@@ -310,7 +310,7 @@ const info = (id) => {
           padding: "30px", 
           fontSize: "24px",
           }}>
-          Are sure to delete this?
+          Are you sure want to delete this?
         </p>
         <Box 
         display="flex" 

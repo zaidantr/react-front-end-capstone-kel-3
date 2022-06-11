@@ -1,0 +1,42 @@
+[
+    {
+      "id": 1,
+      "nameClass": "Zumba",
+      "trainer": "John55",
+      "date": "02/22/2022",
+      "price": "Rp 300.000",
+      "location": "Jakarta",
+      "time": "10:00 - 12:00",
+      "description": "Zumba is a group fitness class that focuses on strengthening the body and mind."
+    }, 
+    {
+      "id": 2,
+      "nameClass": "Gym",
+      "trainer": "David55",
+      "date": "02/22/2022",
+      "price": "Rp 300.000",
+      "location": "Jakarta",
+      "time": "10:00 - 12:00",
+      "description": "Gym is a group fitness class that focuses on strengthening the body and mind."
+    }, 
+    {
+      "id": 3,
+      "nameClass": "Weightlifting",
+      "trainer": "Sam55",
+      "date": "02/22/2022",
+      "price": "Rp 300.000",
+      "location": "Jakarta",
+      "time": "10:00 - 12:00",
+      "description": "Weightlifting is a group fitness class that focuses on strengthening the body and mind."
+    }, 
+    {
+      "id": 4,
+      "nameClass": "Running",
+      "trainer": "Will55",
+      "date": "02/22/2022",
+      "price": "Rp 300.000",
+      "location": "Jakarta",
+      "time": "10:00 - 12:00",
+      "description": "Running is a group fitness class that focuses on strengthening the body and mind."
+    }
+  ]
