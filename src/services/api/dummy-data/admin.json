@@ -1,0 +1,34 @@
+[
+    {
+      "id": 1,
+      "name": "John",
+      "username": "John55",
+      "password": "dicoba12",
+      "email": "testemail@email.com",
+      "phoneNumber": "0812345678"
+    },
+    {
+      "id": 2,
+      "name": "David",
+      "username": "David55",
+      "password": "dicoba1245",
+      "email": "testemail@email.com",
+      "phoneNumber": "0812345678"
+    },
+    {
+      "id": 3,
+      "name": "James",
+      "username": "James232",
+      "password": "dicoba1276",
+      "email": "testemail@email.com",
+      "phoneNumber": "0812345678"
+    },
+    {
+      "id": 4,
+      "name": "Sam",
+      "username": "Sam445",
+      "password": "dicoba1254",
+      "email": "testemail@email.com",
+      "phoneNumber": "0812345678"
+    }
+  ]

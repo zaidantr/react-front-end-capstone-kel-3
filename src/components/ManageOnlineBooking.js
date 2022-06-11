@@ -1,9 +1,13 @@
-import { Space, Table, Tag, Button, Modal, Input, Form } from 'antd';
-import React, { useState }from 'react';
+import { Box } from "@mui/system";
+import { Space, Table, Tag, Button, Modal, Input, Form } from "antd";
+import React, { useState } from "react";
+import Button1 from "@mui/material/Button";
+import warning from './warning.svg';
 
 export default function ManageOnlineBooking() {
-
-const [dataSource, setDataSource] = useState([
+  const [openDelete, setOpenDelete] = useState(false);
+  const [deleteId, setDeleteId] = useState(-1);
+  const [dataSource, setDataSource] = useState([
   {
     id: '1',
     username: 'John123',
@@ -25,98 +29,223 @@ const [dataSource, setDataSource] = useState([
     date: '12/02/2022',
     status : 'active',
   },
-]);
+  ]);
 
-const columns = [
-  {
-    title: 'Username',
-    dataIndex: 'username',
-    key: 'username',
-  },
-  {
-    title: 'Class',
-    dataIndex: 'class',
-    key: 'name',
-  },
-  {
-    title: 'Date',
-    dataIndex: 'date',
-    key: 'date',
-  },
-  {
-    title: 'Status',
-    key: 'status',
-    dataIndex: 'status',
-  },
-  {
-    key: 4,
-        title: 'Actions',
-        render:(record) => {
-          return <>
-            <Button 
-            onClick={() => {
-              info(record.id);
-            }}
-            >VIEW</Button>
-            <Button 
-            onClick={() => {
-              onDeleteAdmin(record)
-            }}
-            style={{
-              color: 'red',
-              marginLeft: 12
-            }}
-            >DELETE</Button>
+  const handleOk = () => {
+    setOpenDelete(false);
+  };
+
+  const handleCancel = () => {
+    setOpenDelete(false);
+  };
+
+  const columns = [
+    {
+      title: 'Username',
+      dataIndex: 'username',
+      key: 'username',
+    },
+    {
+      title: 'Class',
+      dataIndex: 'class',
+      key: 'name',
+    },
+    {
+      title: 'Date',
+      dataIndex: 'date',
+      key: 'date',
+    },
+    {
+      title: 'Status',
+      key: 'status',
+      dataIndex: 'status',
+    },
+    {
+      key: 4,
+          title: 'Actions',
+          render:(record) => {
+            return (
+            <>
+              <Button 
+              onClick={() => {
+                info(record.id);
+              }}
+              style={{
+                border: '1px solid #F27370',
+                borderRadius: '4px',
+                color: 'white',
+                backgroundColor: '#F27370',
+              }}
+              >VIEW
+              </Button>
+              <Button 
+              onClick={() => {
+                setOpenDelete(!openDelete);
+                setDeleteId(record.id);              
+              }}
+              style={{
+                border: '1px solid #F27370',
+                borderRadius: '4px',
+                color: 'white',
+                backgroundColor: '#F27370',
+                marginLeft: 12,
+              }}
+              >DELETE</Button>
             </>
-        }
-  }
-];
+            )
+          }
+    }
+  ];
 
 
 const info = (id) => {
-  const viewData = dataSource.find(item =>  item.id === id)
+  const viewData = dataSource.find((item) =>  item.id === id)
   console.log(viewData, 'data')
   Modal.info({
-    title: 'This is a notification message',
+    title: "",
+    icon: '',
+    okText:'Cancel',
+    okButtonProps: {
+      type: "primary",
+      style: {
+        border: "2px solid #F27370",
+        color: "#F27370",
+        backgroundColor: "white",
+        borderRadius: "8px",
+        // paddingBottom: '2px',
+      },
+    },
     content: (
-      <Modal
-      dataSource={dataSource}
-      />
+      <div
+      style={{
+        fontSize: '20px',
+        // lineHeight: '23px',
+        // fontFamily: 'Roboto',
+        // fontWeight: '400px',
+        // fontStyle: 'normal',
+        // color: '#585858',
+        // paddingTop:'34px',
+      }}
+      >
+        <h1 
+        style={{ fontSize: "26px" }}
+        >View Booking Status</h1>
+        <p
+        >Name <br></br> {viewData.username}
+        </p>
+        <p
+        >Class <br></br> {viewData.class}</p>
+        <p
+        >Date <br></br> {viewData.date}</p>
+        <p
+        >Status <br></br> {viewData.status}</p>
+      </div>
     ),
 
     onOk() {},
   });
 };
 
-const onDeleteAdmin = (record) => {
-  Modal.confirm({
-    title: 'Are you sure delete this admin record?',
-    okText: 'Yes',
-    okType: 'danger',
-    onOk:() => {
-      setDataSource((pre)=> {
-        return pre.filter(admin => admin.id !== record.id);
-      });
-    }
-  });
-};
-  
+ 
   return (
       <>
-        <h1
-          style={{
-            fontSize: '2rem',
-          }}>
-          Manage Online Booking
-        </h1>
-        <Table 
-        columns={columns} 
-        dataSource={dataSource} 
+    <div style={{
+          minWidth: 1046,
+          // backgroundColor: 'black',
+          paddingLeft: 62,
+          paddingRight: 60,
+          paddingTop: 187,
+        }}>
+
+      <h1
         style={{
-          minWidth: 1120,
+          fontSize: "32px",
+          fontWeight: "bold",
+          fontFamily: "Roboto",
+        }}
+        >
+        Manage Online Booking
+      </h1>
+
+      <div
+      style={{
+        border: '1px solid #F27370',
+        paddingLeft: 23,
+        paddingRight: 23,
+      }}
+      >
+        <h3
+        style={{
+          paddingTop: 23,
+          fontSize: '24px',
+        }}
+        >List Booking Status</h3>
+
+      <Table
+        columns={columns}
+        dataSource={dataSource}
+        style={{
           paddingTop: 30,
         }}
         />
+      </div>
+      <Modal 
+      visible={openDelete} 
+      footer={null} 
+      onCancel={handleCancel}>
+        <Box 
+        display="flex" 
+        justifyContent="center">
+          <img 
+          src={warning} 
+          alt="iconwarning" 
+          width='300px'
+          ></img>
+        </Box>
+        <p 
+        style={{ 
+          textAlign: "center", 
+          padding: "30px", 
+          fontSize: "24px",
+          fontWeight: "700",
+          }}>
+          Are sure to delete this?
+        </p>
+        <Box 
+        display="flex" 
+        justifyContent="center">
+          <Button1
+            style={{
+              color: "white",
+              fontSize: "16px",
+              backgroundColor: "#F27370",
+              borderRadius: "8px",
+              marginRight: "20px",
+              padding: "7px 10px",
+            }}
+            onClick={() => {
+              setOpenDelete(false);
+              setDataSource((pre) => {
+                return pre.filter((admin) => admin.id !== deleteId);
+              });
+            }}
+          >
+            Delete
+          </Button1>
+          <Button1
+            variant="outlined"
+            style={{
+              color: "#F27370",
+              border: "2px solid #F27370",
+              backgroundColor: "white",
+            }}
+            onClick={handleCancel}
+          >
+            Cancel
+          </Button1>
+        </Box>
+      </Modal>
+    </div>
       </>
   )
 }

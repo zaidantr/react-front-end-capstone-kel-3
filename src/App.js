@@ -3,6 +3,13 @@ import { Route, BrowserRouter as Router, Routes, Link } from "react-router-dom";
 import VerticalTabs from "./components/VerticalTabs";
 import Login from "./components/Login";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ConfigProvider } from 'antd';
+
+ConfigProvider.config({
+  theme: {
+    primaryColor: '#F27370',
+  },
+});
 
 // import ManageAdmin from './components/ManageAdmin'
 // import ManageMembership from './components/ManageMembership'
@@ -17,16 +24,20 @@ const theme = createTheme({
   },
 });
 
+
+
 function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
+        <ConfigProvider>
         <Router>
           <Routes>
             <Route path="/" element={<VerticalTabs />} />
             <Route path="/login" element={<Login />} />
           </Routes>
         </Router>
+        </ConfigProvider>
       </ThemeProvider>
     </>
   );
