@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Button, Container, Stack, TextField } from "@mui/material";
-import logo from "./logo.svg";
+import logo from "../assets/logo.svg";
 
 const Login = (props) => {
   return (

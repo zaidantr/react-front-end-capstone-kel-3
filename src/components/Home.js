@@ -3,9 +3,9 @@ import '../App.css';
 import {Table, Button, Modal, Input, Form } from 'antd';
 import { useState} from 'react';
 import './antd.css';
-import active from './active-users.svg';
-import booking from './total-booking.svg';
-import admin from './total-admin.svg';
+import active from '../assets/active-users.svg';
+import booking from '../assets/total-booking.svg';
+import admin from '../assets/total-admin.svg';
 
 export default function Home() {
   const { Search } = Input;

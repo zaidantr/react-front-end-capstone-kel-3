@@ -5,7 +5,7 @@ import { Box } from "@mui/system";
 import { useState} from 'react';
 import './antd.css';
 import Button1 from "@mui/material/Button";
-import warning from './warning.svg';
+import warning from '../assets/warning.svg';
 // import { EditOutlined, DeleteOutlined, InfoCircleOutlined} from '@ant-design/icons';
 // import { height } from '@mui/system';
 
@@ -225,7 +225,6 @@ export default function ManageOfflineClass() {
           <p>Price <br></br> {viewData.price}</p>
           <p>Location <br></br> {viewData.location}</p>
           <p>Description <br></br> {viewData.description}</p>
-          {/* kalau diambil tanpa dari JSON ga keview yang ke hidden */}
         </div>
       ),
   
@@ -276,7 +275,7 @@ export default function ManageOfflineClass() {
           </h1>
           <Button 
           onClick={() => {
-            setNewOfflineClass(true);
+            setIsAddingOfflineClass(true);
           }}
           style={{
             backgroundColor: '#F27370',
@@ -299,6 +298,7 @@ export default function ManageOfflineClass() {
             ></ Table>
         </div>
 
+{/* MODAL EDITING CLASS */}
         <Modal
         title=""
         visible={isEditing}
@@ -537,6 +537,7 @@ export default function ManageOfflineClass() {
       </div>
         </Modal>
 
+{/* MODAL ADD CLASS */}
         <Modal
         title=""
         visible={isAddingOfflineClass}

@@ -5,7 +5,7 @@ import { Box } from "@mui/system";
 import { useState} from 'react';
 import './antd.css';
 import Button1 from "@mui/material/Button";
-import warning from './warning.svg';
+import warning from '../assets/warning.svg';
 // import { EditOutlined, DeleteOutlined, InfoCircleOutlined} from '@ant-design/icons';
 // import { height } from '@mui/system';
 
@@ -13,7 +13,10 @@ export default function ManageOnlineClass() {
   const [openDelete, setOpenDelete] = useState(false);
   const [deleteId, setDeleteId] = useState(-1);
   const [isEditing, setIsEditing] = useState(false);
+  const [isAddingOnlineClass, setIsAddingOnlineClass] = useState(false);
   const [editingOnlineClass, setEditingOnlineClass] = useState(null);
+  const [newOnlineClass, setNewOnlineClass] = useState({});
+
 
   const handleOk = () => {
     setOpenDelete(false);
@@ -30,6 +33,9 @@ export default function ManageOnlineClass() {
       trainer: 'John55',
       date: '02/22/2022',
       price: 'Rp 300.000',
+      location: 'Jakarta',
+      time: '10:00 - 12:00',
+      description: 'Zumba is a group fitness class that focuses on strengthening the body and mind.',
     }, 
     {
       id: 2,
@@ -37,6 +43,9 @@ export default function ManageOnlineClass() {
       trainer: 'David55',
       date: '02/22/2022',
       price: 'Rp 300.000',
+      location: 'Jakarta',
+      time: '10:00 - 12:00',
+      description: 'Gym is a group fitness class that focuses on strengthening the body and mind.',
     }, 
     {
       id: 3,
@@ -44,6 +53,9 @@ export default function ManageOnlineClass() {
       trainer: 'Sam55',
       date: '02/22/2022',
       price: 'Rp 300.000',
+      location: 'Jakarta',
+      time: '10:00 - 12:00',
+      description: 'Weightlifting is a group fitness class that focuses on strengthening the body and mind.',
     }, 
     {
       id: 4,
@@ -51,6 +63,9 @@ export default function ManageOnlineClass() {
       trainer: 'Will55',
       date: '02/22/2022',
       price: 'Rp 300.000',
+      location: 'Jakarta',
+      time: '10:00 - 12:00',
+      description: 'Running is a group fitness class that focuses on strengthening the body and mind.',
     }, 
     
   ]);
@@ -77,7 +92,25 @@ export default function ManageOnlineClass() {
       dataIndex: 'price',
     },
     {
-      key: 5,
+      key: '5',
+      title: 'Time',
+      dataIndex: 'time',
+      hidden: true,
+    },
+    {
+      key: '6',
+      title: 'Location',
+      dataIndex: 'location',
+      hidden: true,
+    },
+    {
+      key: '7',
+      title: 'Description',
+      dataIndex: 'description',
+      hidden: true,
+    },
+    {
+      key: 8,
       title: 'Actions',
       render:(record) => {
         return <>
@@ -121,21 +154,7 @@ export default function ManageOnlineClass() {
         </>
       }
     } 
-  ];
-
-  const onAddOnlineClass = () => {
-    const randomNumber = parseInt(Math.random()*1000);
-    const newOnlineClass = {
-      id: randomNumber,
-      username: '',
-      password: '',
-    }
-
-    setDataSource(pre=> {
-      return  [...pre, newOnlineClass]
-    })
-    // setAddingAdmin(...record);
-  };
+  ].filter(item => !item.hidden);
 
   const onEditOnlineClass = (record) => {
     setIsEditing(true);
@@ -147,12 +166,30 @@ export default function ManageOnlineClass() {
     setEditingOnlineClass(null);
   }
 
+  const resetAddOnlineClass=() => {
+    setIsAddingOnlineClass(false);
+    setNewOnlineClass({});
+  }
+
+  // const onAddOnlineClass = () => {
+  //   const randomNumber = parseInt(Math.random()*1000);
+  //   const newOnlineClass = {
+  //     id: randomNumber,
+  //     username: '',
+  //     password: '',
+  //   }
+
+  //   setDataSource(pre=> {
+  //     return  [...pre, newOnlineClass]
+  //   })
+  //   // setAddingAdmin(...record);
+  // };
 
   const info = (id) => {
     const viewData = dataSource.find(item =>  item.id === id)
     console.log(viewData, 'data')
     Modal.info({
-      okText:'',
+
       icon: '',
       title: '',
       okText:'Cancel',
@@ -181,15 +218,13 @@ export default function ManageOnlineClass() {
           <h1 
           style={{ fontSize: "26px" }}
           >View Class</h1>
-          <p
-          >Name Class <br></br> {viewData.nameClass}
-          </p>
-          <p
-          >Trainer <br></br> {viewData.trainer}</p>
-          <p
-          >Date <br></br> {viewData.date}</p>
-          <p
-          >Price <br></br> {viewData.price}</p>
+          <p>Name Class <br></br> {viewData.nameClass} </p>
+          <p>Trainer <br></br> {viewData.trainer}</p>
+          <p>Date <br></br> {viewData.date}</p>
+          <p>Time <br></br> {viewData.time}</p>
+          <p>Price <br></br> {viewData.price}</p>
+          <p>Location <br></br> {viewData.location}</p>
+          <p>Description <br></br> {viewData.description}</p>
         </div>
       ),
   
@@ -232,15 +267,16 @@ export default function ManageOnlineClass() {
           >
           <h1 
           style={{
-            fontSize: "32px",
-            fontWeight: "bold",
+            fontSize: "24px",
             fontFamily: "Roboto",
           }}
           >
             List Online Class
           </h1>
           <Button 
-          onClick={onAddOnlineClass}
+          onClick={() => {
+            setIsAddingOnlineClass(true);
+          }}
           style={{
             backgroundColor: '#F27370',
             color: 'white',
@@ -262,34 +298,36 @@ export default function ManageOnlineClass() {
             ></ Table>
         </div>
 
+{/* MODAL EDITING CLASS */}
         <Modal
-        title="Edit Online Class"
+        title=""
         visible={isEditing}
-        okText="Save"
-        onCancel={() => {
-          resetEditing();
-        }}
-        onOk={() => {
-          setDataSource((pre) => {
-            return pre.map((onlineclass) => {
-              if (onlineclass.id === editingOnlineClass.id) {
-                return editingOnlineClass;
-              } else {
-                return onlineclass;
-              }
-            });
-          });
-          resetEditing();
-        }}
+        footer={null}
         >
+        
+        <h1
+          style={{
+            fontSize: '32px',
+            fontWeight: 'bold',
+          }}
+        >Edit Class</h1>
+
           <Form.Item
           >
             <div 
             style={{
+              fontSize: '20px',
+              marginBottom: '5px',              
             }}
             >Name Class</div>
             <Input 
-            placeholder='Edit your name class' 
+            placeholder='Edit Your Name Class' 
+            style={{
+              border: '1px solid #707070',
+              padding: '10px 16px',
+              borderRadius: '4px',
+              color: '#707070'
+            }}            
             value={editingOnlineClass?.nameClass} 
             onChange={(e) => {
               setEditingOnlineClass((pre) => {
@@ -303,16 +341,24 @@ export default function ManageOnlineClass() {
           >
              <div 
             style={{
+              fontSize: '20px',
+              marginBottom: '5px',              
             }}
-            >Username</div>
+            >Trainer</div>
             <Input 
-            placeholder='Edit trainer' 
+            placeholder='Enter Your CLass Trainer' 
+            style={{
+              border: '1px solid #707070',
+              padding: '10px 16px',
+              borderRadius: '4px',
+              color: '#707070'
+            }} 
             value={editingOnlineClass?.trainer} 
-          onChange={(e) => {
-            setEditingOnlineClass((pre) => {
-              return {...pre, trainer: e.target.value };
-            });
-          }}
+            onChange={(e) => {
+              setEditingOnlineClass((pre) => {
+                return {...pre, trainer: e.target.value };
+              });
+            }}
             />
           </Form.Item>
           
@@ -320,10 +366,18 @@ export default function ManageOnlineClass() {
           >
              <div 
             style={{
+              fontSize: '20px',
+              marginBottom: '5px',
             }}
-            >Password</div>
+            >Date</div>
             <Input 
-            placeholder='Edit date' 
+            placeholder='dd/mm/yyyy' 
+            style={{
+              border: '1px solid #707070',
+              padding: '10px 16px',
+              borderRadius: '4px',
+              color: '#707070'
+            }}               
             value={editingOnlineClass?.date} 
             onChange={(e) => {
               setEditingOnlineClass((pre) => {
@@ -337,11 +391,69 @@ export default function ManageOnlineClass() {
           >
              <div 
             style={{
+              fontSize: '20px',
+              marginBottom: '5px',              
             }}
-            >Password</div>
+            >Time</div>
             <Input 
-            placeholder='Edit price' 
+            placeholder='19.00' 
+            value={editingOnlineClass?.time} 
+            style={{
+              border: '1px solid #707070',
+              padding: '10px 16px',
+              borderRadius: '4px',
+              color: '#707070'
+            }}            
+            onChange={(e) => {
+              setEditingOnlineClass((pre) => {
+                return {...pre, time: e.target.value };
+              });
+            }}
+            />
+          </Form.Item>
+
+          <Form.Item
+          >
+             <div 
+            style={{
+              fontSize: '20px',
+              marginBottom: '5px',              
+            }}
+            >Location</div>
+            <Input 
+            placeholder='Enter Your Location' 
+            value={editingOnlineClass?.location} 
+            style={{
+              border: '1px solid #707070',
+              padding: '10px 16px',
+              borderRadius: '4px',
+              color: '#707070'
+            }}            
+            onChange={(e) => {
+              setEditingOnlineClass((pre) => {
+                return {...pre, location: e.target.value };
+              });
+            }}
+            />
+          </Form.Item>
+
+          <Form.Item
+          >
+             <div 
+            style={{
+              fontSize: '20px',
+              marginBottom: '5px',              
+            }}
+            >Price</div>
+            <Input 
+            placeholder='Rp.' 
             value={editingOnlineClass?.price} 
+            style={{
+              border: '1px solid #707070',
+              padding: '10px 16px',
+              borderRadius: '4px',
+              color: '#707070'
+            }}            
             onChange={(e) => {
               setEditingOnlineClass((pre) => {
                 return {...pre, price: e.target.value };
@@ -350,6 +462,309 @@ export default function ManageOnlineClass() {
             />
           </Form.Item>
 
+          <Form.Item
+          >
+             <div 
+            style={{
+              fontSize: '20px',
+              marginBottom: '5px',              
+            }}
+            >Description</div>
+            <Input 
+            placeholder='Enter Your Description' 
+            value={editingOnlineClass?.description} 
+            style={{
+              border: '1px solid #707070',
+              padding: '10px 16px',
+              borderRadius: '4px',
+              color: '#707070'
+            }}            
+            onChange={(e) => {
+              setEditingOnlineClass((pre) => {
+                return {...pre, description: e.target.value };
+              });
+            }}
+            />
+          </Form.Item>
+
+          <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+      >
+        
+        <Button
+        type="primary"
+        onClick={() => {
+          setDataSource((pre) => {
+            return pre.map((onlineclass) => {
+              if (onlineclass.id === editingOnlineClass.id) {
+                return editingOnlineClass;
+              } else {
+                return onlineclass;
+              }
+            });
+          });
+          resetEditing();
+          }}
+          style={{
+            width: '100%',
+            marginBottom: '15px',
+            borderRadius: '8px',
+            fontSize: '16px',
+            height: '40px',
+            alignItems: 'center',
+          }}          
+        >
+          + SAVE
+        </Button>
+        <Button
+        onClick={() => {
+          resetEditing();
+
+        }}
+        style={{
+          width: '100%',
+          borderRadius: '8px',
+          fontSize: '16px',
+          height: '40px',
+          alignItems: 'center',
+        }}
+        >
+          CANCEL
+        </Button>
+      </div>
+        </Modal>
+
+{/* MODAL ADD CLASS */}
+        <Modal
+        title=""
+        visible={isAddingOnlineClass}
+        footer={null}
+        >
+        
+        <h1
+          style={{
+            fontSize: '32px',
+            fontWeight: 'bold',
+          }}
+        >Add Class</h1>
+
+          <Form.Item
+          >
+            <div 
+            style={{
+              fontSize: '20px',
+              marginBottom: '5px',              
+            }}
+            >Name Class</div>
+            <Input 
+            placeholder='Edit Your Name Class' 
+            style={{
+              border: '1px solid #707070',
+              padding: '10px 16px',
+              borderRadius: '4px',
+              color: '#707070'
+            }}            
+            value={editingOnlineClass?.nameClass} 
+            onChange={(e) => {
+              setNewOnlineClass((pre) => {
+                return {...pre, nameClass: e.target.value };
+              });
+            }}
+            />
+          </Form.Item>
+
+          <Form.Item
+          >
+             <div 
+            style={{
+              fontSize: '20px',
+              marginBottom: '5px',              
+            }}
+            >Trainer</div>
+            <Input 
+            placeholder='Enter Your CLass Trainer' 
+            style={{
+              border: '1px solid #707070',
+              padding: '10px 16px',
+              borderRadius: '4px',
+              color: '#707070'
+            }} 
+            value={editingOnlineClass?.trainer} 
+            onChange={(e) => {
+              setNewOnlineClass((pre) => {
+                return {...pre, trainer: e.target.value };
+              });
+            }}
+            />
+          </Form.Item>
+          
+          <Form.Item
+          >
+             <div 
+            style={{
+              fontSize: '20px',
+              marginBottom: '5px',
+            }}
+            >Date</div>
+            <Input 
+            placeholder='dd/mm/yyyy' 
+            style={{
+              border: '1px solid #707070',
+              padding: '10px 16px',
+              borderRadius: '4px',
+              color: '#707070'
+            }}               
+            value={editingOnlineClass?.date} 
+            onChange={(e) => {
+              setNewOnlineClass((pre) => {
+                return {...pre, date: e.target.value };
+              });
+            }}
+            />
+          </Form.Item>
+
+          <Form.Item
+          >
+             <div 
+            style={{
+              fontSize: '20px',
+              marginBottom: '5px',              
+            }}
+            >Time</div>
+            <Input 
+            placeholder='19.00' 
+            value={editingOnlineClass?.time} 
+            style={{
+              border: '1px solid #707070',
+              padding: '10px 16px',
+              borderRadius: '4px',
+              color: '#707070'
+            }}            
+            onChange={(e) => {
+              setNewOnlineClass((pre) => {
+                return {...pre, time: e.target.value };
+              });
+            }}
+            />
+          </Form.Item>
+
+          <Form.Item
+          >
+             <div 
+            style={{
+              fontSize: '20px',
+              marginBottom: '5px',              
+            }}
+            >Location</div>
+            <Input 
+            placeholder='Enter Your Location' 
+            value={editingOnlineClass?.location} 
+            style={{
+              border: '1px solid #707070',
+              padding: '10px 16px',
+              borderRadius: '4px',
+              color: '#707070'
+            }}            
+            onChange={(e) => {
+              setNewOnlineClass((pre) => {
+                return {...pre, location: e.target.value };
+              });
+            }}
+            />
+          </Form.Item>
+
+          <Form.Item
+          >
+             <div 
+            style={{
+              fontSize: '20px',
+              marginBottom: '5px',              
+            }}
+            >Price</div>
+            <Input 
+            placeholder='Rp.' 
+            value={editingOnlineClass?.price} 
+            style={{
+              border: '1px solid #707070',
+              padding: '10px 16px',
+              borderRadius: '4px',
+              color: '#707070'
+            }}            
+            onChange={(e) => {
+              setNewOnlineClass((pre) => {
+                return {...pre, price: e.target.value };
+              });
+            }}
+            />
+          </Form.Item>
+
+          <Form.Item
+          >
+             <div 
+            style={{
+              fontSize: '20px',
+              marginBottom: '5px',              
+            }}
+            >Description</div>
+            <Input 
+            placeholder='Enter Your Description' 
+            value={editingOnlineClass?.description} 
+            style={{
+              border: '1px solid #707070',
+              padding: '10px 16px',
+              borderRadius: '4px',
+              color: '#707070'
+            }}            
+            onChange={(e) => {
+              setNewOnlineClass((pre) => {
+                return {...pre, description: e.target.value };
+              });
+            }}
+            />
+          </Form.Item>
+
+          <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+      >
+        
+        <Button
+        type="primary"
+        onClick={() => {
+          setDataSource([...dataSource, newOnlineClass]);
+          resetAddOnlineClass();
+          }}
+          style={{
+            width: '100%',
+            marginBottom: '15px',
+            borderRadius: '8px',
+            fontSize: '16px',
+            height: '40px',
+            alignItems: 'center',
+          }}          
+        >
+          + SAVE
+        </Button>
+        <Button
+        onClick={() => {
+          resetAddOnlineClass();
+        }}
+        style={{
+          width: '100%',
+          borderRadius: '8px',
+          fontSize: '16px',
+          height: '40px',
+          alignItems: 'center',
+        }}
+        >
+          CANCEL
+        </Button>
+      </div>
         </Modal>
 
         <Modal 

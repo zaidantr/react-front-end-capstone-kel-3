@@ -2,7 +2,7 @@ import { Box } from "@mui/system";
 import { Space, Table, Tag, Button, Modal, Input, Form } from "antd";
 import React, { useState } from "react";
 import Button1 from "@mui/material/Button";
-import warning from './warning.svg';
+import warning from '../assets/warning.svg';
 
 export default function ManageOfflineBooking() {
   const [openDelete, setOpenDelete] = useState(false);

@@ -9,10 +9,11 @@ import ManageOfflineBooking from './ManageOfflineBooking';
 import ManageAdmin from './ManageAdmin';
 import ManageMembership from './ManageMembership';
 import ManageTransaction from './ManageTransaction';
-import logo from './logo.svg';
+import logo from '../assets/logo.svg';
 import ManageOnlineClass from './ManageOnlineClass';
 import Home from './Home';
 import ManageOfflineClass from './ManageOfflineClass';
+import "./antd.css";
 
 
 function TabPanel(props) {
@@ -71,28 +72,29 @@ export default function VerticalTabs() {
       src={logo} 
       alt='logo'
       style={{
-         width: "8vw",
-          display: "flex",
-          justifyContent: "center",
-          position: "absolute",
-          margin: "50px 0px 0px 120px",
+        width: '243px',
+        height: '65px',
+        justifyContent: "center",
+        position: "absolute",
+        margin: "50px 0px 0px 120px",
       }}
       /> 
       
       <Tabs
         orientation="vertical"
-        variant="scrollable"
+        // variant="scrollable"
+        visibleScrollbar= 'true'
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs example"
         sx={{ 
           borderRight: 1, 
-          borderColor: 'divider' 
+          borderColor: 'white' 
         }}
         style={{
           paddingTop: 200,
           backgroundColor: '#F27370',
-          width: 400,
+          width: 1000,
           color: 'white',
         }}
       >
