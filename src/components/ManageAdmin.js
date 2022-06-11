@@ -53,11 +53,13 @@ export default function ManageAdmin() {
       key: "4",
       title: "Email",
       dataIndex: "email",
+      hidden: true,
     },
     {
       key: "5",
       title: "Phone Number",
       dataIndex: "phoneNumber",
+      hidden: true,
     },
     {
       key: 6,
@@ -111,21 +113,7 @@ export default function ManageAdmin() {
         );
       },
     },
-  ];
-
-  const onAddAdmin = () => {
-    const randomNumber = parseInt(Math.random() * 1000);
-    const newAdmin = {
-      id: randomNumber,
-      username: "",
-      password: "",
-    };
-
-    setDataSource((pre) => {
-      return [...pre, newAdmin];
-    });
-    // setAddingAdmin(...record);
-  };
+  ].filter(item => !item.hidden);
 
   const onEditAdmin = (record) => {
     setIsEditing(true);
@@ -146,7 +134,6 @@ export default function ManageAdmin() {
     const viewData = dataSource.find((item) => item.id === id);
     console.log(viewData, "data");
     Modal.info({
-      okText: "",
       icon: "",
       title: "",
       className: "view-admin-modal",
@@ -208,9 +195,9 @@ export default function ManageAdmin() {
     >
       <h1
         style={{
-          fontSize: "32px",
-          fontWeight: "bold",
-          fontFamily: "Roboto",
+          fontSize: "2rem",
+          // fontWeight: "bold",
+          // fontFamily: "Roboto",
         }}
       >
         Manage Admin
@@ -232,9 +219,9 @@ export default function ManageAdmin() {
         >
           <h1
             style={{
-              fontSize: "32px",
-              fontWeight: "bold",
-              fontFamily: "Roboto",
+              fontSize: "2rem",
+              // fontWeight: "bold",
+              // fontFamily: "Roboto",
             }}
           >
             List Admin
@@ -266,29 +253,31 @@ export default function ManageAdmin() {
       </div>
 
       <Modal
-        title="Edit Admin"
+        title=""
         visible={isEditing}
-        okText="Save"
-        onCancel={() => {
-          resetEditing();
-        }}
-        onOk={() => {
-          setDataSource((pre) => {
-            return pre.map((admin) => {
-              if (admin.id === editingAdmin.id) {
-                return editingAdmin;
-              } else {
-                return admin;
-              }
-            });
-          });
-          resetEditing();
-        }}
+        footer={null}
       >
+          <h1
+          style={{
+            fontSize: '32px',
+            fontWeight: 'bold',
+          }}
+        >Edit Admin</h1>
+
         <Form.Item>
-          <div style={{}}>Name Admin</div>
+          <div style={{
+            fontSize: '20px',
+            marginBottom: '5px',
+          }}
+          >Name Admin</div>
           <Input
-            placeholder="Edit your name"
+            placeholder="Enter Your Name"
+            style={{
+              border: '1px solid #707070',
+              padding: '10px 16px',
+              borderRadius: '4px',
+              color: '#707070'
+            }}
             value={editingAdmin?.name}
             onChange={(e) => {
               setEditingAdmin((pre) => {
@@ -299,9 +288,18 @@ export default function ManageAdmin() {
         </Form.Item>
 
         <Form.Item>
-          <div style={{}}>Username</div>
+          <div style={{
+              fontSize: '20px',
+              marginBottom: '5px',
+            }}>Username</div>
           <Input
-            placeholder="Edit your username"
+            placeholder="Enter Your Username"
+            style={{
+              border: '1px solid #707070',
+              padding: '10px 16px',
+              borderRadius: '4px',
+              color: '#707070'
+            }}            
             value={editingAdmin?.username}
             onChange={(e) => {
               setEditingAdmin((pre) => {
@@ -312,9 +310,18 @@ export default function ManageAdmin() {
         </Form.Item>
 
         <Form.Item>
-          <div style={{}}>Password</div>
+          <div style={{
+              fontSize: '20px',
+              marginBottom: '5px',
+            }}>Password</div>
           <Input
-            placeholder="Edit your password"
+            placeholder="Enter Your Password"
+            style={{
+              border: '1px solid #707070',
+              padding: '10px 16px',
+              borderRadius: '4px',
+              color: '#707070'
+            }}            
             value={editingAdmin?.password}
             onChange={(e) => {
               setEditingAdmin((pre) => {
@@ -325,9 +332,18 @@ export default function ManageAdmin() {
         </Form.Item>
 
         <Form.Item>
-          <div style={{}}>Email</div>
+          <div style={{
+              fontSize: '20px',
+              marginBottom: '5px',
+            }}>Email</div>
           <Input
-            placeholder="Edit email"
+            placeholder="@gmail.com"
+            style={{
+              border: '1px solid #707070',
+              padding: '10px 16px',
+              borderRadius: '4px',
+              color: '#707070'
+            }}            
             value={editingAdmin?.email}
             onChange={(e) => {
               setEditingAdmin((pre) => {
@@ -338,9 +354,18 @@ export default function ManageAdmin() {
         </Form.Item>
 
         <Form.Item>
-          <div style={{}}>Phone Number</div>
+          <div style={{
+              fontSize: '20px',
+              marginBottom: '5px',
+            }}>Phone Number</div>
           <Input
-            placeholder="Edit phone number"
+            placeholder="Enter Your Phone Number"
+            style={{
+              border: '1px solid #707070',
+              padding: '10px 16px',
+              borderRadius: '4px',
+              color: '#707070'
+            }}
             value={editingAdmin?.phoneNumber}
             onChange={(e) => {
               setEditingAdmin((pre) => {
@@ -349,24 +374,84 @@ export default function ManageAdmin() {
             }}
           />
         </Form.Item>
+      
+      <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+      >
+        
+        <Button
+        type="primary"
+        onClick={() => {
+            setDataSource((pre) => {
+              return pre.map((admin) => {
+                if (admin.id === editingAdmin.id) {
+                  return editingAdmin;
+                } else {
+                  return admin;
+                }
+              });
+            });
+            resetEditing();
+          }}
+          style={{
+            width: '100%',
+            marginBottom: '15px',
+            borderRadius: '8px',
+            fontSize: '16px',
+            height: '40px',
+            alignItems: 'center',
+          }}          
+        >
+          + SAVE
+        </Button>
+        <Button
+        onClick={() => {
+          resetEditing();
+        }}
+        style={{
+          width: '100%',
+          borderRadius: '8px',
+          fontSize: '16px',
+          height: '40px',
+          alignItems: 'center',
+        }}
+        >
+          CANCEL
+        </Button>
+      </div>
+
       </Modal>
 
       <Modal
-        title="Add Admin"
+        title=""
         visible={isAddingAdmin}
-        okText="Save"
-        onCancel={() => {
-          resetAddAdmin();
-        }}
-        onOk={() => {
-          setDataSource([...dataSource, newAdmin]);
-          resetAddAdmin();
-        }}
+        footer={null}
       >
+        <h1
+        style={{
+          fontSize: '32px',
+          fontWeight: 'bold',
+        }}
+        >Add Admin</h1>
+
         <Form.Item>
-          <div style={{}}>Name Admin</div>
+          <div style={{
+            fontSize: '20px',
+            marginBottom: '5px',
+          }}>Name Admin</div>
+
           <Input
-            placeholder="New admin name"
+            placeholder="Enter Your Name"
+            placeholderTextColor="#707070"
+            style={{
+              border: '1px solid #707070',
+              padding: '10px 16px',
+              borderRadius: '4px',
+              color: '#707070'
+            }}
             value={editingAdmin?.name}
             onChange={(e) => {
               setNewAdmin((pre) => {
@@ -377,9 +462,19 @@ export default function ManageAdmin() {
         </Form.Item>
 
         <Form.Item>
-          <div style={{}}>Username</div>
+          <div 
+          style={{
+              fontSize: '20px',
+              marginBottom: '5px',
+          }}>Username</div>
           <Input
-            placeholder="New admin username"
+            placeholder="Enter Your Username"
+            style={{
+              border: '1px solid #707070',
+              padding: '10px 16px',
+              borderRadius: '4px',
+              color: '#707070'
+            }}
             value={editingAdmin?.username}
             onChange={(e) => {
               setNewAdmin((pre) => {
@@ -390,9 +485,18 @@ export default function ManageAdmin() {
         </Form.Item>
 
         <Form.Item>
-          <div style={{}}>Password</div>
+          <div style={{
+              fontSize: '20px',
+              marginBottom: '5px',
+          }}>Password</div>
           <Input
-            placeholder="New admin password"
+            placeholder="Enter Your Password"
+            style={{
+              border: '1px solid #707070',
+              padding: '10px 16px',
+              borderRadius: '4px',
+              color: '#707070'
+            }}
             value={editingAdmin?.password}
             onChange={(e) => {
               setNewAdmin((pre) => {
@@ -403,9 +507,18 @@ export default function ManageAdmin() {
         </Form.Item>
 
         <Form.Item>
-          <div style={{}}>Email</div>
+          <div style={{
+              fontSize: '20px',
+              marginBottom: '5px',
+          }}>Email</div>
           <Input
-            placeholder="New admin email"
+            placeholder="@gmail.com"
+            style={{
+              border: '1px solid #707070',
+              padding: '10px 16px',
+              borderRadius: '4px',
+              color: '#707070'
+            }}
             value={editingAdmin?.email}
             onChange={(e) => {
               setNewAdmin((pre) => {
@@ -416,9 +529,18 @@ export default function ManageAdmin() {
         </Form.Item>
 
         <Form.Item>
-          <div style={{}}>Phone Number</div>
+          <div style={{
+              fontSize: '20px',
+              marginBottom: '5px',
+          }}>Phone Number</div>
           <Input
-            placeholder="New admin phone number"
+            placeholder="Enter Your Phone Number"
+            style={{
+              border: '1px solid #707070',
+              padding: '10px 16px',
+              borderRadius: '4px',
+              color: '#707070'
+            }}
             value={editingAdmin?.phoneNumber}
             onChange={(e) => {
               setNewAdmin((pre) => {
@@ -427,11 +549,59 @@ export default function ManageAdmin() {
             }}
           />
         </Form.Item>
+                  <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+      >
+        
+        <Button
+        type="primary"
+        onClick={() => {
+          setDataSource([...dataSource, newAdmin]);
+          resetAddAdmin();
+          }}
+          style={{
+            width: '100%',
+            marginBottom: '15px',
+            borderRadius: '8px',
+            fontSize: '16px',
+            height: '40px',
+            alignItems: 'center',
+          }}          
+        >
+          + SAVE
+        </Button>
+        <Button
+        onClick={() => {
+          resetAddAdmin();
+        }}
+        style={{
+          width: '100%',
+          borderRadius: '8px',
+          fontSize: '16px',
+          height: '40px',
+          alignItems: 'center',
+        }}
+        >
+          CANCEL
+        </Button>
+      </div>
       </Modal>
 
-      <Modal visible={openDelete} footer={null} onCancel={handleCancel}>
-        <Box display="flex" justifyContent="center">
-          <img src={warning} alt="iconwarning" width="300px"></img>
+      <Modal 
+      visible={openDelete} 
+      footer={null} 
+      onCancel={handleCancel}>
+        <Box 
+        display="flex" 
+        justifyContent="center">
+          <img 
+          src={warning} 
+          alt="iconwarning" 
+          width="300px"
+          ></img>
         </Box>
         <p
           style={{
@@ -440,9 +610,11 @@ export default function ManageAdmin() {
             fontSize: "24px",
           }}
         >
-          Are sure to delete this?
+          Are you sure want to delete this?
         </p>
-        <Box display="flex" justifyContent="center">
+        <Box 
+        display="flex" 
+        justifyContent="center">
           <Button1
             style={{
               color: "white",
