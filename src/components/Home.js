@@ -253,7 +253,7 @@ export default function Home() {
         style={{
           fontSize: "32px",
           fontWeight: "bold",
-          fontFamily: "Roboto",
+          // fontFamily: "Roboto",
         }}
         >
         Total Joined Class

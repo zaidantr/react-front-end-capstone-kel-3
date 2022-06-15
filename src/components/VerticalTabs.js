@@ -8,7 +8,6 @@ import ManageOnlineBooking from './ManageOnlineBooking';
 import ManageOfflineBooking from './ManageOfflineBooking';
 import ManageAdmin from './ManageAdmin';
 import ManageMembership from './ManageMembership';
-import ManageTransaction from './ManageTransaction';
 import logo from '../assets/logo.svg';
 import ManageOnlineClass from './ManageOnlineClass';
 import Home from './Home';
@@ -94,7 +93,7 @@ export default function VerticalTabs() {
         style={{
           paddingTop: 200,
           backgroundColor: '#F27370',
-          width: 1000,
+          width: '400px',
           color: 'white',
         }}
       >
@@ -176,17 +175,6 @@ export default function VerticalTabs() {
           lineHeight: '23px',
         }}
         />
-        <Tab 
-        label="Manage Transaction" {...a11yProps(7)} 
-        style={{
-          color: 'white',
-          fontFamily: 'Roboto',
-          fontStyle: 'normal',
-          fontWeight: '700',
-          fontSize: '16px',
-          lineHeight: '23px',
-        }}
-        />
       
       </Tabs>
       <TabPanel value={value} index={0}>
@@ -209,9 +197,6 @@ export default function VerticalTabs() {
       </TabPanel>
       <TabPanel value={value} index={6}>
         <ManageOnlineBooking />
-      </TabPanel>
-      <TabPanel value={value} index={7}>
-        <ManageTransaction />
       </TabPanel>
     </Box>
   );

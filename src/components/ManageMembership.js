@@ -71,6 +71,7 @@ const columns1= [
         render:(record) => {
           return <>
             <Button 
+            id="btn-accept-membership"
             style={{
               border: '1px solid #F27370',
               borderRadius: '4px',
@@ -79,6 +80,7 @@ const columns1= [
             }}
             >ACCEPT</Button>
             <Button 
+            id="btn-decline-membership"
             // onClick={() => {
             //   onDeleteAdmin(record)
             // }}
@@ -149,6 +151,7 @@ const columns2 = [
         render:(record) => {
           return <>
             <Button 
+            id="btn-view-membership"
             onClick={() => {
               info(record.id);
             }}
@@ -160,6 +163,7 @@ const columns2 = [
             }}
             >VIEW</Button>
             <Button 
+            id="btn-delete-membership"
             onClick={() => {
               setOpenDelete(!openDelete);
               setDeleteId(record.id);   
@@ -185,6 +189,7 @@ const info = (id) => {
     title: "",
     icon: '',
     okText:'Cancel',
+    okId: 'btn-cancel-view-membership',
     okButtonProps: {
       type: "primary",
       style: {
@@ -316,6 +321,7 @@ const info = (id) => {
         display="flex" 
         justifyContent="center">
           <Button1
+          id="btn-confirm-delete-membership"
             style={{
               color: "white",
               fontSize: "16px",
@@ -334,6 +340,7 @@ const info = (id) => {
             Delete
           </Button1>
           <Button1
+            id="btn-cancel-delete-membership"
             variant="outlined"
             style={{
               color: "#F27370",

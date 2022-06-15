@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { ConfigProvider } from 'antd';
 
+
 ConfigProvider.config({
   theme: {
     primaryColor: '#F27370',
@@ -34,6 +35,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<VerticalTabs />} />
+
             <Route path="/login" element={<Login />} />
           </Routes>
         </Router>

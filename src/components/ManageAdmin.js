@@ -7,6 +7,7 @@ import "./antd.css";
 import Button1 from "@mui/material/Button";
 import warning from "../assets/warning.svg";
 import getAPI from "../services/api/api";
+import userLogo from "../assets/user-logo.svg"
 // import { EditOutlined, DeleteOutlined, InfoCircleOutlined} from '@ant-design/icons';
 // import { height } from '@mui/system';
 
@@ -18,9 +19,9 @@ export default function ManageAdmin() {
   const [editingAdmin, setEditingAdmin] = useState(null);
   const [newAdmin, setNewAdmin] = useState({});
 
-  const handleOk = () => {
-    setOpenDelete(false);
-  };
+  // const handleOk = () => {
+  //   setOpenDelete(false);
+  // };
 
   const handleCancel = () => {
     setOpenDelete(false);
@@ -68,6 +69,7 @@ export default function ManageAdmin() {
         return (
           <>
             <Button
+              id="btn-view-admin"
               onClick={() => {
                 info(record.id);
               }}
@@ -81,6 +83,7 @@ export default function ManageAdmin() {
               VIEW
             </Button>
             <Button
+              id="btn-edit-admin"
               onClick={() => {
                 onEditAdmin(record);
               }}
@@ -95,6 +98,7 @@ export default function ManageAdmin() {
               EDIT
             </Button>
             <Button
+              id="btn-delete-admin"
               onClick={() => {
                 setOpenDelete(!openDelete);
                 setDeleteId(record.id);
@@ -138,6 +142,7 @@ export default function ManageAdmin() {
       title: "",
       className: "view-admin-modal",
       okText: "Cancel",
+      okId: 'btn-cancel-view-admin',
       okButtonProps: {
         type: "primary",
         style: {
@@ -145,19 +150,12 @@ export default function ManageAdmin() {
           color: "#F27370",
           backgroundColor: "white",
           borderRadius: "8px",
-          // paddingBottom: '2px',
         },
       },
       content: (
         <div
           style={{
             fontSize: "20px",
-            // lineHeight: '23px',
-            // fontFamily: 'Roboto',
-            // fontWeight: '400px',
-            // fontStyle: 'normal',
-            // color: '#585858',
-            // paddingTop:'34px',
           }}
         >
           <h1 style={{ fontSize: "26px" }}>View Admin</h1>
@@ -182,6 +180,9 @@ export default function ManageAdmin() {
       onOk() {},
     });
   };
+
+  // console.log(editingAdmin.name, "editingAdmin");
+  
 
   return (
     <div
@@ -227,6 +228,7 @@ export default function ManageAdmin() {
             List Admin
           </h1>
           <Button
+            id="btn-add-admin"
             onClick={() => {
               setIsAddingAdmin(true);
             }}
@@ -263,43 +265,87 @@ export default function ManageAdmin() {
             fontWeight: 'bold',
           }}
         >Edit Admin</h1>
+        
 
-        <Form.Item>
-          <div style={{
-            fontSize: '20px',
-            marginBottom: '5px',
-          }}
-          >Name Admin</div>
+            <Form
+            autoComplete="off"
+            // labelCol={{ span: 10 }}
+            // wrapperCol={{ span: 14 }}
+            onFinish={(values) => {
+              console.log({ values });
+            }}
+            onFinishFailed={(error) => {
+              console.log({ error });
+            }}
+            style={{
+              width: '100%'
+            }}
+            >
+              <div style={{
+                fontSize: '20px',
+                marginBottom: '5px',
+              }}
+              >Name Admin</div>
+        <Form.Item
+          // name="Name Admin" 
+          // Gara gara ini valuenya ga keambil editingAdmin
+          
+          rules={[
+            {
+              required: true,
+              message: "Please enter your name",
+            },
+            { whitespace: true },
+            { min: 3 },
+          ]}
+          hasFeedback
+          
+        >
           <Input
+            id="fld-name-edit-admin"
             placeholder="Enter Your Name"
             style={{
               border: '1px solid #707070',
               padding: '10px 16px',
               borderRadius: '4px',
-              color: '#707070'
+              color: '#707070',
             }}
             value={editingAdmin?.name}
             onChange={(e) => {
               setEditingAdmin((pre) => {
                 return { ...pre, name: e.target.value };
-              });
-            }}
-          />
+              })
+            }} 
+            />
+
         </Form.Item>
 
-        <Form.Item>
           <div style={{
-              fontSize: '20px',
+            fontSize: '20px',
               marginBottom: '5px',
-            }}>Username</div>
+            }}
+            >Username</div>
+        <Form.Item
+        //  name="Username"
+         rules={[
+           {
+             required: true,
+             message: "Please enter a valid username",
+           },
+           { whitespace: true },
+           { min: 3 },
+         ]}
+         hasFeedback
+        >
           <Input
+            id="fld-username-edit-admin"
             placeholder="Enter Your Username"
             style={{
               border: '1px solid #707070',
               padding: '10px 16px',
               borderRadius: '4px',
               color: '#707070'
-            }}            
+            }}     
             value={editingAdmin?.username}
             onChange={(e) => {
               setEditingAdmin((pre) => {
@@ -309,12 +355,24 @@ export default function ManageAdmin() {
           />
         </Form.Item>
 
-        <Form.Item>
           <div style={{
-              fontSize: '20px',
-              marginBottom: '5px',
+            fontSize: '20px',
+            marginBottom: '5px',
             }}>Password</div>
+        <Form.Item
+        // name="password"
+        rules={[
+          { required: true, message: 'Please enter a valid password' },
+          { min: 8, message: 'Password must have a minimum length of 8' },
+          {
+              pattern: new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d@$!%*?&]{8,}$'),
+              message: 'Password must contain at least one lowercase letter, uppercase letter, and number'
+          },
+        ]}
+        hasFeedback
+        >
           <Input
+            id="fld-password-edit-admin"
             placeholder="Enter Your Password"
             style={{
               border: '1px solid #707070',
@@ -331,12 +389,22 @@ export default function ManageAdmin() {
           />
         </Form.Item>
 
-        <Form.Item>
           <div style={{
-              fontSize: '20px',
-              marginBottom: '5px',
+            fontSize: '20px',
+            marginBottom: '5px',
             }}>Email</div>
+        <Form.Item
+        //  name="email"
+         rules={[
+           { 
+            required: true,
+            type: "email", 
+            message: "Please enter a valid email address" },
+         ]}
+         hasFeedback
+        >
           <Input
+            id="fld-email-edit-admin"
             placeholder="@gmail.com"
             style={{
               border: '1px solid #707070',
@@ -353,12 +421,26 @@ export default function ManageAdmin() {
           />
         </Form.Item>
 
-        <Form.Item>
           <div style={{
-              fontSize: '20px',
-              marginBottom: '5px',
-            }}>Phone Number</div>
+            fontSize: '20px',
+            marginBottom: '5px',
+          }}>Phone Number</div>
+        <Form.Item
+        // name="Phone Number"
+        rules={[
+          {
+            required: true,
+            message: "Please enter a valid phone number",
+          },
+          {
+            pattern: new RegExp('^[0-9]{10,12}$'),
+            message: "Wrong format!"
+          }
+        ]}
+        hasFeedback
+        >
           <Input
+            id="fld-phone-number-edit-admin"
             placeholder="Enter Your Phone Number"
             style={{
               border: '1px solid #707070',
@@ -383,6 +465,7 @@ export default function ManageAdmin() {
       >
         
         <Button
+        id="btn-save-edit-admin"
         type="primary"
         onClick={() => {
             setDataSource((pre) => {
@@ -404,10 +487,11 @@ export default function ManageAdmin() {
             height: '40px',
             alignItems: 'center',
           }}          
-        >
+          >
           + SAVE
         </Button>
         <Button
+        id="btn-cancel-edit-admin"
         onClick={() => {
           resetEditing();
         }}
@@ -423,8 +507,10 @@ export default function ManageAdmin() {
         </Button>
       </div>
 
+      </Form>
       </Modal>
 
+        {/* Add Admin */}
       <Modal
         title=""
         visible={isAddingAdmin}
@@ -437,13 +523,40 @@ export default function ManageAdmin() {
         }}
         >Add Admin</h1>
 
-        <Form.Item>
-          <div style={{
-            fontSize: '20px',
-            marginBottom: '5px',
-          }}>Name Admin</div>
+        <Form
+        autoComplete="off"
+        // labelCol={{ span: 10 }}
+        // wrapperCol={{ span: 14 }}
+        onFinish={(values) => {
+          console.log({ values });
+        }}
+        onFinishFailed={(error) => {
+          console.log({ error });
+        }}
+        style={{
+          width: '100%'
+        }}
+        >
+        <div style={{
+          fontSize: '20px',
+          marginBottom: '5px',
+        }}>Name Admin</div>
+
+        <Form.Item
+         name="Name Admin"
+         rules={[
+          {
+            required: true,
+            message: "Please enter your name",
+          },
+          { whitespace: true },
+          { min: 3 },
+        ]}
+        hasFeedback
+        >
 
           <Input
+            id="fld-name-add-admin"
             placeholder="Enter Your Name"
             placeholderTextColor="#707070"
             style={{
@@ -458,7 +571,7 @@ export default function ManageAdmin() {
                 return { ...pre, name: e.target.value };
               });
             }}
-          />
+            />
         </Form.Item>
 
         <Form.Item>
@@ -466,8 +579,9 @@ export default function ManageAdmin() {
           style={{
               fontSize: '20px',
               marginBottom: '5px',
-          }}>Username</div>
+            }}>Username</div>
           <Input
+            id="fld-username-add-admin"
             placeholder="Enter Your Username"
             style={{
               border: '1px solid #707070',
@@ -481,15 +595,16 @@ export default function ManageAdmin() {
                 return { ...pre, username: e.target.value };
               });
             }}
-          />
+            />
         </Form.Item>
 
         <Form.Item>
           <div style={{
-              fontSize: '20px',
+            fontSize: '20px',
               marginBottom: '5px',
-          }}>Password</div>
+            }}>Password</div>
           <Input
+            id="fld-password-add-admin"
             placeholder="Enter Your Password"
             style={{
               border: '1px solid #707070',
@@ -512,6 +627,7 @@ export default function ManageAdmin() {
               marginBottom: '5px',
           }}>Email</div>
           <Input
+            id="fld-email-add-admin"
             placeholder="@gmail.com"
             style={{
               border: '1px solid #707070',
@@ -525,15 +641,16 @@ export default function ManageAdmin() {
                 return { ...pre, email: e.target.value };
               });
             }}
-          />
+            />
         </Form.Item>
 
         <Form.Item>
           <div style={{
-              fontSize: '20px',
-              marginBottom: '5px',
+            fontSize: '20px',
+            marginBottom: '5px',
           }}>Phone Number</div>
           <Input
+            id="fld-phone-number-add-admin"
             placeholder="Enter Your Phone Number"
             style={{
               border: '1px solid #707070',
@@ -547,7 +664,7 @@ export default function ManageAdmin() {
                 return { ...pre, phoneNumber: e.target.value };
               });
             }}
-          />
+            />
         </Form.Item>
                   <div
       style={{
@@ -557,23 +674,25 @@ export default function ManageAdmin() {
       >
         
         <Button
+        id="btn-save-add-admin"
         type="primary"
         onClick={() => {
           setDataSource([...dataSource, newAdmin]);
           resetAddAdmin();
-          }}
-          style={{
-            width: '100%',
-            marginBottom: '15px',
-            borderRadius: '8px',
-            fontSize: '16px',
-            height: '40px',
-            alignItems: 'center',
-          }}          
+        }}
+        style={{
+          width: '100%',
+          marginBottom: '15px',
+          borderRadius: '8px',
+          fontSize: '16px',
+          height: '40px',
+          alignItems: 'center',
+        }}          
         >
           + SAVE
         </Button>
         <Button
+        id="btn-cancel-add-admin"
         onClick={() => {
           resetAddAdmin();
         }}
@@ -588,6 +707,7 @@ export default function ManageAdmin() {
           CANCEL
         </Button>
       </div>
+      </Form>
       </Modal>
 
       <Modal 
@@ -616,6 +736,7 @@ export default function ManageAdmin() {
         display="flex" 
         justifyContent="center">
           <Button1
+            id="btn-confirm-delete-admin"
             style={{
               color: "white",
               fontSize: "16px",
@@ -634,6 +755,7 @@ export default function ManageAdmin() {
             Delete
           </Button1>
           <Button1
+            id="btn-cancel-delete-admin"
             variant="outlined"
             style={{
               color: "#F27370",

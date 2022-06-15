@@ -68,6 +68,7 @@ export default function ManageOfflineBooking() {
         return (
           <>
             <Button
+              id="btn-view-offline-booking"
               onClick={() => {
                 info(record.id);
               }}
@@ -81,6 +82,7 @@ export default function ManageOfflineBooking() {
               VIEW
             </Button>
             <Button
+              id="btn-delete-offline-booking"
               onClick={() => {
                 setOpenDelete(!openDelete);
                 setDeleteId(record.id);
@@ -108,6 +110,7 @@ export default function ManageOfflineBooking() {
       title: "",
       icon: '',
       okText:'Cancel',
+      okId: 'btn-cancel-view-offline-booking',
       okButtonProps: {
         type: "primary",
         style: {
@@ -215,6 +218,7 @@ export default function ManageOfflineBooking() {
         display="flex" 
         justifyContent="center">
           <Button1
+            id="btn-confirm-delete-offline-booking"
             style={{
               color: "white",
               fontSize: "16px",
@@ -233,6 +237,7 @@ export default function ManageOfflineBooking() {
             Delete
           </Button1>
           <Button1
+            id="btn-cancel-delete-offline-booking"
             variant="outlined"
             style={{
               color: "#F27370",

@@ -79,6 +79,7 @@ export default function ManageOfflineClass() {
       render:(record) => {
         return <>
           <Button 
+          id="btn-view-offline-class"
           onClick={() => {
             info(record.id);
           }}
@@ -90,6 +91,7 @@ export default function ManageOfflineClass() {
           }}
           >VIEW</Button>
           <Button
+          id='btn-edit-offline-class'
           onClick={() => {
             onEditOfflineClass(record);
           }}
@@ -102,6 +104,7 @@ export default function ManageOfflineClass() {
           }}
           >EDIT</Button>
           <Button 
+          id="btn-delete-offline-class"
           onClick={() => {
             setOpenDelete(!openDelete);
             setDeleteId(record.id);
@@ -135,20 +138,6 @@ export default function ManageOfflineClass() {
     setNewOfflineClass({});
   }
 
-  // const onAddOfflineClass = () => {
-  //   const randomNumber = parseInt(Math.random()*1000);
-  //   const newOfflineClass = {
-  //     id: randomNumber,
-  //     username: '',
-  //     password: '',
-  //   }
-
-  //   setDataSource(pre=> {
-  //     return  [...pre, newOfflineClass]
-  //   })
-  //   // setAddingAdmin(...record);
-  // };
-
   const info = (id) => {
     const viewData = dataSource.find(item =>  item.id === id)
     console.log(viewData, 'data')
@@ -157,6 +146,7 @@ export default function ManageOfflineClass() {
       icon: '',
       title: '',
       okText:'Cancel',
+      okId: 'btn-cancel-view-offline-class',
       okButtonProps: {
         type: "primary",
         style: {
@@ -238,6 +228,7 @@ export default function ManageOfflineClass() {
             List Offline Class
           </h1>
           <Button 
+          id='btn-add-offline-class'
           onClick={() => {
             setIsAddingOfflineClass(true);
           }}
@@ -285,6 +276,7 @@ export default function ManageOfflineClass() {
             }}
             >Name Class</div>
             <Input 
+            id='fld-edit-name-class-offline-class'
             placeholder='Edit Your Name Class' 
             style={{
               border: '1px solid #707070',
@@ -310,6 +302,7 @@ export default function ManageOfflineClass() {
             }}
             >Trainer</div>
             <Input 
+            id='fld-edit-trainer-offline-class'
             placeholder='Enter Your CLass Trainer' 
             style={{
               border: '1px solid #707070',
@@ -335,6 +328,7 @@ export default function ManageOfflineClass() {
             }}
             >Date</div>
             <Input 
+            id='fld-edit-date-offline-class'
             placeholder='dd/mm/yyyy' 
             style={{
               border: '1px solid #707070',
@@ -360,6 +354,7 @@ export default function ManageOfflineClass() {
             }}
             >Time</div>
             <Input 
+            id='fld-edit-time-offline-class'
             placeholder='19.00' 
             value={editingOfflineClass?.time} 
             style={{
@@ -385,6 +380,7 @@ export default function ManageOfflineClass() {
             }}
             >Location</div>
             <Input 
+            id='fld-edit-location-offline-class'
             placeholder='Enter Your Location' 
             value={editingOfflineClass?.location} 
             style={{
@@ -410,6 +406,7 @@ export default function ManageOfflineClass() {
             }}
             >Price</div>
             <Input 
+            id='fld-edit-price-offline-class'
             placeholder='Rp.' 
             value={editingOfflineClass?.price} 
             style={{
@@ -435,6 +432,7 @@ export default function ManageOfflineClass() {
             }}
             >Description</div>
             <Input 
+            id='fld-edit-description-offline-class'
             placeholder='Enter Your Description' 
             value={editingOfflineClass?.description} 
             style={{
@@ -459,6 +457,7 @@ export default function ManageOfflineClass() {
       >
         
         <Button
+        id='btn-save-edit-offline-class'
         type="primary"
         onClick={() => {
           setDataSource((pre) => {
@@ -484,6 +483,7 @@ export default function ManageOfflineClass() {
           + SAVE
         </Button>
         <Button
+        id='btn-cancel-edit-offline-class'
         onClick={() => {
           resetEditing();
 
@@ -524,6 +524,7 @@ export default function ManageOfflineClass() {
             }}
             >Name Class</div>
             <Input 
+            id='fld-add-name-class-offline-class'
             placeholder='Edit Your Name Class' 
             style={{
               border: '1px solid #707070',
@@ -549,6 +550,7 @@ export default function ManageOfflineClass() {
             }}
             >Trainer</div>
             <Input 
+            id='fld-add-trainer-offline-class'
             placeholder='Enter Your CLass Trainer' 
             style={{
               border: '1px solid #707070',
@@ -574,6 +576,7 @@ export default function ManageOfflineClass() {
             }}
             >Date</div>
             <Input 
+            id='fld-add-date-offline-class'
             placeholder='dd/mm/yyyy' 
             style={{
               border: '1px solid #707070',
@@ -599,6 +602,7 @@ export default function ManageOfflineClass() {
             }}
             >Time</div>
             <Input 
+            id='fld-add-time-offline-class'
             placeholder='19.00' 
             value={editingOfflineClass?.time} 
             style={{
@@ -624,6 +628,7 @@ export default function ManageOfflineClass() {
             }}
             >Location</div>
             <Input 
+            id='fld-add-location-offline-class'
             placeholder='Enter Your Location' 
             value={editingOfflineClass?.location} 
             style={{
@@ -649,6 +654,7 @@ export default function ManageOfflineClass() {
             }}
             >Price</div>
             <Input 
+            id='fld-add-price-offline-class'
             placeholder='Rp.' 
             value={editingOfflineClass?.price} 
             style={{
@@ -674,6 +680,7 @@ export default function ManageOfflineClass() {
             }}
             >Description</div>
             <Input 
+            id='fld-add-description-offline-class'
             placeholder='Enter Your Description' 
             value={editingOfflineClass?.description} 
             style={{
@@ -698,6 +705,7 @@ export default function ManageOfflineClass() {
       >
         
         <Button
+        id='btn-save-add-offline-class'
         type="primary"
         onClick={() => {
           setDataSource([...dataSource, newOfflineClass]);
@@ -715,6 +723,7 @@ export default function ManageOfflineClass() {
           + SAVE
         </Button>
         <Button
+        id='btn-cancel-add-offline-class'
         onClick={() => {
           resetAddOfflineClass();
         }}
@@ -754,7 +763,8 @@ export default function ManageOfflineClass() {
         <Box 
         display="flex" 
         justifyContent="center">
-                 <Button1
+            <Button1
+            id='btn-confirm-delete-offline-class'
             style={{
               color: "white",
               fontSize: "16px",
@@ -773,6 +783,7 @@ export default function ManageOfflineClass() {
             Delete
           </Button1>
           <Button1
+          id='btn-cancel-delete-offline-class'
             variant="outlined"
             style={{
               color: "#F27370",
