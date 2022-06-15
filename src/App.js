@@ -1,9 +1,13 @@
 import "./App.css";
 import { Route, BrowserRouter as Router, Routes, Link } from "react-router-dom";
-import VerticalTabs from "./components/VerticalTabs";
-import Login from "./components/Login";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { ConfigProvider } from 'antd';
+
+// Components ------------------------------------------------------------------------
+import VerticalTabs from "./components/VerticalTabs";
+// import Login from "./components/Login";
+import Landing from "./pages/Landing"
+import Login from "./pages/Login"
 
 ConfigProvider.config({
   theme: {
@@ -33,7 +37,8 @@ function App() {
         <ConfigProvider>
         <Router>
           <Routes>
-            <Route path="/" element={<VerticalTabs />} />
+            <Route path="/" element={<Landing />} />
+            <Route path="/dashboard" element={<VerticalTabs />} />
             <Route path="/login" element={<Login />} />
           </Routes>
         </Router>
