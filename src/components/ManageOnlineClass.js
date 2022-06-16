@@ -7,6 +7,7 @@ import './antd.css';
 import Button1 from "@mui/material/Button";
 import warning from '../assets/warning.svg';
 import getAPI from "../services/api/api";
+import Sidebar from './SideBar';
 // import { EditOutlined, DeleteOutlined, InfoCircleOutlined} from '@ant-design/icons';
 // import { height } from '@mui/system';
 
@@ -187,8 +188,17 @@ export default function ManageOnlineClass() {
   };
 
   return (
+    <>
+    <div 
+    style={{
+      position: 'absolute',
+    }}
+    >
+      <Sidebar/>
+    </div>
         <div style={{
           minWidth: 1046,
+          marginLeft: '400px',
           // backgroundColor: 'black',
           paddingLeft: 62,
           paddingRight: 60,
@@ -799,6 +809,8 @@ export default function ManageOnlineClass() {
       </Modal>
 
     </div>
+    </>
+
   );
 }
 

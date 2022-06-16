@@ -3,6 +3,7 @@ import { Space, Table, Tag, Button, Modal, Input, Form } from "antd";
 import React, { useState } from "react";
 import Button1 from "@mui/material/Button";
 import warning from '../assets/warning.svg';
+import Sidebar from "./SideBar";
 
 export default function ManageOnlineBooking() {
   const [openDelete, setOpenDelete] = useState(false);
@@ -13,21 +14,21 @@ export default function ManageOnlineBooking() {
     username: 'John123',
     class: 'Cardio',
     date: '12/02/2022',
-    status : 'active',
+    status : ['Active'],
   },
   {
     id: '2',
     username: 'John123',
     class: 'Cardio',
     date: '12/02/2022',
-    status : 'expired',
+    status : ['Expired'],
   },
   {
     id: '3',
     username: 'John123',
     class: 'Cardio',
     date: '12/02/2022',
-    status : 'active',
+    status : ['Active'],
   },
   ]);
 
@@ -59,6 +60,20 @@ export default function ManageOnlineBooking() {
       title: 'Status',
       key: 'status',
       dataIndex: 'status',
+      render: (_, { status }) => (
+        <>
+          {status.map((isActive) => {
+            return (
+              <h1 style={{
+                color: isActive === "Active" ? '#17E243' : '#F60000'
+                }} 
+                >
+                {isActive}
+              </h1>
+            );
+          })}
+        </>
+      ),
     },
     {
       key: 4,
@@ -152,8 +167,17 @@ const info = (id) => {
  
   return (
       <>
+      <div
+      style={{
+        position: 'absolute',
+      }}
+      >
+        <Sidebar/>
+      </div>
+
     <div style={{
           minWidth: 1046,
+          marginLeft: '400px',
           // backgroundColor: 'black',
           paddingLeft: 62,
           paddingRight: 60,

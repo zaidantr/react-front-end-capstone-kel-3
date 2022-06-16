@@ -8,6 +8,7 @@ import Button1 from "@mui/material/Button";
 import warning from "../assets/warning.svg";
 import getAPI from "../services/api/api";
 import userLogo from "../assets/user-logo.svg"
+import Sidebar from "./SideBar";
 // import { EditOutlined, DeleteOutlined, InfoCircleOutlined} from '@ant-design/icons';
 // import { height } from '@mui/system';
 
@@ -185,8 +186,17 @@ export default function ManageAdmin() {
   
 
   return (
+    <>
+    <div 
+    style={{
+      position: 'absolute'
+    }}
+    >
+      <Sidebar />
+    </div>
     <div
       style={{
+        marginLeft: '400px',
         minWidth: 1046,
         // backgroundColor: 'black',
         paddingLeft: 62,
@@ -543,7 +553,7 @@ export default function ManageAdmin() {
         }}>Name Admin</div>
 
         <Form.Item
-         name="Name Admin"
+        //  name="Name Admin"
          rules={[
           {
             required: true,
@@ -769,5 +779,7 @@ export default function ManageAdmin() {
         </Box>
       </Modal>
     </div>
+    </>
+
   );
 }

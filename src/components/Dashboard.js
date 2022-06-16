@@ -6,8 +6,9 @@ import './antd.css';
 import active from '../assets/active-users.svg';
 import booking from '../assets/total-booking.svg';
 import admin from '../assets/total-admin.svg';
+import Sidebar from './SideBar';
 
-export default function Home() {
+export default function Dashboard() {
   const { Search } = Input;
   const [openDelete, setOpenDelete] = useState(false);
   const [deleteId, setDeleteId] = useState(-1);
@@ -79,6 +80,20 @@ export default function Home() {
 
    return (
     <>
+    <div
+    style={{
+      position: 'absolute',
+    }}
+    >
+      <Sidebar/>
+    </div>
+
+    <div 
+    className="container-home"
+    style={{
+      marginLeft: '400px',
+    }}
+    >
     <h1
     style={{
         // backgroundColor: 'black',
@@ -307,6 +322,7 @@ export default function Home() {
             ></ Table>
         </div>
 
+    </div>
     </div>
     </>
   );

@@ -10,6 +10,8 @@ import getAPI from "../services/api/api";
 // import { EditOutlined, DeleteOutlined, InfoCircleOutlined} from '@ant-design/icons';
 // import { height } from '@mui/system';
 
+import Sidebar from './SideBar';
+
 export default function ManageOfflineClass() {
   const [openDelete, setOpenDelete] = useState(false);
   const [deleteId, setDeleteId] = useState(-1);
@@ -187,8 +189,17 @@ export default function ManageOfflineClass() {
   };
 
   return (
+    <>
+    <div
+    style={{
+      position:'absolute',
+    }}
+    >
+      <Sidebar />
+    </div>
         <div style={{
           minWidth: 1046,
+          marginLeft: '400px',
           // backgroundColor: 'black',
           paddingLeft: 62,
           paddingRight: 60,
@@ -206,11 +217,11 @@ export default function ManageOfflineClass() {
 
         <div
              style={{
-              border: '1px solid #F27370',
-              paddingLeft: 23,
-              paddingRight: 23,
-            }}
-        >
+               border: '1px solid #F27370',
+               paddingLeft: 23,
+               paddingRight: 23,
+              }}
+              >
 
         <div
           style={{
@@ -238,7 +249,7 @@ export default function ManageOfflineClass() {
             border: '1px solid #F27370',
             borderRadius: '4px',
             marginLeft: 'auto',
-
+            
           }}
           >+ NEW</Button>
         </div>
@@ -265,7 +276,7 @@ export default function ManageOfflineClass() {
             fontSize: '32px',
             fontWeight: 'bold',
           }}
-        >Edit Class</h1>
+          >Edit Class</h1>
 
           <Form.Item
           >
@@ -513,7 +524,7 @@ export default function ManageOfflineClass() {
             fontSize: '32px',
             fontWeight: 'bold',
           }}
-        >Add Class</h1>
+          >Add Class</h1>
 
           <Form.Item
           >
@@ -710,7 +721,7 @@ export default function ManageOfflineClass() {
         onClick={() => {
           setDataSource([...dataSource, newOfflineClass]);
           resetAddOfflineClass();
-          }}
+        }}
           style={{
             width: '100%',
             marginBottom: '15px',
@@ -779,25 +790,26 @@ export default function ManageOfflineClass() {
                 return pre.filter((offlineclass) => offlineclass.id !== deleteId);
               });
             }}
-          >
+            >
             Delete
           </Button1>
           <Button1
           id='btn-cancel-delete-offline-class'
-            variant="outlined"
-            style={{
-              color: "#F27370",
-              border: "2px solid #F27370",
-              backgroundColor: "white",
-            }}
+          variant="outlined"
+          style={{
+            color: "#F27370",
+            border: "2px solid #F27370",
+            backgroundColor: "white",
+          }}
             onClick={handleCancel}
-          >
+            >
             Cancel
           </Button1>
         </Box>
       </Modal>
 
     </div>
+            </>
   );
 }
 
