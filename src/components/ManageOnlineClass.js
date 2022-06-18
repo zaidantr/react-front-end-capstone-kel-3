@@ -1,11 +1,15 @@
 import 'antd/dist/antd.css';
 import '../App.css';
-import {Table, Button, Modal, Input, Form } from 'antd';
+import {Table, Button, Modal, Input, Form, DatePicker } from 'antd';
 import { Box } from "@mui/system";
 import { useEffect, useState} from 'react';
 import './antd.css';
 import Button1 from "@mui/material/Button";
 import warning from '../assets/warning.svg';
+import fldClass from '../assets/fld-class.svg';
+import fldDate from '../assets/fld-date.svg';
+import fldTime from '../assets/fld-time.svg';
+import fldPrice from '../assets/fld-price.svg';
 import getAPI from "../services/api/api";
 import Sidebar from './SideBar';
 // import { EditOutlined, DeleteOutlined, InfoCircleOutlined} from '@ant-design/icons';
@@ -187,6 +191,8 @@ export default function ManageOnlineClass() {
     });
   };
 
+  const dateFormat = 'DD/MM/YYYY';
+
   return (
     <>
     <div 
@@ -285,12 +291,20 @@ export default function ManageOnlineClass() {
               marginBottom: '5px',              
             }}
             >Name Class</div>
+            <img
+              src={fldClass}
+              style={{
+                position: 'absolute',
+                zIndex: '900',
+                padding: '15px 0 18.5px 17.5px'
+              }}
+              />
             <Input 
             id='fld-edit-name-class-offline-class'
             placeholder='Edit Your Name Class' 
             style={{
               border: '1px solid #707070',
-              padding: '10px 16px',
+              padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070'
             }}            
@@ -311,12 +325,20 @@ export default function ManageOnlineClass() {
               marginBottom: '5px',              
             }}
             >Trainer</div>
+            <img
+              src={fldClass}
+              style={{
+                position: 'absolute',
+                zIndex: '900',
+                padding: '15px 0 18.5px 17.5px'
+              }}
+            />
             <Input 
             id='fld-edit-trainer-offline-class'
             placeholder='Enter Your Class Trainer' 
             style={{
               border: '1px solid #707070',
-              padding: '10px 16px',
+              padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070'
             }} 
@@ -337,21 +359,32 @@ export default function ManageOnlineClass() {
               marginBottom: '5px',
             }}
             >Date</div>
-            <Input 
+            <img
+              src={fldDate}
+              style={{
+                position: 'absolute',
+                zIndex: '900',
+                padding: '15px 0 18.5px 17.5px'
+              }}
+              />
+            <DatePicker 
             id='fld-edit-date-offline-class'
             placeholder='dd/mm/yyyy' 
+            format={dateFormat}
             style={{
               border: '1px solid #707070',
-              padding: '10px 16px',
+              padding: '10px 35px',
               borderRadius: '4px',
-              color: '#707070'
+              color: '#707070',
+              width: '100%',
             }}               
-            value={editingOnlineClass?.date} 
-            onChange={(e) => {
-              setEditingOnlineClass((pre) => {
-                return {...pre, date: e.target.value };
-              });
-            }}
+            // Masih error pas ngasih datanya        
+            // value={editingOfflineClass?.date} 
+            // onChange={(e) => {
+            //   setEditingOfflineClass((pre) => {
+            //     return {...pre, date: e.target.value };
+            //   });
+            // }}
             />
           </Form.Item>
 
@@ -363,13 +396,21 @@ export default function ManageOnlineClass() {
               marginBottom: '5px',              
             }}
             >Time</div>
+            <img
+              src={fldTime}
+              style={{
+                position: 'absolute',
+                zIndex: '900',
+                padding: '15px 0 18.5px 17.5px'
+              }}
+              />
             <Input 
             id='fld-edit-time-offline-class'
             placeholder='19.00' 
             value={editingOnlineClass?.time} 
             style={{
               border: '1px solid #707070',
-              padding: '10px 16px',
+              padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070'
             }}            
@@ -389,13 +430,21 @@ export default function ManageOnlineClass() {
               marginBottom: '5px',              
             }}
             >Location</div>
+            <img
+              src={fldClass}
+              style={{
+                position: 'absolute',
+                zIndex: '900',
+                padding: '15px 0 18.5px 17.5px'
+              }}
+            />
             <Input 
             id='fld-edit-location-offline-class'
             placeholder='Enter Your Location' 
             value={editingOnlineClass?.location} 
             style={{
               border: '1px solid #707070',
-              padding: '10px 16px',
+              padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070'
             }}            
@@ -415,13 +464,21 @@ export default function ManageOnlineClass() {
               marginBottom: '5px',              
             }}
             >Price</div>
+            <img
+              src={fldPrice}
+              style={{
+                position: 'absolute',
+                zIndex: '900',
+                padding: '15px 0 18.5px 17.5px'
+              }}
+            />
             <Input 
             id='fld-edit-price-offline-class'
             placeholder='Rp.' 
             value={editingOnlineClass?.price} 
             style={{
               border: '1px solid #707070',
-              padding: '10px 16px',
+              padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070'
             }}            
@@ -441,13 +498,21 @@ export default function ManageOnlineClass() {
               marginBottom: '5px',              
             }}
             >Description</div>
+            <img
+              src={fldClass}
+              style={{
+                position: 'absolute',
+                zIndex: '900',
+                padding: '15px 0 18.5px 17.5px'
+              }}
+            />
             <Input 
             id='fld-edit-description-offline-class'
             placeholder='Enter Your Description' 
             value={editingOnlineClass?.description} 
             style={{
               border: '1px solid #707070',
-              padding: '10px 16px',
+              padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070'
             }}            
@@ -533,12 +598,20 @@ export default function ManageOnlineClass() {
               marginBottom: '5px',              
             }}
             >Name Class</div>
+            <img
+              src={fldClass}
+              style={{
+                position: 'absolute',
+                zIndex: '900',
+                padding: '15px 0 18.5px 17.5px'
+              }}
+              />
             <Input 
             id='fld-add-name-offline-class'
             placeholder='Edit Your Name Class' 
             style={{
               border: '1px solid #707070',
-              padding: '10px 16px',
+              padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070'
             }}            
@@ -559,12 +632,20 @@ export default function ManageOnlineClass() {
               marginBottom: '5px',              
             }}
             >Trainer</div>
+            <img
+              src={fldClass}
+              style={{
+                position: 'absolute',
+                zIndex: '900',
+                padding: '15px 0 18.5px 17.5px'
+              }}
+            />
             <Input 
             id='fld-add-trainer-offline-class'
             placeholder='Enter Your CLass Trainer' 
             style={{
               border: '1px solid #707070',
-              padding: '10px 16px',
+              padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070'
             }} 
@@ -585,21 +666,32 @@ export default function ManageOnlineClass() {
               marginBottom: '5px',
             }}
             >Date</div>
-            <Input 
+            <img
+              src={fldDate}
+              style={{
+                position: 'absolute',
+                zIndex: '900',
+                padding: '15px 0 18.5px 17.5px'
+              }}
+            />
+            <DatePicker 
             id='fld-add-date-offline-class'
             placeholder='dd/mm/yyyy' 
+            format={dateFormat}
             style={{
               border: '1px solid #707070',
-              padding: '10px 16px',
+              padding: '10px 35px',
               borderRadius: '4px',
-              color: '#707070'
-            }}               
-            value={editingOnlineClass?.date} 
-            onChange={(e) => {
-              setNewOnlineClass((pre) => {
-                return {...pre, date: e.target.value };
-              });
-            }}
+              color: '#707070',
+              width: '100%'
+            }}             
+            // Masih error pas ngasih data nya   
+            // value={editingOnlineClass?.date} 
+            // onChange={(e) => {
+            //   setNewOnlineClass((pre) => {
+            //     return {...pre, date: e.target.value };
+            //   });
+            // }}
             />
           </Form.Item>
 
@@ -611,13 +703,21 @@ export default function ManageOnlineClass() {
               marginBottom: '5px',              
             }}
             >Time</div>
+            <img
+              src={fldTime}
+              style={{
+                position: 'absolute',
+                zIndex: '900',
+                padding: '15px 0 18.5px 17.5px'
+              }}
+              />
             <Input 
             id='fld-add-time-offline-class'
             placeholder='19.00' 
             value={editingOnlineClass?.time} 
             style={{
               border: '1px solid #707070',
-              padding: '10px 16px',
+              padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070'
             }}            
@@ -637,13 +737,21 @@ export default function ManageOnlineClass() {
               marginBottom: '5px',              
             }}
             >Location</div>
+            <img
+              src={fldClass}
+              style={{
+                position: 'absolute',
+                zIndex: '900',
+                padding: '15px 0 18.5px 17.5px'
+              }}
+            />
             <Input 
             id='fld-add-location-offline-class'
             placeholder='Enter Your Location' 
             value={editingOnlineClass?.location} 
             style={{
               border: '1px solid #707070',
-              padding: '10px 16px',
+              padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070'
             }}            
@@ -663,13 +771,21 @@ export default function ManageOnlineClass() {
               marginBottom: '5px',              
             }}
             >Price</div>
+            <img
+              src={fldPrice}
+              style={{
+                position: 'absolute',
+                zIndex: '900',
+                padding: '15px 0 18.5px 17.5px'
+              }}
+            />
             <Input 
             id='fld-add-price-offline-class'
             placeholder='Rp.' 
             value={editingOnlineClass?.price} 
             style={{
               border: '1px solid #707070',
-              padding: '10px 16px',
+              padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070'
             }}            
@@ -689,13 +805,21 @@ export default function ManageOnlineClass() {
               marginBottom: '5px',              
             }}
             >Description</div>
+            <img
+              src={fldClass}
+              style={{
+                position: 'absolute',
+                zIndex: '900',
+                padding: '15px 0 18.5px 17.5px'
+              }}
+            />
             <Input 
             id='fld-add-description-offline-class'
             placeholder='Enter Your Description' 
             value={editingOnlineClass?.description} 
             style={{
               border: '1px solid #707070',
-              padding: '10px 16px',
+              padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070'
             }}            

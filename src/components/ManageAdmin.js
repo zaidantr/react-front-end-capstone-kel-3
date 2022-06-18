@@ -9,8 +9,13 @@ import warning from "../assets/warning.svg";
 import getAPI from "../services/api/api";
 import userLogo from "../assets/user-logo.svg"
 import Sidebar from "./SideBar";
+import { LockOutlined } from '@ant-design/icons';
 // import { EditOutlined, DeleteOutlined, InfoCircleOutlined} from '@ant-design/icons';
 // import { height } from '@mui/system';
+import fldPassword from '../assets/fld-password.svg';
+import fldName from '../assets/fld-name.svg';
+import fldEmail from '../assets/fld-email.svg';
+import fldPhone from '../assets/fld-phone.svg';
 
 export default function ManageAdmin() {
   const [openDelete, setOpenDelete] = useState(false);
@@ -226,6 +231,8 @@ export default function ManageAdmin() {
             display: "flex",
             paddingRight: "44.5px",
             paddingTop: "25px",
+            // width: "12px",
+            // height: "12px",
           }}
         >
           <h1
@@ -311,12 +318,20 @@ export default function ManageAdmin() {
           hasFeedback
           
         >
+          <img
+          src={fldName}
+          style={{
+            position: 'absolute',
+            zIndex: '900',
+            padding: '15px 0 18.5px 17.5px'
+          }}
+          />
           <Input
             id="fld-name-edit-admin"
             placeholder="Enter Your Name"
             style={{
               border: '1px solid #707070',
-              padding: '10px 16px',
+              padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070',
             }}
@@ -347,12 +362,20 @@ export default function ManageAdmin() {
          ]}
          hasFeedback
         >
+          <img
+          src={fldName}
+          style={{
+            position: 'absolute',
+            zIndex: '900',
+            padding: '15px 0 18.5px 17.5px'
+          }}
+          />
           <Input
             id="fld-username-edit-admin"
             placeholder="Enter Your Username"
             style={{
               border: '1px solid #707070',
-              padding: '10px 16px',
+              padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070'
             }}     
@@ -381,15 +404,24 @@ export default function ManageAdmin() {
         ]}
         hasFeedback
         >
+          <img
+          src={fldPassword}
+          style={{
+            position: 'absolute',
+            zIndex: '900',
+            padding: '15px 0 18.5px 17.5px'
+          }}
+          />
           <Input
             id="fld-password-edit-admin"
             placeholder="Enter Your Password"
             style={{
               border: '1px solid #707070',
-              padding: '10px 16px',
+              padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070'
-            }}            
+            }}        
+
             value={editingAdmin?.password}
             onChange={(e) => {
               setEditingAdmin((pre) => {
@@ -397,6 +429,7 @@ export default function ManageAdmin() {
               });
             }}
           />
+          
         </Form.Item>
 
           <div style={{
@@ -413,12 +446,20 @@ export default function ManageAdmin() {
          ]}
          hasFeedback
         >
+          <img
+          src={fldEmail}
+          style={{
+            position: 'absolute',
+            zIndex: '900',
+            padding: '15px 0 18.5px 17.5px'
+          }}
+          />
           <Input
             id="fld-email-edit-admin"
             placeholder="@gmail.com"
             style={{
               border: '1px solid #707070',
-              padding: '10px 16px',
+              padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070'
             }}            
@@ -449,12 +490,20 @@ export default function ManageAdmin() {
         ]}
         hasFeedback
         >
+          <img
+          src={fldPhone}
+          style={{
+            position: 'absolute',
+            zIndex: '900',
+            padding: '15px 0 18.5px 17.5px'
+          }}
+          />
           <Input
             id="fld-phone-number-edit-admin"
             placeholder="Enter Your Phone Number"
             style={{
               border: '1px solid #707070',
-              padding: '10px 16px',
+              padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070'
             }}
@@ -564,14 +613,21 @@ export default function ManageAdmin() {
         ]}
         hasFeedback
         >
-
+          <img
+          src={fldName}
+          style={{
+            position: 'absolute',
+            zIndex: '900',
+            padding: '15px 0 18.5px 17.5px'
+          }}
+          />
           <Input
             id="fld-name-add-admin"
             placeholder="Enter Your Name"
             placeholderTextColor="#707070"
             style={{
               border: '1px solid #707070',
-              padding: '10px 16px',
+              padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070'
             }}
@@ -590,12 +646,20 @@ export default function ManageAdmin() {
               fontSize: '20px',
               marginBottom: '5px',
             }}>Username</div>
+          <img
+          src={fldName}
+          style={{
+            position: 'absolute',
+            zIndex: '900',
+            padding: '15px 0 18.5px 17.5px'
+          }}
+          />
           <Input
             id="fld-username-add-admin"
             placeholder="Enter Your Username"
             style={{
               border: '1px solid #707070',
-              padding: '10px 16px',
+              padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070'
             }}
@@ -613,12 +677,21 @@ export default function ManageAdmin() {
             fontSize: '20px',
               marginBottom: '5px',
             }}>Password</div>
+          <img
+          src={fldPassword}
+          style={{
+            position: 'absolute',
+            zIndex: '900',
+            padding: '15px 0 18.5px 17.5px'
+          }}
+          />
+          
           <Input
             id="fld-password-add-admin"
             placeholder="Enter Your Password"
             style={{
               border: '1px solid #707070',
-              padding: '10px 16px',
+              padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070'
             }}
@@ -636,12 +709,20 @@ export default function ManageAdmin() {
               fontSize: '20px',
               marginBottom: '5px',
           }}>Email</div>
+          <img
+          src={fldEmail}
+          style={{
+            position: 'absolute',
+            zIndex: '900',
+            padding: '15px 0 18.5px 17.5px'
+          }}
+          />
           <Input
             id="fld-email-add-admin"
             placeholder="@gmail.com"
             style={{
               border: '1px solid #707070',
-              padding: '10px 16px',
+              padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070'
             }}
@@ -659,12 +740,21 @@ export default function ManageAdmin() {
             fontSize: '20px',
             marginBottom: '5px',
           }}>Phone Number</div>
+
+          <img
+          src={fldPhone}
+          style={{
+            position: 'absolute',
+            zIndex: '900',
+            padding: '15px 0 18.5px 17.5px'
+          }}
+          />
           <Input
             id="fld-phone-number-add-admin"
             placeholder="Enter Your Phone Number"
             style={{
               border: '1px solid #707070',
-              padding: '10px 16px',
+              padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070'
             }}

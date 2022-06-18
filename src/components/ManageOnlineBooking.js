@@ -191,7 +191,7 @@ const info = (id) => {
           fontFamily: "Roboto",
         }}
         >
-        Manage Online Booking
+        Manage Online Class Booking
       </h1>
 
       <div

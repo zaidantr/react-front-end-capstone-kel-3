@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import { SideBarData } from './SideBarData'
 import logo from '../assets/logo.svg'
+import avatar from '../assets/avatar.svg'
 
 export default function Sidebar() {
 
@@ -16,6 +17,42 @@ export default function Sidebar() {
     };    
 
   return (
+    <>
+    <div
+    style={{
+        position: 'absolute',
+        marginLeft: '1186px',
+        marginTop: '82px',
+        float: 'right',
+        color: 'black',
+        display: 'flex',
+    }}
+    >
+        <div
+        style={{
+            display: 'flex',
+            flexDirection: 'row',
+            width: '300px',
+        }}
+        >
+            <img
+            src={avatar}
+            style={{
+                width: '40px',
+                height: '40px',
+            }}
+            />
+            <h1
+            style={{
+                marginLeft: '20px',
+                fontSize: '24px',
+            }}
+            >
+            Super Admin
+            </h1>
+        </div>
+        
+    </div>
     <div
     style={{
         height: '1024px',
@@ -26,6 +63,7 @@ export default function Sidebar() {
         paddingRight: '60px',
     }}
     >
+    
         <img 
         src={logo}
         style={{
@@ -70,7 +108,30 @@ export default function Sidebar() {
                     </li>
                     )
                 })}
+            <li
+             style={{
+                height: '43px',
+                width: '100%',
+                borderBottom: '1px solid white',
+                marginTop: '200px',
+                display: 'flex',
+                flexDirection: 'row',
+                color: 'white',
+                fontSize: '20px',
+                cursor: 'pointer',
+                // backgroundColor: isHovering ? 'aqua' : '',
+            }}
+            onClick={() => {
+                window.location.pathname = '/login';
+            }}
+            >
+                Logout
+            </li>
         </ul>
     </div>
+
+    
+    </>
+
   )
 }

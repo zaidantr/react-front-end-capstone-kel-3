@@ -2,7 +2,7 @@ import React from 'react'
 
 export const SideBarData = [
     {
-        title: 'Dashboard',
+        title: 'Home',
         link: '/dashboard',
     },
     {
@@ -29,8 +29,8 @@ export const SideBarData = [
         title: 'Manage Online Class Booking',
         link: '/online-class-booking',
     },
-    {
-        title: 'Logout',
-        link: '/login',
-    },
+    // {
+    //     title: 'Logout',
+    //     link: '/login',
+    // },
 ] 

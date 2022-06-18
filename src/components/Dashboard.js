@@ -6,6 +6,8 @@ import './antd.css';
 import active from '../assets/active-users.svg';
 import booking from '../assets/total-booking.svg';
 import admin from '../assets/total-admin.svg';
+import filter from '../assets/filter.svg';
+import search from '../assets/search.svg';
 import Sidebar from './SideBar';
 
 export default function Dashboard() {
@@ -27,6 +29,7 @@ export default function Dashboard() {
     {
       id: 1,
       nameClass: 'Zumba',
+      typeClass: 'Online',
       trainer: 'John55',
       price: 'Rp 300.000',
       totalJoined: '12'
@@ -34,6 +37,7 @@ export default function Dashboard() {
     {
       id: 2,
       nameClass: 'Gym',
+      typeClass: 'Online',
       trainer: 'David55',
       price: 'Rp 300.000',
       totalJoined: '12',
@@ -41,6 +45,7 @@ export default function Dashboard() {
     {
       id: 3,
       nameClass: 'Weightlifting',
+      typeClass: 'Online',
       trainer: 'Sam55',
       price: 'Rp 300.000',
       totalJoined: '12',
@@ -48,6 +53,7 @@ export default function Dashboard() {
     {
       id: 4,
       nameClass: 'Running',
+      typeClass: 'Online',
       trainer: 'Will55',
       price: 'Rp 300.000',
       totalJoined: '12'
@@ -63,16 +69,21 @@ export default function Dashboard() {
     },
     {
       key: '2',
+      title: 'Type Class',
+      dataIndex: 'typeClass',
+    },
+    {
+      key: '3',
       title: 'Trainer',
       dataIndex: 'trainer',
     },
     {
-      key: '3',
+      key: '4',
       title: 'Price',
       dataIndex: 'price',
     },
     {
-      key: '4',
+      key: '5',
       title: 'Total Joined',
       dataIndex: 'totalJoined',
     },
@@ -289,8 +300,30 @@ export default function Dashboard() {
               color: 'black',
             }}
             >
-            <div>
-              
+            <div 
+            style={{
+              display: 'flex',
+            }}
+            >
+              <a>
+              <img
+              src={filter}
+              style={{
+                marginTop: '3px',
+                width: '20px',
+                height: '20px',
+              }}
+              />
+              </a>
+
+              <h1
+              style={{
+                flexDirection: 'row',
+                fontSize: '16px',
+                color: '#F27370',
+                marginLeft: '10px',
+              }}
+              >Filter</h1>
             </div>
 
             <div
@@ -301,12 +334,23 @@ export default function Dashboard() {
               // float: 'right',
             }}
             >
-              <Search
+              <img
+              src={search}
+              style={{
+                position: 'absolute',
+                zIndex: '900',
+                padding: '11.75px 0 12.75px 17.75px'
+              }}
+              />
+              <Input
                 placeholder="Search"
                 allowClear
                 style={{
                   width: '233px',
-                }}
+                  border:' 1px solid #F27370',
+                  borderRadius: '4px',        
+                  padding: '7.5px 39px', 
+              }}
               />
             </div>
 

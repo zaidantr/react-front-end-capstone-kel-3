@@ -191,7 +191,7 @@ export default function ManageOfflineBooking() {
           fontFamily: "Roboto",
         }}
         >
-        Manage Offline Classes Booking
+        Manage Offline Class Booking
       </h1>
       <div
       style={{

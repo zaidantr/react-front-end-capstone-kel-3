@@ -1,6 +1,7 @@
 .ant-table-thead .ant-table-cell {
     background-color: #F27370;
     color: white;
+    font-size: 16px;
   }
 
   .ant-input:focus {
@@ -15,5 +16,9 @@
 }
 .table-row-dark {
   background-color: blue;
+}
+
+.ant-table-tbody {
+  border: 1px solid #F27370;
 }
 
