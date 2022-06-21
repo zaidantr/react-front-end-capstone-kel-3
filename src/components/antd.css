@@ -2,6 +2,7 @@
     background-color: #F27370;
     color: white;
     font-size: 16px;
+    font-family: 'Inter', sans-serif;
   }
 
   .ant-input:focus {

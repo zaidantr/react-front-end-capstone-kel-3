@@ -55,7 +55,9 @@ console.log(inputs)
                                 >Username</label>
                                 <div className='flex'>
                                     <i className='absolute pointer-events-none pl-1'><AccountCircleIcon /></i>
-                                    <input className='w-full pl-8 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white'
+                                    <input 
+                                    id='fld-input-username-login'
+                                    className='w-full pl-8 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white'
                                         placeholder={inputs[0].placeholder}
                                         type={inputs[0].type}
                                         value={inputs[0].value}
@@ -73,7 +75,9 @@ console.log(inputs)
                                 >Password</label>
                                 <div className='flex'>
                                     <i className='absolute pointer-events-none pl-1'><LockOpenIcon /></i>
-                                    <input className='w-full pl-8 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white'
+                                    <input 
+                                    id='fld-input-password-login'
+                                    className='w-full pl-8 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white'
                                         placeholder={inputs[1].placeholder}
                                         type={inputs[1].type}
                                         value={inputs[1].value}

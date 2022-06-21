@@ -267,6 +267,7 @@ export default function ManageAdmin() {
           style={{
             // paddingTop: 30,
             margin: 0,
+            fontFamily: "Inter",
           }}
         ></Table>
       </div>

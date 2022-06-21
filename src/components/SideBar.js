@@ -108,6 +108,74 @@ export default function Sidebar() {
                     </li>
                     )
                 })}
+
+            <li
+            style={{
+                height: '43px',
+                width: '100%',
+                borderBottom: '1px solid white',
+                paddingBottom: '70px',
+                marginTop: '',
+                display: 'flex',
+                flexDirection: 'row',
+                color: 'white',
+                fontSize: '20px',
+                cursor: 'pointer',
+                backgroundColor: isHovering ? '#B65654' : '',
+            }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onClick={() => {
+                window.location.pathname = '/offline-class-booking';
+            }}
+            >
+                Manage Offline Class Booking
+            </li>
+
+            <li
+            style={{
+                height: '43px',
+                width: '100%',
+                borderBottom: '1px solid white',
+                marginTop: '',
+                display: 'flex',
+                flexDirection: 'row',
+                color: 'white',
+                fontSize: '20px',
+                cursor: 'pointer',
+                backgroundColor: isHovering ? '#B65654' : '',
+            }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onClick={() => {
+                window.location.pathname = '/online-class';
+            }}
+            >
+                Manage Online Class
+            </li>
+            <li
+            style={{
+                height: '43px',
+                width: '100%',
+                borderBottom: '1px solid white',
+                paddingBottom: '70px',
+                marginTop: '',
+                display: 'flex',
+                flexDirection: 'row',
+                color: 'white',
+                fontSize: '20px',
+                cursor: 'pointer',
+                backgroundColor: isHovering ? '#B65654' : '',
+            }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onClick={() => {
+                window.location.pathname = '/online-class-booking';
+            }}
+            >
+                Manage Online Class Booking
+            </li>
+            
             <li
              style={{
                 height: '43px',
@@ -119,8 +187,10 @@ export default function Sidebar() {
                 color: 'white',
                 fontSize: '20px',
                 cursor: 'pointer',
-                // backgroundColor: isHovering ? 'aqua' : '',
+                backgroundColor: isHovering ? '#B65654' : '',
             }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
             onClick={() => {
                 window.location.pathname = '/login';
             }}
