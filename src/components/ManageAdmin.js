@@ -1,48 +1,33 @@
 import "antd/dist/antd.css";
-import "../../App.css";
+import "../App.css";
 import { Table, Button, Modal, Input, Form } from "antd";
 import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
-import "../../components/antd.css";
+import "./antd.css";
 import Button1 from "@mui/material/Button";
-import warning from "../../assets/warning.svg";
-import getAPI from "../../services/api/api";
-import userLogo from "../../assets/user-logo.svg";
-import Sidebar from "../../components/Side Bar/SideBar";
+import warning from "../assets/warning.svg";
+import getAPI from "../services/api/api";
+import userLogo from "../assets/user-logo.svg";
+import Sidebar from "./SideBar";
 import { LockOutlined } from "@ant-design/icons";
 // import { EditOutlined, DeleteOutlined, InfoCircleOutlined} from '@ant-design/icons';
 // import { height } from '@mui/system';
-import fldPassword from "../../assets/fld-password.svg";
-import fldName from "../../assets/fld-name.svg";
-import fldEmail from "../../assets/fld-email.svg";
-import fldPhone from "../../assets/fld-phone.svg";
-import ModalEdit from "../../components/modal/ModalEdit";
+import fldPassword from "../assets/fld-password.svg";
+import fldName from "../assets/fld-name.svg";
+import fldEmail from "../assets/fld-email.svg";
+import fldPhone from "../assets/fld-phone.svg";
 
 export default function ManageAdmin() {
   const [openDelete, setOpenDelete] = useState(false);
   const [deleteId, setDeleteId] = useState(-1);
   const [isEditing, setIsEditing] = useState(false);
   const [isAddingAdmin, setIsAddingAdmin] = useState(false);
-  const [editingAdmin, setEditingAdmin] = useState([
-    { name: ["name"], value: "Ant Design" },
-    { name: ["username"], value: "Ant Design" },
-    { name: ["password"], value: "Ant Design" },
-    { name: ["email"], value: "Ant Design" },
-    { name: ["phone"], value: "Ant Design" },
-  ]);
-  const [newAdmin, setNewAdmin] = useState({
-    name: "",
-    username: "",
-    password: "",
-    phoneNumber: "",
-  });
-  const [form] = Form.useForm();
+  const [editingAdmin, setEditingAdmin] = useState(null);
+  const [newAdmin, setNewAdmin] = useState({});
 
   // const handleOk = () => {
   //   setOpenDelete(false);
   // };
-
-  form.setFieldsValue(newAdmin);
 
   const handleCancel = () => {
     setOpenDelete(false);
@@ -86,7 +71,7 @@ export default function ManageAdmin() {
     {
       key: 6,
       title: "Actions",
-      render: (_, record) => {
+      render: (record) => {
         return (
           <>
             <Button
@@ -142,14 +127,7 @@ export default function ManageAdmin() {
 
   const onEditAdmin = (record) => {
     setIsEditing(true);
-    console.log(record);
-    setEditingAdmin([
-      { name: ["name"], value: record.name },
-      { name: ["username"], value: record.username },
-      { name: ["password"], value: record.password },
-      { name: ["email"], value: record.email },
-      { name: ["phoneNumber"], value: record.phoneNumber },
-    ]);
+    setEditingAdmin({ ...record });
   };
 
   const resetEditing = () => {
@@ -158,9 +136,8 @@ export default function ManageAdmin() {
   };
 
   const resetAddAdmin = () => {
-    setNewAdmin({});
     setIsAddingAdmin(false);
-    form.resetFields();
+    setNewAdmin({});
   };
 
   const info = (id) => {
@@ -294,21 +271,317 @@ export default function ManageAdmin() {
           ></Table>
         </div>
 
-        <ModalEdit
-          isEditing={isEditing}
-          editingAdmin={editingAdmin}
-          setEditingAdmin={setEditingAdmin}
-          setDataSource={setDataSource}
-          resetEditing={resetEditing}
-        />
+        <Modal title="" visible={isEditing} footer={null}>
+          <h1
+            style={{
+              fontSize: "32px",
+              fontWeight: "bold",
+            }}
+          >
+            Edit Admin
+          </h1>
+
+          <Form
+            autoComplete="off"
+            // labelCol={{ span: 10 }}
+            // wrapperCol={{ span: 14 }}
+            onFinish={(values) => {
+              console.log({ values });
+            }}
+            onFinishFailed={(error) => {
+              console.log({ error });
+            }}
+            style={{
+              width: "100%",
+            }}
+          >
+            <div
+              style={{
+                fontSize: "20px",
+                marginBottom: "5px",
+              }}
+            >
+              Name Admin
+            </div>
+            <Form.Item
+              name="name"
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter your name",
+                },
+                { whitespace: true },
+                { min: 3 },
+              ]}
+              hasFeedback
+            >
+              <img
+                src={fldName}
+                style={{
+                  position: "absolute",
+                  zIndex: "900",
+                  padding: "15px 0 18.5px 17.5px",
+                }}
+              />
+              <Input
+                id="fld-name-edit-admin"
+                placeholder="Enter Your Name"
+                style={{
+                  border: "1px solid #707070",
+                  padding: "10px 35px",
+                  borderRadius: "4px",
+                  color: "#707070",
+                }}
+                value={editingAdmin?.name}
+                onChange={(e) => {
+                  setEditingAdmin((pre) => {
+                    return { ...pre, name: e.target.value };
+                  });
+                }}
+              />
+            </Form.Item>
+
+            <div
+              style={{
+                fontSize: "20px",
+                marginBottom: "5px",
+              }}
+            >
+              Username
+            </div>
+            <Form.Item
+              //  name="Username"
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter a valid username",
+                },
+                { whitespace: true },
+                { min: 3 },
+              ]}
+              hasFeedback
+            >
+              <img
+                src={fldName}
+                style={{
+                  position: "absolute",
+                  zIndex: "900",
+                  padding: "15px 0 18.5px 17.5px",
+                }}
+              />
+              <Input
+                id="fld-username-edit-admin"
+                placeholder="Enter Your Username"
+                style={{
+                  border: "1px solid #707070",
+                  padding: "10px 35px",
+                  borderRadius: "4px",
+                  color: "#707070",
+                }}
+                value={editingAdmin?.username}
+                onChange={(e) => {
+                  setEditingAdmin((pre) => {
+                    return { ...pre, username: e.target.value };
+                  });
+                }}
+              />
+            </Form.Item>
+
+            <div
+              style={{
+                fontSize: "20px",
+                marginBottom: "5px",
+              }}
+            >
+              Password
+            </div>
+            <Form.Item
+              // name="password"
+              rules={[
+                { required: true, message: "Please enter a valid password" },
+                { min: 8, message: "Password must have a minimum length of 8" },
+                {
+                  pattern: new RegExp(
+                    "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d@$!%*?&]{8,}$"
+                  ),
+                  message:
+                    "Password must contain at least one lowercase letter, uppercase letter, and number",
+                },
+              ]}
+              hasFeedback
+            >
+              <img
+                src={fldPassword}
+                style={{
+                  position: "absolute",
+                  zIndex: "900",
+                  padding: "15px 0 18.5px 17.5px",
+                }}
+              />
+              <Input
+                id="fld-password-edit-admin"
+                placeholder="Enter Your Password"
+                style={{
+                  border: "1px solid #707070",
+                  padding: "10px 35px",
+                  borderRadius: "4px",
+                  color: "#707070",
+                }}
+                value={editingAdmin?.password}
+                onChange={(e) => {
+                  setEditingAdmin((pre) => {
+                    return { ...pre, password: e.target.value };
+                  });
+                }}
+              />
+            </Form.Item>
+
+            <div
+              style={{
+                fontSize: "20px",
+                marginBottom: "5px",
+              }}
+            >
+              Email
+            </div>
+            <Form.Item
+              //  name="email"
+              rules={[
+                {
+                  required: true,
+                  type: "email",
+                  message: "Please enter a valid email address",
+                },
+              ]}
+              hasFeedback
+            >
+              <img
+                src={fldEmail}
+                style={{
+                  position: "absolute",
+                  zIndex: "900",
+                  padding: "15px 0 18.5px 17.5px",
+                }}
+              />
+              <Input
+                id="fld-email-edit-admin"
+                placeholder="@gmail.com"
+                style={{
+                  border: "1px solid #707070",
+                  padding: "10px 35px",
+                  borderRadius: "4px",
+                  color: "#707070",
+                }}
+                value={editingAdmin?.email}
+                onChange={(e) => {
+                  setEditingAdmin((pre) => {
+                    return { ...pre, email: e.target.value };
+                  });
+                }}
+              />
+            </Form.Item>
+
+            <div
+              style={{
+                fontSize: "20px",
+                marginBottom: "5px",
+              }}
+            >
+              Phone Number
+            </div>
+            <Form.Item
+              // name="Phone Number"
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter a valid phone number",
+                },
+                {
+                  pattern: new RegExp("^[0-9]{10,12}$"),
+                  message: "Wrong format!",
+                },
+              ]}
+              hasFeedback
+            >
+              <img
+                src={fldPhone}
+                style={{
+                  position: "absolute",
+                  zIndex: "900",
+                  padding: "15px 0 18.5px 17.5px",
+                }}
+              />
+              <Input
+                id="fld-phone-number-edit-admin"
+                placeholder="Enter Your Phone Number"
+                style={{
+                  border: "1px solid #707070",
+                  padding: "10px 35px",
+                  borderRadius: "4px",
+                  color: "#707070",
+                }}
+                value={editingAdmin?.phoneNumber}
+                onChange={(e) => {
+                  setEditingAdmin((pre) => {
+                    return { ...pre, phoneNumber: e.target.value };
+                  });
+                }}
+              />
+            </Form.Item>
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <Button
+                id="btn-save-edit-admin"
+                type="primary"
+                onClick={() => {
+                  setDataSource((pre) => {
+                    return pre.map((admin) => {
+                      if (admin.id === editingAdmin.id) {
+                        return editingAdmin;
+                      } else {
+                        return admin;
+                      }
+                    });
+                  });
+                  resetEditing();
+                }}
+                style={{
+                  width: "100%",
+                  marginBottom: "15px",
+                  borderRadius: "8px",
+                  fontSize: "16px",
+                  height: "40px",
+                  alignItems: "center",
+                }}
+              >
+                + SAVE
+              </Button>
+              <Button
+                id="btn-cancel-edit-admin"
+                onClick={() => {
+                  resetEditing();
+                }}
+                style={{
+                  width: "100%",
+                  borderRadius: "8px",
+                  fontSize: "16px",
+                  height: "40px",
+                  alignItems: "center",
+                }}
+              >
+                CANCEL
+              </Button>
+            </div>
+          </Form>
+        </Modal>
 
         {/* Add Admin */}
-        <Modal
-          title=""
-          visible={isAddingAdmin}
-          footer={null}
-          onCancel={resetAddAdmin}
-        >
+        <Modal title="" visible={isAddingAdmin} footer={null}>
           <h1
             style={{
               fontSize: "32px",
@@ -319,8 +592,9 @@ export default function ManageAdmin() {
           </h1>
 
           <Form
-            form={form}
             autoComplete="off"
+            // labelCol={{ span: 10 }}
+            // wrapperCol={{ span: 14 }}
             onFinish={(values) => {
               console.log(values);
               setDataSource([...dataSource, { ...values }]);
@@ -344,7 +618,6 @@ export default function ManageAdmin() {
 
             <img
               src={fldName}
-              alt="name"
               style={{
                 position: "absolute",
                 zIndex: "900",
@@ -364,8 +637,6 @@ export default function ManageAdmin() {
                 id="fld-name-add-admin"
                 placeholder="Enter Your Name"
                 placeholderTextColor="#707070"
-                name="name"
-                value={newAdmin.name}
                 style={{
                   border: "1px solid #707070",
                   padding: "10px 35px",
@@ -391,7 +662,6 @@ export default function ManageAdmin() {
             </div>
             <img
               src={fldName}
-              alt="username"
               style={{
                 position: "absolute",
                 zIndex: "900",
@@ -414,8 +684,6 @@ export default function ManageAdmin() {
               <Input
                 id="fld-username-add-admin"
                 placeholder="Enter Your Username"
-                name="username"
-                value={newAdmin.username}
                 style={{
                   border: "1px solid #707070",
                   padding: "10px 35px",
@@ -435,7 +703,6 @@ export default function ManageAdmin() {
             </div>
             <img
               src={fldPassword}
-              alt="password"
               style={{
                 position: "absolute",
                 zIndex: "900",
@@ -446,19 +713,6 @@ export default function ManageAdmin() {
               name="password"
               rules={[
                 {
-                  pattern:
-                    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/,
-                  message: (
-                    <ul>
-                      <li>- At least 8 characters</li>
-                      <li>- At least 1 numeric character</li>
-                      <li>- At least 1 lowercase character</li>
-                      <li>- At least 1 uppercase character</li>
-                      <li>- At least 1 special character</li>
-                    </ul>
-                  ),
-                },
-                {
                   required: true,
                   message: "Password is required",
                 },
@@ -467,8 +721,6 @@ export default function ManageAdmin() {
               <Input
                 id="fld-password-add-admin"
                 placeholder="Enter Your Password"
-                name="password"
-                value={newAdmin.password}
                 style={{
                   border: "1px solid #707070",
                   padding: "10px 35px",
@@ -488,7 +740,6 @@ export default function ManageAdmin() {
             </div>
             <img
               src={fldEmail}
-              alt="/"
               style={{
                 position: "absolute",
                 zIndex: "900",
@@ -499,10 +750,6 @@ export default function ManageAdmin() {
               name="email"
               rules={[
                 {
-                  type: "email",
-                  message: "The input is not valid E-mail!",
-                },
-                {
                   required: true,
                   message: "Email is required",
                 },
@@ -511,8 +758,6 @@ export default function ManageAdmin() {
               <Input
                 id="fld-email-add-admin"
                 placeholder="@gmail.com"
-                name="email"
-                value={newAdmin.email}
                 style={{
                   border: "1px solid #707070",
                   padding: "10px 35px",
@@ -533,7 +778,6 @@ export default function ManageAdmin() {
 
             <img
               src={fldPhone}
-              alt="/"
               style={{
                 position: "absolute",
                 zIndex: "900",
@@ -542,12 +786,7 @@ export default function ManageAdmin() {
             />
             <Form.Item
               name="phoneNumber"
-              initialValue={newAdmin.phoneNumber}
               rules={[
-                {
-                  type: "number",
-                  message: "The input is not valid Phone!",
-                },
                 {
                   required: true,
                   message: "Phone is required",
@@ -557,8 +796,6 @@ export default function ManageAdmin() {
               <Input
                 id="fld-phone-number-add-admin"
                 placeholder="Enter Your Phone Number"
-                name="phoneNumber"
-                value={newAdmin.phoneNumber}
                 style={{
                   border: "1px solid #707070",
                   padding: "10px 35px",
