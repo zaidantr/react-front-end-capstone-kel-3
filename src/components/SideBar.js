@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 import { SideBarData } from './SideBarData'
 import logo from '../assets/logo.svg'
@@ -53,9 +53,11 @@ export default function Sidebar() {
         </div>
         
     </div>
+
+
     <div
     style={{
-        height: '1024px',
+        height: '1124px',
         width: '400px',
         backgroundColor: '#F27370',
         paddingTop: '227px',
@@ -73,36 +75,25 @@ export default function Sidebar() {
         }}
         />
         <ul
-        style={{
-            height: 'auto',
-            width: '100%',
-            backgroundColor: '#F27370',
-        }}
+        // style={{
+        //     height: 'auto',
+        //     width: '100%',
+        //     backgroundColor: '#F27370',
+        // }}
+        className='SidebarList'
         >
             {SideBarData.map((val, key)=> {
                 return (
                     <li 
-                    style={{
-                        height: '43px',
-                        width: '100%',
-                        borderBottom: '1px solid white',
-                        // paddingLeft: '20px',
-                        display: 'flex',
-                        flexDirection: 'row',
-                        color: 'white',
-                        fontSize: '20px',
-                        cursor: isHovering ? 'pointer' : '',
-                        // backgroundColor: isHovering ? 'aqua' : '',
-                    }}
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
+                    className='row'
                     key={key}
                     onClick={() => {
                         window.location.pathname = val.link;
                     }}
                     >  
                         {" "}
-                        <div>
+                        <div
+                        >
                             {val.title}
                         </div>
                     </li>
@@ -110,21 +101,22 @@ export default function Sidebar() {
                 })}
 
             <li
+            className='row'
             style={{
                 height: '43px',
                 width: '100%',
                 borderBottom: '1px solid white',
-                paddingBottom: '70px',
+                paddingBottom: '60px',
                 marginTop: '',
                 display: 'flex',
                 flexDirection: 'row',
                 color: 'white',
                 fontSize: '20px',
                 cursor: 'pointer',
-                backgroundColor: isHovering ? '#B65654' : '',
+                // backgroundColor: isHovering ? '#B65654' : '',
             }}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+            // onMouseEnter={handleMouseEnter}
+            // onMouseLeave={handleMouseLeave}
             onClick={() => {
                 window.location.pathname = '/offline-class-booking';
             }}
@@ -133,8 +125,8 @@ export default function Sidebar() {
             </li>
 
             <li
+            className='row'
             style={{
-                height: '43px',
                 width: '100%',
                 borderBottom: '1px solid white',
                 marginTop: '',
@@ -143,10 +135,8 @@ export default function Sidebar() {
                 color: 'white',
                 fontSize: '20px',
                 cursor: 'pointer',
-                backgroundColor: isHovering ? '#B65654' : '',
             }}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+
             onClick={() => {
                 window.location.pathname = '/online-class';
             }}
@@ -154,21 +144,19 @@ export default function Sidebar() {
                 Manage Online Class
             </li>
             <li
+            className='row'
             style={{
                 height: '43px',
                 width: '100%',
-                borderBottom: '1px solid white',
-                paddingBottom: '70px',
+                paddingBottom: '60px',
                 marginTop: '',
                 display: 'flex',
                 flexDirection: 'row',
                 color: 'white',
                 fontSize: '20px',
                 cursor: 'pointer',
-                backgroundColor: isHovering ? '#B65654' : '',
             }}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+
             onClick={() => {
                 window.location.pathname = '/online-class-booking';
             }}
@@ -177,6 +165,7 @@ export default function Sidebar() {
             </li>
             
             <li
+            className='row'
              style={{
                 height: '43px',
                 width: '100%',
@@ -187,10 +176,7 @@ export default function Sidebar() {
                 color: 'white',
                 fontSize: '20px',
                 cursor: 'pointer',
-                backgroundColor: isHovering ? '#B65654' : '',
             }}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
             onClick={() => {
                 window.location.pathname = '/login';
             }}

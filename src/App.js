@@ -13,6 +13,7 @@ import ManageOfflineBooking from "./components/ManageOfflineBooking";
 import ManageOnlineClass from "./components/ManageOnlineClass";
 import ManageOnlineBooking from "./components/ManageOnlineBooking";
 import Hero from "./pages/Landing/Hero";
+import Form from './components/Form'
 
 
 ConfigProvider.config({
@@ -51,6 +52,7 @@ function App() {
             <Route path="/offline-class-booking" element={<ManageOfflineBooking />} />
             <Route path="/online-class" element={<ManageOnlineClass />} />
             <Route path="/online-class-booking" element={<ManageOnlineBooking />} />
+            <Route path="/form" element={<Form />} />
           </Routes>
         </Router>
         </ConfigProvider>

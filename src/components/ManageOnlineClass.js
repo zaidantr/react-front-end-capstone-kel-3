@@ -301,7 +301,7 @@ export default function ManageOnlineClass() {
               />
             <Input 
             id='fld-edit-name-class-offline-class'
-            placeholder='Edit Your Name Class' 
+            placeholder='Enter Your Name Class' 
             style={{
               border: '1px solid #707070',
               padding: '10px 35px',

@@ -1,25 +1,19 @@
 .ant-table-thead .ant-table-cell {
     background-color: #F27370;
     color: white;
+    font-family: 'Roboto', sans-serif !important;
+    font-style: normal;
+    font-weight: 700;
     font-size: 16px;
-    font-family: 'Inter', sans-serif;
+    line-height: 19px;
   }
 
-  .ant-input:focus {
-    border-color: #22559C;
-    outline: 0;
-    /* -webkit-box-shadow: 0 0 0 2px rgba(87,168,233, .2);
-    box-shadow: 0 0 0 2px rgba(87,168,233, .2); */
-}
-
-.table-row-light {
-  background-color: yellow;
-}
-.table-row-dark {
-  background-color: blue;
-}
-
-.ant-table-tbody {
-  border: 1px solid #F27370;
-}
+  .ant-table table {
+    font-family: 'Roboto', sans-serif !important;
+    color: #585858;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 15px;
+  }
 

@@ -570,7 +570,7 @@ export default function ManageAdmin() {
       </Form>
       </Modal>
 
-        {/* Add Admin */}
+    {/* Add Admin */}
       <Modal
         title=""
         visible={isAddingAdmin}
