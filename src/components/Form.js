@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import "../App.css";
-import FormInput from "./FormInput";
+import FormInput from "../pages/Manage Admin/FormInput";
 
 export default function Form() {
     const [values, setValues] = useState({
