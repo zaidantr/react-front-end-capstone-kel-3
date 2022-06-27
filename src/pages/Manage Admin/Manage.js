@@ -51,18 +51,18 @@ export default function Manage() {
       label: "Email",
       required: true,
     },
-    {
-      id: 5,
-      name: "birthday",
-      type: "date",
-      placeholder: "Birthday",
-      label: "Birthday",
-    },
+    // {
+    //   id: 5,
+    //   name: "birthday",
+    //   type: "date",
+    //   placeholder: "Birthday",
+    //   label: "Birthday",
+    // },
     
     {
       id: 6,
       name: "Phone Number",
-      type:"text",
+    //   type:"number",
       placeholder: "Phone Number",
       errorMessage: "Please enter a valid phone number",
       label: "Phone Number",
@@ -82,14 +82,15 @@ export default function Manage() {
   return (
     <div className="app">
       <form onSubmit={handleSubmit}>
-        {inputs.map((input) => (
+        {/* {inputs.map((input) => (
           <FormInput
             key={input.id}
             {...input}
             value={values[input.name]}
             onChange={onChange}
           />
-        ))}
+        ))} */}
+        
       </form>
     </div>
   );
