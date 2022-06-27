@@ -1,20 +1,19 @@
 import "./App.css";
-import { Route, BrowserRouter as Router, Routes, Link } from "react-router-dom";
-import VerticalTabs from "./components/VerticalTabs";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { ConfigProvider } from 'antd';
 
-import Dashboard from './components/Dashboard'
-import ManageAdmin from './components/ManageAdmin'
-import ManageMembership from './components/ManageMembership'
-import ManageOfflineClass from "./components/ManageOfflineClass";
-import ManageOfflineBooking from "./components/ManageOfflineBooking";
-import ManageOnlineClass from "./components/ManageOnlineClass";
-import ManageOnlineBooking from "./components/ManageOnlineBooking";
+// import VerticalTabs from "./components/VerticalTabs";
+import Home from './pages/Home/Home'
+import ManageAdmin from './pages/Manage Admin/ManageAdmin'
+import ManageMembership from './pages/Manage Membership/ManageMembership'
+import ManageOfflineClass from "./pages/Manage Offline/ManageOfflineClass";
+import ManageOfflineBooking from "./pages/Manage Offline/ManageOfflineBooking";
+import ManageOnlineClass from "./pages/Manage Online/ManageOnlineClass";
+import ManageOnlineBooking from "./pages/Manage Online/ManageOnlineBooking";
+import Manage from './pages/Manage Admin/Manage'
 import Hero from "./pages/Landing/Hero";
-import Form from './components/Form'
-
 
 ConfigProvider.config({
   theme: {
@@ -43,7 +42,7 @@ function App() {
           <Routes>
             {/* <Route path="/" element={<VerticalTabs />} /> */}
             <Route path="/" element={<Hero />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/home" element={<Home />} />
 
             <Route path="/login" element={<Login />} />
             <Route path="/admin" element={<ManageAdmin />} />
@@ -52,7 +51,7 @@ function App() {
             <Route path="/offline-class-booking" element={<ManageOfflineBooking />} />
             <Route path="/online-class" element={<ManageOnlineClass />} />
             <Route path="/online-class-booking" element={<ManageOnlineBooking />} />
-            <Route path="/form" element={<Form />} />
+            <Route path="/manage" element={<Manage />} />
           </Routes>
         </Router>
         </ConfigProvider>

@@ -1,10 +1,7 @@
-import React from 'react';
-
-
 export const SideBarData = [
     {
         title: 'Home',
-        link: '/dashboard',
+        link: '/home',
     },
     {
         title: 'Manage Admin',

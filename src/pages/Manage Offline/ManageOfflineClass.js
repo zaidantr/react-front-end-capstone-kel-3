@@ -1,27 +1,28 @@
 import 'antd/dist/antd.css';
-import '../App.css';
+import '../../App.css';
 import {Table, Button, Modal, Input, Form, DatePicker } from 'antd';
 import { Box } from "@mui/system";
 import { useEffect, useState} from 'react';
-import './antd.css';
+import '../../components/antd.css';
 import Button1 from "@mui/material/Button";
-import warning from '../assets/warning.svg';
-import fldClass from '../assets/fld-class.svg';
-import fldDate from '../assets/fld-date.svg';
-import fldTime from '../assets/fld-time.svg';
-import fldPrice from '../assets/fld-price.svg';
-import getAPI from "../services/api/api";
-import Sidebar from './SideBar';
+import warning from '../../assets/warning.svg';
+import fldClass from '../../assets/fld-class.svg';
+import fldDate from '../../assets/fld-date.svg';
+import fldTime from '../../assets/fld-time.svg';
+import fldPrice from '../../assets/fld-price.svg';
+import getAPI from "../../services/api/api";
 // import { EditOutlined, DeleteOutlined, InfoCircleOutlined} from '@ant-design/icons';
 // import { height } from '@mui/system';
 
-export default function ManageOnlineClass() {
+import Sidebar from '../../components/Side Bar/SideBar';
+
+export default function ManageOfflineClass() {
   const [openDelete, setOpenDelete] = useState(false);
   const [deleteId, setDeleteId] = useState(-1);
   const [isEditing, setIsEditing] = useState(false);
-  const [isAddingOnlineClass, setIsAddingOnlineClass] = useState(false);
-  const [editingOnlineClass, setEditingOnlineClass] = useState(null);
-  const [newOnlineClass, setNewOnlineClass] = useState({});
+  const [isAddingOfflineClass, setIsAddingOfflineClass] = useState(false);
+  const [editingOfflineClass, setEditingOfflineClass] = useState(null);
+  const [newOfflineClass, setNewOfflineClass] = useState({});
 
 
   const handleOk = () => {
@@ -84,7 +85,7 @@ export default function ManageOnlineClass() {
       render:(record) => {
         return <>
           <Button 
-          id='btn-view-online-class'
+          id="btn-view-offline-class"
           onClick={() => {
             info(record.id);
           }}
@@ -96,9 +97,9 @@ export default function ManageOnlineClass() {
           }}
           >VIEW</Button>
           <Button
-          id='btn-edit-online-class'
+          id='btn-edit-offline-class'
           onClick={() => {
-            onEditOnlineClass(record);
+            onEditOfflineClass(record);
           }}
           style={{
             border: '1px solid #F27370',
@@ -109,7 +110,7 @@ export default function ManageOnlineClass() {
           }}
           >EDIT</Button>
           <Button 
-          id='btn-delete-online-class'
+          id="btn-delete-offline-class"
           onClick={() => {
             setOpenDelete(!openDelete);
             setDeleteId(record.id);
@@ -128,19 +129,19 @@ export default function ManageOnlineClass() {
     } 
   ].filter(item => !item.hidden);
 
-  const onEditOnlineClass = (record) => {
+  const onEditOfflineClass = (record) => {
     setIsEditing(true);
-    setEditingOnlineClass({...record});
+    setEditingOfflineClass({...record});
   }
 
   const resetEditing=() => {
     setIsEditing(false);
-    setEditingOnlineClass(null);
+    setEditingOfflineClass(null);
   }
 
-  const resetAddOnlineClass=() => {
-    setIsAddingOnlineClass(false);
-    setNewOnlineClass({});
+  const resetAddOfflineClass=() => {
+    setIsAddingOfflineClass(false);
+    setNewOfflineClass({});
   }
 
   const info = (id) => {
@@ -151,7 +152,7 @@ export default function ManageOnlineClass() {
       icon: '',
       title: '',
       okText:'Cancel',
-      okId:'btn-cancel-view-online-class',
+      okId: 'btn-cancel-view-offline-class',
       okButtonProps: {
         type: "primary",
         style: {
@@ -195,12 +196,12 @@ export default function ManageOnlineClass() {
 
   return (
     <>
-    <div 
+    <div
     style={{
-      position: 'absolute',
+      position:'absolute',
     }}
     >
-      <Sidebar/>
+      <Sidebar />
     </div>
         <div style={{
           minWidth: 1046,
@@ -217,16 +218,16 @@ export default function ManageOnlineClass() {
           fontFamily: "Roboto",
         }}
         >
-        Manage Online Class
+        Manage Offline Class
       </h1>
 
         <div
              style={{
-              border: '1px solid #F27370',
-              paddingLeft: 23,
-              paddingRight: 23,
-            }}
-        >
+               border: '1px solid #F27370',
+               paddingLeft: 23,
+               paddingRight: 23,
+              }}
+              >
 
         <div
           style={{
@@ -241,12 +242,12 @@ export default function ManageOnlineClass() {
             fontFamily: "Roboto",
           }}
           >
-            List Online Class
+            List Offline Class
           </h1>
           <Button 
-          id='btn-add-online-class'
+          id='btn-add-offline-class'
           onClick={() => {
-            setIsAddingOnlineClass(true);
+            setIsAddingOfflineClass(true);
           }}
           style={{
             backgroundColor: '#F27370',
@@ -254,7 +255,7 @@ export default function ManageOnlineClass() {
             border: '1px solid #F27370',
             borderRadius: '4px',
             marginLeft: 'auto',
-
+            
           }}
           >+ NEW</Button>
         </div>
@@ -281,7 +282,7 @@ export default function ManageOnlineClass() {
             fontSize: '32px',
             fontWeight: 'bold',
           }}
-        >Edit Class</h1>
+          >Edit Class</h1>
 
           <Form.Item
           >
@@ -291,7 +292,7 @@ export default function ManageOnlineClass() {
               marginBottom: '5px',              
             }}
             >Name Class</div>
-            <img
+              <img
               src={fldClass}
               style={{
                 position: 'absolute',
@@ -308,9 +309,9 @@ export default function ManageOnlineClass() {
               borderRadius: '4px',
               color: '#707070'
             }}            
-            value={editingOnlineClass?.nameClass} 
+            value={editingOfflineClass?.nameClass} 
             onChange={(e) => {
-              setEditingOnlineClass((pre) => {
+              setEditingOfflineClass((pre) => {
                 return {...pre, nameClass: e.target.value };
               });
             }}
@@ -340,11 +341,11 @@ export default function ManageOnlineClass() {
               border: '1px solid #707070',
               padding: '10px 35px',
               borderRadius: '4px',
-              color: '#707070'
+              color: '#707070',
             }} 
-            value={editingOnlineClass?.trainer} 
+            value={editingOfflineClass?.trainer} 
             onChange={(e) => {
-              setEditingOnlineClass((pre) => {
+              setEditingOfflineClass((pre) => {
                 return {...pre, trainer: e.target.value };
               });
             }}
@@ -377,7 +378,7 @@ export default function ManageOnlineClass() {
               borderRadius: '4px',
               color: '#707070',
               width: '100%',
-            }}               
+            }}       
             // Masih error pas ngasih datanya        
             // value={editingOfflineClass?.date} 
             // onChange={(e) => {
@@ -407,7 +408,7 @@ export default function ManageOnlineClass() {
             <Input 
             id='fld-edit-time-offline-class'
             placeholder='19.00' 
-            value={editingOnlineClass?.time} 
+            value={editingOfflineClass?.time} 
             style={{
               border: '1px solid #707070',
               padding: '10px 35px',
@@ -415,7 +416,7 @@ export default function ManageOnlineClass() {
               color: '#707070'
             }}            
             onChange={(e) => {
-              setEditingOnlineClass((pre) => {
+              setEditingOfflineClass((pre) => {
                 return {...pre, time: e.target.value };
               });
             }}
@@ -441,7 +442,7 @@ export default function ManageOnlineClass() {
             <Input 
             id='fld-edit-location-offline-class'
             placeholder='Enter Your Location' 
-            value={editingOnlineClass?.location} 
+            value={editingOfflineClass?.location} 
             style={{
               border: '1px solid #707070',
               padding: '10px 35px',
@@ -449,7 +450,7 @@ export default function ManageOnlineClass() {
               color: '#707070'
             }}            
             onChange={(e) => {
-              setEditingOnlineClass((pre) => {
+              setEditingOfflineClass((pre) => {
                 return {...pre, location: e.target.value };
               });
             }}
@@ -475,7 +476,7 @@ export default function ManageOnlineClass() {
             <Input 
             id='fld-edit-price-offline-class'
             placeholder='Rp.' 
-            value={editingOnlineClass?.price} 
+            value={editingOfflineClass?.price} 
             style={{
               border: '1px solid #707070',
               padding: '10px 35px',
@@ -483,7 +484,7 @@ export default function ManageOnlineClass() {
               color: '#707070'
             }}            
             onChange={(e) => {
-              setEditingOnlineClass((pre) => {
+              setEditingOfflineClass((pre) => {
                 return {...pre, price: e.target.value };
               });
             }}
@@ -509,7 +510,7 @@ export default function ManageOnlineClass() {
             <Input 
             id='fld-edit-description-offline-class'
             placeholder='Enter Your Description' 
-            value={editingOnlineClass?.description} 
+            value={editingOfflineClass?.description} 
             style={{
               border: '1px solid #707070',
               padding: '10px 35px',
@@ -517,7 +518,7 @@ export default function ManageOnlineClass() {
               color: '#707070'
             }}            
             onChange={(e) => {
-              setEditingOnlineClass((pre) => {
+              setEditingOfflineClass((pre) => {
                 return {...pre, description: e.target.value };
               });
             }}
@@ -532,15 +533,15 @@ export default function ManageOnlineClass() {
       >
         
         <Button
-        id='btn-save-edit-class-offline-class'
+        id='btn-save-edit-offline-class'
         type="primary"
         onClick={() => {
           setDataSource((pre) => {
-            return pre.map((onlineclass) => {
-              if (onlineclass.id === editingOnlineClass.id) {
-                return editingOnlineClass;
+            return pre.map((offlineclass) => {
+              if (offlineclass.id === editingOfflineClass.id) {
+                return editingOfflineClass;
               } else {
-                return onlineclass;
+                return offlineclass;
               }
             });
           });
@@ -558,7 +559,7 @@ export default function ManageOnlineClass() {
           + SAVE
         </Button>
         <Button
-        id='btn-cancel-edit-class-offline-class'
+        id='btn-cancel-edit-offline-class'
         onClick={() => {
           resetEditing();
 
@@ -579,7 +580,7 @@ export default function ManageOnlineClass() {
 {/* MODAL ADD CLASS */}
         <Modal
         title=""
-        visible={isAddingOnlineClass}
+        visible={isAddingOfflineClass}
         footer={null}
         >
         
@@ -588,7 +589,7 @@ export default function ManageOnlineClass() {
             fontSize: '32px',
             fontWeight: 'bold',
           }}
-        >Add Class</h1>
+          >Add Class</h1>
 
           <Form.Item
           >
@@ -607,7 +608,7 @@ export default function ManageOnlineClass() {
               }}
               />
             <Input 
-            id='fld-add-name-offline-class'
+            id='fld-add-name-class-offline-class'
             placeholder='Edit Your Name Class' 
             style={{
               border: '1px solid #707070',
@@ -615,9 +616,9 @@ export default function ManageOnlineClass() {
               borderRadius: '4px',
               color: '#707070'
             }}            
-            value={editingOnlineClass?.nameClass} 
+            value={editingOfflineClass?.nameClass} 
             onChange={(e) => {
-              setNewOnlineClass((pre) => {
+              setNewOfflineClass((pre) => {
                 return {...pre, nameClass: e.target.value };
               });
             }}
@@ -649,9 +650,9 @@ export default function ManageOnlineClass() {
               borderRadius: '4px',
               color: '#707070'
             }} 
-            value={editingOnlineClass?.trainer} 
+            value={editingOfflineClass?.trainer} 
             onChange={(e) => {
-              setNewOnlineClass((pre) => {
+              setNewOfflineClass((pre) => {
                 return {...pre, trainer: e.target.value };
               });
             }}
@@ -683,12 +684,12 @@ export default function ManageOnlineClass() {
               padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070',
-              width: '100%'
-            }}             
+              width: '100%',
+            }}            
             // Masih error pas ngasih data nya   
-            // value={editingOnlineClass?.date} 
+            // value={editingOfflineClass?.date} 
             // onChange={(e) => {
-            //   setNewOnlineClass((pre) => {
+            //   setNewOfflineClass((pre) => {
             //     return {...pre, date: e.target.value };
             //   });
             // }}
@@ -703,7 +704,7 @@ export default function ManageOnlineClass() {
               marginBottom: '5px',              
             }}
             >Time</div>
-            <img
+             <img
               src={fldTime}
               style={{
                 position: 'absolute',
@@ -714,7 +715,7 @@ export default function ManageOnlineClass() {
             <Input 
             id='fld-add-time-offline-class'
             placeholder='19.00' 
-            value={editingOnlineClass?.time} 
+            value={editingOfflineClass?.time} 
             style={{
               border: '1px solid #707070',
               padding: '10px 35px',
@@ -722,7 +723,7 @@ export default function ManageOnlineClass() {
               color: '#707070'
             }}            
             onChange={(e) => {
-              setNewOnlineClass((pre) => {
+              setNewOfflineClass((pre) => {
                 return {...pre, time: e.target.value };
               });
             }}
@@ -748,7 +749,7 @@ export default function ManageOnlineClass() {
             <Input 
             id='fld-add-location-offline-class'
             placeholder='Enter Your Location' 
-            value={editingOnlineClass?.location} 
+            value={editingOfflineClass?.location} 
             style={{
               border: '1px solid #707070',
               padding: '10px 35px',
@@ -756,7 +757,7 @@ export default function ManageOnlineClass() {
               color: '#707070'
             }}            
             onChange={(e) => {
-              setNewOnlineClass((pre) => {
+              setNewOfflineClass((pre) => {
                 return {...pre, location: e.target.value };
               });
             }}
@@ -782,7 +783,7 @@ export default function ManageOnlineClass() {
             <Input 
             id='fld-add-price-offline-class'
             placeholder='Rp.' 
-            value={editingOnlineClass?.price} 
+            value={editingOfflineClass?.price} 
             style={{
               border: '1px solid #707070',
               padding: '10px 35px',
@@ -790,7 +791,7 @@ export default function ManageOnlineClass() {
               color: '#707070'
             }}            
             onChange={(e) => {
-              setNewOnlineClass((pre) => {
+              setNewOfflineClass((pre) => {
                 return {...pre, price: e.target.value };
               });
             }}
@@ -816,7 +817,7 @@ export default function ManageOnlineClass() {
             <Input 
             id='fld-add-description-offline-class'
             placeholder='Enter Your Description' 
-            value={editingOnlineClass?.description} 
+            value={editingOfflineClass?.description} 
             style={{
               border: '1px solid #707070',
               padding: '10px 35px',
@@ -824,7 +825,7 @@ export default function ManageOnlineClass() {
               color: '#707070'
             }}            
             onChange={(e) => {
-              setNewOnlineClass((pre) => {
+              setNewOfflineClass((pre) => {
                 return {...pre, description: e.target.value };
               });
             }}
@@ -842,9 +843,9 @@ export default function ManageOnlineClass() {
         id='btn-save-add-offline-class'
         type="primary"
         onClick={() => {
-          setDataSource([...dataSource, newOnlineClass]);
-          resetAddOnlineClass();
-          }}
+          setDataSource([...dataSource, newOfflineClass]);
+          resetAddOfflineClass();
+        }}
           style={{
             width: '100%',
             marginBottom: '15px',
@@ -859,7 +860,7 @@ export default function ManageOnlineClass() {
         <Button
         id='btn-cancel-add-offline-class'
         onClick={() => {
-          resetAddOnlineClass();
+          resetAddOfflineClass();
         }}
         style={{
           width: '100%',
@@ -891,14 +892,13 @@ export default function ManageOnlineClass() {
         style={{ 
           textAlign: "center", 
           padding: "30px", 
-          fontSize: "24px" 
-          }}>
+          fontSize: "24px" }}>
           Are you sure want to delete this?
         </p>
         <Box 
         display="flex" 
         justifyContent="center">
-          <Button1
+            <Button1
             id='btn-confirm-delete-offline-class'
             style={{
               color: "white",
@@ -911,30 +911,29 @@ export default function ManageOnlineClass() {
             onClick={() => {
               setOpenDelete(false);
               setDataSource((pre) => {
-                return pre.filter((onlineclass) => onlineclass.id !== deleteId);
+                return pre.filter((offlineclass) => offlineclass.id !== deleteId);
               });
             }}
-          >
+            >
             Delete
           </Button1>
           <Button1
-            id='btn-cancel-delete-offline-class'
-            variant="outlined"
-            style={{
-              color: "#F27370",
-              border: "2px solid #F27370",
-              backgroundColor: "white",
-            }}
+          id='btn-cancel-delete-offline-class'
+          variant="outlined"
+          style={{
+            color: "#F27370",
+            border: "2px solid #F27370",
+            backgroundColor: "white",
+          }}
             onClick={handleCancel}
-          >
+            >
             Cancel
           </Button1>
         </Box>
       </Modal>
 
     </div>
-    </>
-
+            </>
   );
 }
 

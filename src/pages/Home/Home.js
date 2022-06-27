@@ -1,16 +1,16 @@
 import 'antd/dist/antd.css';
-import '../App.css';
+import '../../App.css';
 import {Table, Button, Modal, Input, Form } from 'antd';
 import { useState} from 'react';
-import './antd.css';
-import active from '../assets/active-users.svg';
-import booking from '../assets/total-booking.svg';
-import admin from '../assets/total-admin.svg';
-import filter from '../assets/filter.svg';
-import search from '../assets/search.svg';
-import Sidebar from './SideBar';
+import '../../components/antd.css'
+import active from '../../assets/active-users.svg';
+import booking from '../../assets/total-booking.svg';
+import admin from '../../assets/total-admin.svg';
+import filter from '../../assets/filter.svg';
+import search from '../../assets/search.svg';
+import Sidebar from '../../components/Side Bar/SideBar';
 
-export default function Dashboard() {
+export default function Home() {
   const { Search } = Input;
   const [openDelete, setOpenDelete] = useState(false);
   const [deleteId, setDeleteId] = useState(-1);

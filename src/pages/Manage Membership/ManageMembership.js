@@ -2,8 +2,8 @@ import { Box } from "@mui/system";
 import { Space, Table, Tag, Button, Modal, Input, Form } from "antd";
 import React, { useState } from "react";
 import Button1 from "@mui/material/Button";
-import warning from '../assets/warning.svg';
-import Sidebar from "./SideBar";
+import warning from '../../assets/warning.svg';
+import Sidebar from "../../components/Side Bar/SideBar";
 
 export default function ManageMembership() {
   const [openDelete, setOpenDelete] = useState(false);

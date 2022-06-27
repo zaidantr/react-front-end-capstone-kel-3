@@ -1,20 +1,9 @@
-import React, { useState } from 'react';
-
 import { SideBarData } from './SideBarData'
-import logo from '../assets/logo.svg'
-import avatar from '../assets/avatar.svg'
+import './SideBar.css'
+import logo from '../../assets/logo.svg'
+import avatar from '../../assets/avatar.svg'
 
 export default function Sidebar() {
-
-    const [isHovering, setIsHovering] = useState(false);
-
-    const handleMouseEnter = () => {
-      setIsHovering(true);
-    };
-  
-    const handleMouseLeave = () => {
-      setIsHovering(false);
-    };    
 
   return (
     <>
@@ -36,6 +25,7 @@ export default function Sidebar() {
         }}
         >
             <img
+            alt='avatar'
             src={avatar}
             style={{
                 width: '40px',
@@ -67,6 +57,7 @@ export default function Sidebar() {
     >
     
         <img 
+        alt='Logo'
         src={logo}
         style={{
             width: '243px',
@@ -113,10 +104,7 @@ export default function Sidebar() {
                 color: 'white',
                 fontSize: '20px',
                 cursor: 'pointer',
-                // backgroundColor: isHovering ? '#B65654' : '',
             }}
-            // onMouseEnter={handleMouseEnter}
-            // onMouseLeave={handleMouseLeave}
             onClick={() => {
                 window.location.pathname = '/offline-class-booking';
             }}

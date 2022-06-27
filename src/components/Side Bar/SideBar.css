@@ -1,0 +1,29 @@
+.SidebarList {
+    height: auto;
+    width: 100%;
+    background-color: #F27370;
+  }
+  
+  .SidebarList .row {
+    height: 50px;
+    width: 100%;
+    border-bottom: 1px solid white;
+    padding: 10px;
+    font-weight: 500;
+    line-height: 23px;
+    font-style: normal;
+    /* padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px; */
+    /* padding-bottom: 70px; */
+    /* marginTop: '', */
+    display: flex;
+    flex-direction: row;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .SidebarList .row:hover {
+    background-color: #C25C5A;
+  }

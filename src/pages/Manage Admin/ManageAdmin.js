@@ -1,21 +1,21 @@
 import "antd/dist/antd.css";
-import "../App.css";
+import "../../App.css";
 import { Table, Button, Modal, Input, Form } from "antd";
 import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
-import "./antd.css";
+import "../../components/antd.css";
 import Button1 from "@mui/material/Button";
-import warning from "../assets/warning.svg";
-import getAPI from "../services/api/api";
-import userLogo from "../assets/user-logo.svg"
-import Sidebar from "./SideBar";
+import warning from "../../assets/warning.svg";
+import getAPI from "../../services/api/api";
+import userLogo from "../../assets/user-logo.svg"
+import Sidebar from "../../components/Side Bar/SideBar";
 import { LockOutlined } from '@ant-design/icons';
 // import { EditOutlined, DeleteOutlined, InfoCircleOutlined} from '@ant-design/icons';
 // import { height } from '@mui/system';
-import fldPassword from '../assets/fld-password.svg';
-import fldName from '../assets/fld-name.svg';
-import fldEmail from '../assets/fld-email.svg';
-import fldPhone from '../assets/fld-phone.svg';
+import fldPassword from '../../assets/fld-password.svg';
+import fldName from '../../assets/fld-name.svg';
+import fldEmail from '../../assets/fld-email.svg';
+import fldPhone from '../../assets/fld-phone.svg';
 
 export default function ManageAdmin() {
   const [openDelete, setOpenDelete] = useState(false);
@@ -570,7 +570,7 @@ export default function ManageAdmin() {
       </Form>
       </Modal>
 
-    {/* Add Admin */}
+{/* MODAL ADD ADMIN */}
       <Modal
         title=""
         visible={isAddingAdmin}
