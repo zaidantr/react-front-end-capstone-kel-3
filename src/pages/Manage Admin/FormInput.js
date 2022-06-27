@@ -21,7 +21,7 @@ export default function FormInput(props) {
         }
         focused={focused.toString()}
       />
-      <span>{errorMessage}</span>
+      <span className="errMessage">{errorMessage}</span>
     </div>
   );
 };  

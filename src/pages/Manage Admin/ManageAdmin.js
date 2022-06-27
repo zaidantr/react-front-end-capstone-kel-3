@@ -16,6 +16,7 @@ import fldPassword from '../../assets/fld-password.svg';
 import fldName from '../../assets/fld-name.svg';
 import fldEmail from '../../assets/fld-email.svg';
 import fldPhone from '../../assets/fld-phone.svg';
+import Manage from "./Manage";
 
 export default function ManageAdmin() {
   const [openDelete, setOpenDelete] = useState(false);
@@ -597,180 +598,16 @@ export default function ManageAdmin() {
           width: '100%'
         }}
         >
-        <div style={{
-          fontSize: '20px',
-          marginBottom: '5px',
-        }}>Name Admin</div>
-
-        <Form.Item
-        //  name="Name Admin"
-         rules={[
-          {
-            required: true,
-            message: "Please enter your name",
-          },
-          { whitespace: true },
-          { min: 3 },
-        ]}
-        hasFeedback
-        >
-          <img
-          src={fldName}
-          style={{
-            position: 'absolute',
-            zIndex: '900',
-            padding: '15px 0 18.5px 17.5px'
-          }}
-          />
-          <Input
-            id="fld-name-add-admin"
-            placeholder="Enter Your Name"
-            placeholderTextColor="#707070"
-            style={{
-              border: '1px solid #707070',
-              padding: '10px 35px',
-              borderRadius: '4px',
-              color: '#707070'
-            }}
-            value={editingAdmin?.name}
-            onChange={(e) => {
-              setNewAdmin((pre) => {
-                return { ...pre, name: e.target.value };
-              });
-            }}
-            />
-        </Form.Item>
-
-        <Form.Item>
-          <div 
-          style={{
-              fontSize: '20px',
-              marginBottom: '5px',
-            }}>Username</div>
-          <img
-          src={fldName}
-          style={{
-            position: 'absolute',
-            zIndex: '900',
-            padding: '15px 0 18.5px 17.5px'
-          }}
-          />
-          <Input
-            id="fld-username-add-admin"
-            placeholder="Enter Your Username"
-            style={{
-              border: '1px solid #707070',
-              padding: '10px 35px',
-              borderRadius: '4px',
-              color: '#707070'
-            }}
-            value={editingAdmin?.username}
-            onChange={(e) => {
-              setNewAdmin((pre) => {
-                return { ...pre, username: e.target.value };
-              });
-            }}
-            />
-        </Form.Item>
-
-        <Form.Item>
-          <div style={{
-            fontSize: '20px',
-              marginBottom: '5px',
-            }}>Password</div>
-          <img
-          src={fldPassword}
-          style={{
-            position: 'absolute',
-            zIndex: '900',
-            padding: '15px 0 18.5px 17.5px'
-          }}
-          />
           
-          <Input
-            id="fld-password-add-admin"
-            placeholder="Enter Your Password"
-            style={{
-              border: '1px solid #707070',
-              padding: '10px 35px',
-              borderRadius: '4px',
-              color: '#707070'
-            }}
-            value={editingAdmin?.password}
-            onChange={(e) => {
-              setNewAdmin((pre) => {
-                return { ...pre, password: e.target.value };
-              });
-            }}
-          />
-        </Form.Item>
+{/* FORM INPUT YANG ADA VALIDASI NYA DISiNI */}
+        <Manage/>
 
-        <Form.Item>
-          <div style={{
-              fontSize: '20px',
-              marginBottom: '5px',
-          }}>Email</div>
-          <img
-          src={fldEmail}
-          style={{
-            position: 'absolute',
-            zIndex: '900',
-            padding: '15px 0 18.5px 17.5px'
-          }}
-          />
-          <Input
-            id="fld-email-add-admin"
-            placeholder="@gmail.com"
-            style={{
-              border: '1px solid #707070',
-              padding: '10px 35px',
-              borderRadius: '4px',
-              color: '#707070'
-            }}
-            value={editingAdmin?.email}
-            onChange={(e) => {
-              setNewAdmin((pre) => {
-                return { ...pre, email: e.target.value };
-              });
-            }}
-            />
-        </Form.Item>
 
-        <Form.Item>
-          <div style={{
-            fontSize: '20px',
-            marginBottom: '5px',
-          }}>Phone Number</div>
-
-          <img
-          src={fldPhone}
-          style={{
-            position: 'absolute',
-            zIndex: '900',
-            padding: '15px 0 18.5px 17.5px'
-          }}
-          />
-          <Input
-            id="fld-phone-number-add-admin"
-            placeholder="Enter Your Phone Number"
-            style={{
-              border: '1px solid #707070',
-              padding: '10px 35px',
-              borderRadius: '4px',
-              color: '#707070'
-            }}
-            value={editingAdmin?.phoneNumber}
-            onChange={(e) => {
-              setNewAdmin((pre) => {
-                return { ...pre, phoneNumber: e.target.value };
-              });
-            }}
-            />
-        </Form.Item>
                   <div
       style={{
         display: 'flex',
         flexDirection: 'column',
+        marginTop: '20px',
       }}
       >
         
