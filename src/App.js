@@ -13,7 +13,7 @@ import ManageOfflineBooking from "./pages/Manage Offline/ManageOfflineBooking";
 import ManageOnlineClass from "./pages/Manage Online/ManageOnlineClass";
 import ManageOnlineBooking from "./pages/Manage Online/ManageOnlineBooking";
 import Manage from './pages/Manage Admin/Manage'
-import Hero from "./pages/Landing/Hero";
+import LandingPage from "./pages/Landing/LandingPage";
 
 ConfigProvider.config({
   theme: {
@@ -41,7 +41,7 @@ function App() {
         <Router>
           <Routes>
             {/* <Route path="/" element={<VerticalTabs />} /> */}
-            <Route path="/" element={<Hero />} />
+            <Route path="/" element={<LandingPage />} />
             <Route path="/home" element={<Home />} />
 
             <Route path="/login" element={<Login />} />
