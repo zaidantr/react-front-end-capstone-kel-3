@@ -82,14 +82,14 @@ export default function Manage() {
   return (
     <div className="app">
       <form onSubmit={handleSubmit}>
-        {/* {inputs.map((input) => (
+        {inputs.map((input) => (
           <FormInput
             key={input.id}
             {...input}
             value={values[input.name]}
             onChange={onChange}
           />
-        ))} */}
+        ))}
         
       </form>
     </div>

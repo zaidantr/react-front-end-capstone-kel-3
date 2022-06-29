@@ -34,7 +34,7 @@ export default function About() {
             style={{
                 width: '596px',
                 marginLeft: '36px',
-                marginTop: '116px',
+                marginTop: '146px',
             }}
             >
                 <h1

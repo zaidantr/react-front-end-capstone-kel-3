@@ -4,6 +4,8 @@ import Hero from './Hero'
 import Info from './Info'
 import Navbar from './Navbar'
 import Footer from './Footer'
+import Testimony from './Testimony'
+import Carousel from './Carousel'
 
 export default function LandingPage() {
   return (
@@ -12,6 +14,8 @@ export default function LandingPage() {
         <Hero />
         <Info />
         <About />
+        <Carousel />
+        <Testimony />
         <Footer />
     </>
   )
