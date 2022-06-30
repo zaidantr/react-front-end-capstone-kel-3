@@ -68,7 +68,7 @@ export default function Info() {
                 lineHeight: '28px',
             }}
             >
-            Flexible Time</h1>
+            Profesional Trainer</h1>
             <p
             style={{
                 fontWeight: '400',

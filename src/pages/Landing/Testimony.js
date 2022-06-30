@@ -232,28 +232,7 @@ export default function Testimony() {
                         <div
                         className='image2'
                         >
-                            <img src={foto1} />
-                        </div>
-                        <div
-                        className='container2-text'
-                        >
-                            <div>
-                                <h1>Billie Geulis</h1>
-                            </div>
-                            <div>
-                                <p>Mudah dalam Melakukan booking kelas, kelas yang tersedia juga lengkap.</p>
-                            </div>
-                        </div>
-                    </div>  
-            </div>
-            <div className="slide2">
-                    <div
-                    className='container2-slide'
-                    >
-                        <div
-                        className='image2'
-                        >
-                            <img src={foto2} />
+                            <img src={foto4} />
                         </div>
                         <div
                         className='container2-text'
@@ -275,6 +254,27 @@ export default function Testimony() {
                         className='image2'
                         >
                             <img src={foto3} />
+                        </div>
+                        <div
+                        className='container2-text'
+                        >
+                            <div>
+                                <h1>Billie Geulis</h1>
+                            </div>
+                            <div>
+                                <p>Mudah dalam Melakukan booking kelas, kelas yang tersedia juga lengkap.</p>
+                            </div>
+                        </div>
+                    </div>  
+            </div>
+            <div className="slide2">
+                    <div
+                    className='container2-slide'
+                    >
+                        <div
+                        className='image2'
+                        >
+                            <img src={foto2} />
                         </div>
                         <div
                         className='container-text'
@@ -295,27 +295,6 @@ export default function Testimony() {
                         <div
                         className='image2'
                         >
-                            <img src={foto4} />
-                        </div>
-                        <div
-                        className='container2-text'
-                        >
-                            <div>
-                                <h1>Billie Geulis</h1>
-                            </div>
-                            <div>
-                                <p>Mudah dalam Melakukan booking kelas, kelas yang tersedia juga lengkap.</p>
-                            </div>
-                        </div>
-                    </div>  
-            </div>
-            <div className="slide2">
-                    <div
-                    className='container2-slide'
-                    >
-                        <div
-                        className='image2'
-                        >
                             <img src={foto1} />
                         </div>
                         <div
@@ -337,7 +316,7 @@ export default function Testimony() {
                         <div
                         className='image2'
                         >
-                            <img src={foto2} />
+                            <img src={foto4} />
                         </div>
                         <div
                         className='container2-text'
@@ -379,7 +358,28 @@ export default function Testimony() {
                         <div
                         className='image2'
                         >
-                            <img src={foto4} />
+                            <img src={foto2} />
+                        </div>
+                        <div
+                        className='container2-text'
+                        >
+                            <div>
+                                <h1>Billie Geulis</h1>
+                            </div>
+                            <div>
+                                <p>Mudah dalam Melakukan booking kelas, kelas yang tersedia juga lengkap.</p>
+                            </div>
+                        </div>
+                    </div>  
+            </div>
+            <div className="slide2">
+                    <div
+                    className='container2-slide'
+                    >
+                        <div
+                        className='image2'
+                        >
+                            <img src={foto1} />
                         </div>
                         <div
                         className='container2-text'

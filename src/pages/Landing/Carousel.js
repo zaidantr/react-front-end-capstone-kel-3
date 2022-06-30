@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { Component } from "react";
+import Slider from "react-slick";
 import './Carousel.css';
 import weightloss from '../../assets/weightloss.svg'
 import weightlifting from '../../assets/weightlifting.svg'
 import yoga from '../../assets/yoga.svg'
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 export default function Testimony() {
-    
+    const settings = {
+        className: "center",
+        centerMode: true,
+        infinite: true,
+        centerPadding: "60px",
+        slidesToShow: 3,
+        speed: 500
+      };
   return (
     <>
     <div
@@ -42,30 +52,62 @@ export default function Testimony() {
             }}
             >Thousand of gym classes, all in one app</p>
         </div>
-
-        <div 
-        className='slide-container'
+        
+        <div
         >
-            <span className='slider-span' id='slider-span1' ></span>
-            <span className='slider-span' id='slider-span2' ></span>
-            <span className='slider-span' id='slider-span3' ></span>
+        <Slider {...settings}>
+          <div
+          className="container"
+          >
+            <img src={weightloss} />
+            <h3>Weight Loss Class</h3>
+            <p>Weightlifting is the sport of Strength, Power, Speed and Precision. </p>
+            <button>Join Now</button>
+          </div>
+          <div
+          className="container"
+          >
+            <img src={weightlifting} />
+            <h3>Weight Lifting Class</h3>
+            <p>Weightlifting is the sport of Strength, Power, Speed and Precision. </p>
+            <button>Join Now</button>
+          </div>
+          <div
+          className="container"
+          >
+            <img src={yoga} />
+            <h3>Yoga Class</h3>
+            <p>Weightlifting is the sport of Strength, Power, Speed and Precision. </p>
+            <button>Join Now</button>
+          </div>
+          <div
+          className="container"
+          >
+            <img src={weightloss} />
+            <h3>Weight Loss Class</h3>
+            <p>Weightlifting is the sport of Strength, Power, Speed and Precision. </p>
+            <button>Join Now</button>
+          </div>
+          <div
+          className="container"
+          >
+            <img src={weightlifting} />
+            <h3>Weight Lifting Class</h3>
+            <p>Weightlifting is the sport of Strength, Power, Speed and Precision. </p>
+            <button>Join Now</button>
+          </div>
+          <div
+          className="container"
+          >
+            <img src={yoga} />
+            <h3>Yoga Class</h3>
+            <p>Weightlifting is the sport of Strength, Power, Speed and Precision. </p>
+            <button>Join Now</button>
+          </div>
 
-            <div className='image-slider'>
-                <div className='slides-div' id='slide-1'>
-                    <img src={weightlifting} className='img' id='img1' />
-                    <a href='#slider-span1' className='button' id='button-1'></a>
-                </div>
-                <div className='slides-div' id='slide-2'>
-                    <img src={weightloss} className='img' id='img2' />
-                    <a href='#slider-span2' className='button' id='button-2'></a>
-                </div>
-                <div className='slides-div' id='slide-3'>
-                    <img src={yoga} className='img' id='img3' />
-                    <a href='#slider-span3' className='button' id='button-3'></a>
-                </div>
-            </div>
+        </Slider>
+      </div>
 
-        </div>
     </div>
 
     </>
