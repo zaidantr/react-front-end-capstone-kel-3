@@ -5,7 +5,6 @@ import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
 import "../../components/antd.css";
 import Button1 from "@mui/material/Button";
-
 import warning from "../../assets/warning.svg";
 import getAPI from "../../services/api/api";
 import userLogo from "../../assets/user-logo.svg";
@@ -17,7 +16,8 @@ import fldPassword from "../../assets/fld-password.svg";
 import fldName from "../../assets/fld-name.svg";
 import fldEmail from "../../assets/fld-email.svg";
 import fldPhone from "../../assets/fld-phone.svg";
-import ModalEdit from "./ModalEdit";
+import Manage from "./Manage";
+import ModalEdit from "../../components/modal-edit/ModalEdit";
 
 export default function ManageAdmin() {
   const [openDelete, setOpenDelete] = useState(false);
@@ -462,6 +462,7 @@ export default function ManageAdmin() {
             </div>
             <img
               src={fldEmail}
+              alt="/"
               style={{
                 position: "absolute",
                 zIndex: "900",
@@ -504,6 +505,7 @@ export default function ManageAdmin() {
 
             <img
               src={fldPhone}
+              alt="/"
               style={{
                 position: "absolute",
                 zIndex: "900",
@@ -514,7 +516,7 @@ export default function ManageAdmin() {
               name="phoneNumber"
               rules={[
                 {
-                  pattern: new RegExp("^[0-9]{10,12}$"),
+                  type: "number",
                   message: "The input is not valid Phone!",
                 },
                 {
