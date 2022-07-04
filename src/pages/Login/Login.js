@@ -23,6 +23,20 @@ export default function Login() {
         }
     ])
 console.log(inputs)
+
+    // const handleChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setInputs(inputs => inputs.map(input => {
+    //         if (input.name === name) {
+    //             input.value = value;
+    //             console.log(inputs)
+    //         }
+    //         return input;
+    //     }
+    //     ))
+    // }
+
+
     return (
         <div className='h-screen bg-login-bg bg-cover bg-no-repeat'>
             <div className='container mx-auto h-full flex flex-1 justify-center items-center'>

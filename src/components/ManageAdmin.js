@@ -4,18 +4,26 @@ import { Table, Button, Modal, Input, Form } from "antd";
 import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
 import "./antd.css";
+
+// Components -------------------------------
 import Button1 from "@mui/material/Button";
-import warning from "../assets/warning.svg";
-import getAPI from "../services/api/api";
-import userLogo from "../assets/user-logo.svg"
 import Sidebar from "./SideBar";
 import { LockOutlined } from '@ant-design/icons';
 // import { EditOutlined, DeleteOutlined, InfoCircleOutlined} from '@ant-design/icons';
 // import { height } from '@mui/system';
+
+// API SERVICES -----------------------------------
+import AdminServices from "../services/admins.services";
+import getAPI from "../services/api/api";
+
+// Assets --------------------------------------------------
 import fldPassword from '../assets/fld-password.svg';
 import fldName from '../assets/fld-name.svg';
 import fldEmail from '../assets/fld-email.svg';
 import fldPhone from '../assets/fld-phone.svg';
+import userLogo from "../assets/user-logo.svg"
+import warning from "../assets/warning.svg";
+import { data } from "autoprefixer";
 
 export default function ManageAdmin() {
   const [openDelete, setOpenDelete] = useState(false);
@@ -23,7 +31,7 @@ export default function ManageAdmin() {
   const [isEditing, setIsEditing] = useState(false);
   const [isAddingAdmin, setIsAddingAdmin] = useState(false);
   const [editingAdmin, setEditingAdmin] = useState(null);
-  const [newAdmin, setNewAdmin] = useState({});
+  const [newAdmin, setNewAdmin] = useState();
 
   // const handleOk = () => {
   //   setOpenDelete(false);
@@ -36,9 +44,66 @@ export default function ManageAdmin() {
   const [dataSource, setDataSource] = useState([]);
 
   useEffect(() => {
-    const api = getAPI(true);
-    api.getAdminData().then((data) => setDataSource(data));
+    retrieveAdmins();
   }, []);
+
+  // Fetch Admin ---------------------------------------------------
+  const retrieveAdmins = () => {
+    AdminServices.fetchAdmin()
+      .then(response => {
+          const getAdmin = response.data
+          setDataSource(getAdmin);
+        console.log(response);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  // Add Admin (ERROR)------------------------------------------------------
+  // const addDataToAPI = () => {
+  //   const data = {
+  //     name: newAdmin.name,
+  //     email: newAdmin.email,
+  //     phoneNumber: newAdmin.phoneNumber,
+  //     password: newAdmin.password,
+  //     username: newAdmin.username,
+  //   };
+  //   AdminServices.addAdmin(data)
+  //     .then(response => {
+  //       console.log(response);
+  //       setNewAdmin({
+  //         id: response.data.id,
+  //         name: response.data.name,
+  //         email: response.data.email,
+  //         phoneNumber: response.data.phoneNumber,
+  //         password: response.data.password,
+  //         username: response.data.username,
+  //       })
+  //       setIsAddingAdmin(true);
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     } 
+  //     );
+  // }
+  
+
+  // Remove Admin --------------------------------------------------
+  const removeAdmin = (id) => {
+    AdminServices.deleteAdminById(id)
+      .then(response => {
+        const getAdmin = dataSource.data.filter(admin => admin.id !== id);
+        setDataSource(getAdmin);
+        console.log(response);
+        retrieveAdmins();
+      }
+      )
+      .catch(err => {
+        console.log(err);
+      }
+      );
+  }
 
   const columns = [
     {
@@ -105,10 +170,7 @@ export default function ManageAdmin() {
             </Button>
             <Button
               id="btn-delete-admin"
-              onClick={() => {
-                setOpenDelete(!openDelete);
-                setDeleteId(record.id);
-              }}
+              onClick={() => { removeAdmin(record.id); }}
               style={{
                 border: "1px solid #F27370",
                 borderRadius: "4px",
@@ -141,13 +203,13 @@ export default function ManageAdmin() {
   };
 
   const info = (id) => {
-    const viewData = dataSource.find((item) => item.id === id);
+    const viewData = dataSource.data.find((item) => item.id === id);
     console.log(viewData, "data");
     Modal.info({
       icon: "",
       title: "",
       className: "view-admin-modal",
-      okText: "Cancel",
+      okText: "Close",
       okId: 'btn-cancel-view-admin',
       okButtonProps: {
         type: "primary",
@@ -263,7 +325,8 @@ export default function ManageAdmin() {
 
         <Table
           columns={columns}
-          dataSource={dataSource}
+          rowKey={(record) => record.id}
+          dataSource={dataSource.data}
           style={{
             // paddingTop: 30,
             margin: 0,
@@ -527,18 +590,7 @@ export default function ManageAdmin() {
         <Button
         id="btn-save-edit-admin"
         type="primary"
-        onClick={() => {
-            setDataSource((pre) => {
-              return pre.map((admin) => {
-                if (admin.id === editingAdmin.id) {
-                  return editingAdmin;
-                } else {
-                  return admin;
-                }
-              });
-            });
-            resetEditing();
-          }}
+        // onClick={addDataToAPI}
           style={{
             width: '100%',
             marginBottom: '15px',
@@ -625,7 +677,7 @@ export default function ManageAdmin() {
           <Input
             id="fld-name-add-admin"
             placeholder="Enter Your Name"
-            placeholderTextColor="#707070"
+            // placeholderTextColor="#707070"
             style={{
               border: '1px solid #707070',
               padding: '10px 35px',
@@ -777,10 +829,7 @@ export default function ManageAdmin() {
         <Button
         id="btn-save-add-admin"
         type="primary"
-        onClick={() => {
-          setDataSource([...dataSource, newAdmin]);
-          resetAddAdmin();
-        }}
+        // onClick={addDataToAPI}
         style={{
           width: '100%',
           marginBottom: '15px',
@@ -834,9 +883,10 @@ export default function ManageAdmin() {
           Are you sure want to delete this?
         </p>
         <Box 
+        
         display="flex" 
         justifyContent="center">
-          <Button1
+          <Button1 
             id="btn-confirm-delete-admin"
             style={{
               color: "white",
@@ -848,9 +898,7 @@ export default function ManageAdmin() {
             }}
             onClick={() => {
               setOpenDelete(false);
-              setDataSource((pre) => {
-                return pre.filter((admin) => admin.id !== deleteId);
-              });
+              removeAdmin(dataSource.data.id);
             }}
           >
             Delete

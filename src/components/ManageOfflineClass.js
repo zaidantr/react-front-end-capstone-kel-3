@@ -4,6 +4,11 @@ import {Table, Button, Modal, Input, Form, DatePicker } from 'antd';
 import { Box } from "@mui/system";
 import { useEffect, useState} from 'react';
 import './antd.css';
+
+// API -----------------------------------
+import OfflineClassServices from '../services/OfflineClass.services';
+
+// Assets ---------------------------------
 import Button1 from "@mui/material/Button";
 import warning from '../assets/warning.svg';
 import fldClass from '../assets/fld-class.svg';
@@ -36,25 +41,36 @@ export default function ManageOfflineClass() {
   const [dataSource, setDataSource] = useState([]);
 
   useEffect(() => {
-    const api = getAPI(true);
-    api.getOfflineClassData().then((data) => setDataSource(data));
+    retrieveOfflineClass();
   }, []);
+
+  const retrieveOfflineClass = () => {
+    OfflineClassServices.fetchOfflineClass()
+      .then(response => {
+          const GetOfflineClass = response.data
+          setDataSource(GetOfflineClass);
+        console.log(response);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   const columns = [
     {
       key: '1',
       title: 'Name Class',
-      dataIndex: 'nameClass',
+      dataIndex: 'name',
     },
     {
       key: '2',
       title: 'Trainer',
-      dataIndex: 'trainer',
+      dataIndex: 'IdInstructor.name',
     },
     {
       key: '3',
       title: 'Date',
-      dataIndex: 'date',
+      dataIndex: 'startAt',
     },
     {
       key: '4',
@@ -145,7 +161,7 @@ export default function ManageOfflineClass() {
   }
 
   const info = (id) => {
-    const viewData = dataSource.find(item =>  item.id === id)
+    const viewData = dataSource.data.find(item =>  item.id === id)
     console.log(viewData, 'data')
     Modal.info({
 
@@ -178,9 +194,9 @@ export default function ManageOfflineClass() {
           <h1 
           style={{ fontSize: "26px" }}
           >View Class</h1>
-          <p>Name Class <br></br> {viewData.nameClass} </p>
-          <p>Trainer <br></br> {viewData.trainer}</p>
-          <p>Date <br></br> {viewData.date}</p>
+          <p>Name Class <br></br> {viewData.name} </p>
+          <p>Trainer <br></br> {viewData.instructor}</p>
+          <p>Date <br></br> {viewData.startAt}</p>
           <p>Time <br></br> {viewData.time}</p>
           <p>Price <br></br> {viewData.price}</p>
           <p>Location <br></br> {viewData.location}</p>
@@ -262,7 +278,7 @@ export default function ManageOfflineClass() {
           
             <Table
             columns={columns}
-            dataSource={dataSource}
+            dataSource={dataSource.data}
             style={{
               // paddingTop: 30,
               margin: 0,
