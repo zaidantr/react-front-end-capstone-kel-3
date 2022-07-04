@@ -4,9 +4,11 @@ import React, { useState } from "react";
 import Button1 from "@mui/material/Button";
 import warning from '../../assets/warning.svg';
 import Sidebar from "../../components/Side Bar/SideBar";
+import ModalDecline from "../../components/ModalDecline";
 
 export default function ManageMembership() {
   const [openDelete, setOpenDelete] = useState(false);
+  const [openDecline, setOpenDecline] = useState(false);
   const [deleteId, setDeleteId] = useState(-1);
 
   const handleOk = () => {
@@ -15,6 +17,9 @@ export default function ManageMembership() {
 
   const handleCancel = () => {
     setOpenDelete(false);
+  };
+  const handleCancelDecline = () => {
+    setOpenDecline(false);
   };
 
 // Tabel 1
@@ -219,12 +224,6 @@ const info = (id) => {
       <div
       style={{
         fontSize: '20px',
-        // lineHeight: '23px',
-        // fontFamily: 'Roboto',
-        // fontWeight: '400px',
-        // fontStyle: 'normal',
-        // color: '#585858',
-        // paddingTop:'34px',
       }}
       >
       <h1 
@@ -242,6 +241,13 @@ const info = (id) => {
     ),
 
     onOk() {},
+  });
+};
+
+const handleDecline = () => {
+  setOpenDecline(false);
+  setDataSource1((pre) => {
+    return pre.filter((admin) => admin.id !== deleteId);
   });
 };
   
@@ -376,7 +382,11 @@ const info = (id) => {
           </Button1>
         </Box>
       </Modal>
-      
+        <ModalDecline 
+          handleCancel={handleCancelDecline}
+          handleDelete={handleDecline}
+          openDelete={openDecline}          
+        />
       </div>
       </>
   )
