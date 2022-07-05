@@ -4,6 +4,11 @@ import {Table, Button, Modal, Input, Form, DatePicker } from 'antd';
 import { Box } from "@mui/system";
 import { useEffect, useState} from 'react';
 import '../../components/antd.css';
+
+// API
+import OfflineClassServices from '../../services/OfflineClass.services';
+
+// Assets
 import Button1 from "@mui/material/Button";
 import warning from '../../assets/warning.svg';
 import fldClass from '../../assets/fld-class.svg';
@@ -11,9 +16,6 @@ import fldDate from '../../assets/fld-date.svg';
 import fldTime from '../../assets/fld-time.svg';
 import fldPrice from '../../assets/fld-price.svg';
 import getAPI from "../../services/api/api";
-// import { EditOutlined, DeleteOutlined, InfoCircleOutlined} from '@ant-design/icons';
-// import { height } from '@mui/system';
-
 import Sidebar from '../../components/Side Bar/SideBar';
 
 export default function ManageOfflineClass() {
@@ -36,25 +38,41 @@ export default function ManageOfflineClass() {
   const [dataSource, setDataSource] = useState([]);
 
   useEffect(() => {
-    const api = getAPI(true);
-    api.getOfflineClassData().then((data) => setDataSource(data));
+    // const api = getAPI(true);
+    // api.getOfflineClassData().then((data) => setDataSource(data));
+    retrieveOfflineClass();
   }, []);
+
+  const retrieveOfflineClass = () => {
+    OfflineClassServices.fetchOfflineClass()
+      .then(response => {
+          const GetOfflineClass = response.data
+          setDataSource(GetOfflineClass);
+        console.log(response);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   const columns = [
     {
       key: '1',
       title: 'Name Class',
-      dataIndex: 'nameClass',
+      // dataIndex: 'nameClass',
+      dataIndex: 'name',
     },
     {
       key: '2',
       title: 'Trainer',
-      dataIndex: 'trainer',
+      // dataIndex: 'trainer',
+      dataIndex: 'IdInstructor.name',
     },
     {
       key: '3',
       title: 'Date',
-      dataIndex: 'date',
+      // dataIndex: 'date',
+      dataIndex: 'startAt',
     },
     {
       key: '4',
@@ -145,7 +163,8 @@ export default function ManageOfflineClass() {
   }
 
   const info = (id) => {
-    const viewData = dataSource.find(item =>  item.id === id)
+    // const viewData = dataSource.find(item =>  item.id === id)
+    const viewData = dataSource.data.find(item =>  item.id === id)
     console.log(viewData, 'data')
     Modal.info({
 
@@ -262,7 +281,8 @@ export default function ManageOfflineClass() {
           
             <Table
             columns={columns}
-            dataSource={dataSource}
+            // dataSource={dataSource}
+            dataSource={dataSource.data}
             style={{
               // paddingTop: 30,
               margin: 0,
