@@ -368,10 +368,10 @@ export default function ManageOfflineClass() {
                 padding: '15px 0 18.5px 17.5px'
               }}
               />
-            <DatePicker 
+            <Input 
             id='fld-edit-date-offline-class'
             placeholder='dd/mm/yyyy' 
-            format={dateFormat}
+            // format={dateFormat}
             style={{
               border: '1px solid #707070',
               padding: '10px 35px',
@@ -380,12 +380,12 @@ export default function ManageOfflineClass() {
               width: '100%',
             }}       
             // Masih error pas ngasih datanya        
-            // value={editingOfflineClass?.date} 
-            // onChange={(e) => {
-            //   setEditingOfflineClass((pre) => {
-            //     return {...pre, date: e.target.value };
-            //   });
-            // }}
+            value={editingOfflineClass?.date} 
+            onChange={(e) => {
+              setEditingOfflineClass((pre) => {
+                return {...pre, date: e.target.value };
+              });
+            }}
             />
           </Form.Item>
 
@@ -675,7 +675,7 @@ export default function ManageOfflineClass() {
                 padding: '15px 0 18.5px 17.5px'
               }}
             />
-            <DatePicker 
+            <Input 
             id='fld-add-date-offline-class'
             placeholder='dd/mm/yyyy' 
             format={dateFormat}
@@ -686,15 +686,15 @@ export default function ManageOfflineClass() {
               color: '#707070',
               width: '100%',
             }}            
-            // Masih error pas ngasih data nya   
-            // value={editingOfflineClass?.date} 
-            // onChange={(e) => {
-            //   setNewOfflineClass((pre) => {
-            //     return {...pre, date: e.target.value };
-            //   });
-            // }}
+            Masih error pas ngasih data nya   
+            value={editingOfflineClass?.date} 
+            onChange={(e) => {
+              setNewOfflineClass((pre) => {
+                return {...pre, date: e.target.value };
+              });
+            }}
             />
-          </Form.Item>
+          </Form.Item>``
 
           <Form.Item
           >
