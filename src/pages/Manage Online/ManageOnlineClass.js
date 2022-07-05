@@ -367,7 +367,7 @@ export default function ManageOnlineClass() {
                 padding: '15px 0 18.5px 17.5px'
               }}
               />
-            <DatePicker 
+            <Input 
             id='fld-edit-date-offline-class'
             placeholder='dd/mm/yyyy' 
             format={dateFormat}
@@ -379,12 +379,12 @@ export default function ManageOnlineClass() {
               width: '100%',
             }}               
             // Masih error pas ngasih datanya        
-            // value={editingOfflineClass?.date} 
-            // onChange={(e) => {
-            //   setEditingOfflineClass((pre) => {
-            //     return {...pre, date: e.target.value };
-            //   });
-            // }}
+            value={editingOnlineClass?.date} 
+            onChange={(e) => {
+              setEditingOnlineClass((pre) => {
+                return {...pre, date: e.target.value };
+              });
+            }}
             />
           </Form.Item>
 
@@ -674,7 +674,7 @@ export default function ManageOnlineClass() {
                 padding: '15px 0 18.5px 17.5px'
               }}
             />
-            <DatePicker 
+            <Input 
             id='fld-add-date-offline-class'
             placeholder='dd/mm/yyyy' 
             format={dateFormat}
@@ -686,12 +686,12 @@ export default function ManageOnlineClass() {
               width: '100%'
             }}             
             // Masih error pas ngasih data nya   
-            // value={editingOnlineClass?.date} 
-            // onChange={(e) => {
-            //   setNewOnlineClass((pre) => {
-            //     return {...pre, date: e.target.value };
-            //   });
-            // }}
+            value={editingOnlineClass?.date} 
+            onChange={(e) => {
+              setNewOnlineClass((pre) => {
+                return {...pre, date: e.target.value };
+              });
+            }}
             />
           </Form.Item>
 

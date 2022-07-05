@@ -130,7 +130,7 @@ export default function Home() {
         
     
         <div
-        className='container'
+        // className='container'
         style={{
             width: 295,
             background: 'linear-gradient(180deg, #F27370 0%, #346BB7 100%)',
@@ -140,7 +140,7 @@ export default function Home() {
         }}
         >
             <div 
-            className='logo'
+            // className='logo'
             >
                 <img 
                 src={active}
@@ -153,7 +153,7 @@ export default function Home() {
             </div>
 
             <div 
-            className='content'
+            // className='content'
             style={{
                 marginLeft: '26px',
             }}
@@ -173,7 +173,7 @@ export default function Home() {
             </div>
         </div>
         <div
-        className='container'
+        // className='container'
         style={{
             width: 295,
             background: 'linear-gradient(180deg, #F27370 0%, #346BB7 100%)',
@@ -184,7 +184,7 @@ export default function Home() {
         }}
         >
             <div 
-            className='logo'
+            // className='logo'
 
             >
                 <img 
@@ -197,7 +197,7 @@ export default function Home() {
             </div>
 
             <div 
-            className='content'
+            // className='content'
             style={{
                 marginLeft: '26px',
             }}
@@ -218,7 +218,7 @@ export default function Home() {
         </div>
 
         <div
-        className='container'
+        // className='container'
         style={{
             width: 295,
             background: 'linear-gradient(180deg, #F27370 0%, #346BB7 100%)',
@@ -229,7 +229,7 @@ export default function Home() {
         }}
         >
             <div 
-            className='logo'
+            // className='logo'
             >
                 <img 
                 src={admin}
@@ -242,7 +242,7 @@ export default function Home() {
             </div>
 
             <div 
-            className='content'
+            // className='content'
             style={{
                 marginLeft: '26px',
             }}
