@@ -58,11 +58,11 @@ export default function Manage() {
     //   placeholder: "Birthday",
     //   label: "Birthday",
     // },
-    
+
     {
       id: 6,
       name: "Phone Number",
-    //   type:"number",
+      //   type:"number",
       placeholder: "Phone Number",
       errorMessage: "Please enter a valid phone number",
       label: "Phone Number",
@@ -90,8 +90,7 @@ export default function Manage() {
             onChange={onChange}
           />
         ))}
-        
       </form>
     </div>
   );
-};
+}
