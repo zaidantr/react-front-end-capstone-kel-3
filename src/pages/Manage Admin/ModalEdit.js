@@ -103,7 +103,7 @@ export default function ModalEdit({
           }}
         />
         <Form.Item
-          name="Username"
+          name="username"
           rules={[
             {
               required: true,
@@ -204,7 +204,7 @@ export default function ModalEdit({
           }}
         />
         <Form.Item
-          // name="email"
+          name="email"
           rules={[
             {
               type: "email",
@@ -253,7 +253,7 @@ export default function ModalEdit({
           }}
         />
         <Form.Item
-          // name="Phone Number"
+          name="phoneNumber"
           rules={[
             {
               required: true,

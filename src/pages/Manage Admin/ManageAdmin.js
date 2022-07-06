@@ -23,12 +23,26 @@ export default function ManageAdmin() {
   const [deleteId, setDeleteId] = useState(-1);
   const [isEditing, setIsEditing] = useState(false);
   const [isAddingAdmin, setIsAddingAdmin] = useState(false);
-  const [editingAdmin, setEditingAdmin] = useState(null);
-  const [newAdmin, setNewAdmin] = useState({});
+  const [editingAdmin, setEditingAdmin] = useState([
+    { name: ["name"], value: "Ant Design" },
+    { name: ["username"], value: "Ant Design" },
+    { name: ["password"], value: "Ant Design" },
+    { name: ["email"], value: "Ant Design" },
+    { name: ["phone"], value: "Ant Design" },
+  ]);
+  const [newAdmin, setNewAdmin] = useState({
+    name: "",
+    username: "",
+    password: "",
+    phoneNumber: "",
+  });
+  const [form] = Form.useForm();
 
   // const handleOk = () => {
   //   setOpenDelete(false);
   // };
+
+  form.setFieldsValue(newAdmin);
 
   const handleCancel = () => {
     setOpenDelete(false);
@@ -128,7 +142,14 @@ export default function ManageAdmin() {
 
   const onEditAdmin = (record) => {
     setIsEditing(true);
-    setEditingAdmin({ ...record });
+    console.log(record);
+    setEditingAdmin([
+      { name: ["name"], value: record.name },
+      { name: ["username"], value: record.username },
+      { name: ["password"], value: record.password },
+      { name: ["email"], value: record.email },
+      { name: ["phoneNumber"], value: record.phoneNumber },
+    ]);
   };
 
   const resetEditing = () => {
@@ -137,8 +158,9 @@ export default function ManageAdmin() {
   };
 
   const resetAddAdmin = () => {
-    setIsAddingAdmin(false);
     setNewAdmin({});
+    setIsAddingAdmin(false);
+    form.resetFields();
   };
 
   const info = (id) => {
@@ -297,9 +319,8 @@ export default function ManageAdmin() {
           </h1>
 
           <Form
+            form={form}
             autoComplete="off"
-            // labelCol={{ span: 10 }}
-            // wrapperCol={{ span: 14 }}
             onFinish={(values) => {
               console.log(values);
               setDataSource([...dataSource, { ...values }]);
@@ -343,6 +364,8 @@ export default function ManageAdmin() {
                 id="fld-name-add-admin"
                 placeholder="Enter Your Name"
                 placeholderTextColor="#707070"
+                name="name"
+                value={newAdmin.name}
                 style={{
                   border: "1px solid #707070",
                   padding: "10px 35px",
@@ -391,6 +414,8 @@ export default function ManageAdmin() {
               <Input
                 id="fld-username-add-admin"
                 placeholder="Enter Your Username"
+                name="username"
+                value={newAdmin.username}
                 style={{
                   border: "1px solid #707070",
                   padding: "10px 35px",
@@ -442,6 +467,8 @@ export default function ManageAdmin() {
               <Input
                 id="fld-password-add-admin"
                 placeholder="Enter Your Password"
+                name="password"
+                value={newAdmin.password}
                 style={{
                   border: "1px solid #707070",
                   padding: "10px 35px",
@@ -461,6 +488,7 @@ export default function ManageAdmin() {
             </div>
             <img
               src={fldEmail}
+              alt="/"
               style={{
                 position: "absolute",
                 zIndex: "900",
@@ -483,6 +511,8 @@ export default function ManageAdmin() {
               <Input
                 id="fld-email-add-admin"
                 placeholder="@gmail.com"
+                name="email"
+                value={newAdmin.email}
                 style={{
                   border: "1px solid #707070",
                   padding: "10px 35px",
@@ -503,6 +533,7 @@ export default function ManageAdmin() {
 
             <img
               src={fldPhone}
+              alt="/"
               style={{
                 position: "absolute",
                 zIndex: "900",
@@ -511,6 +542,7 @@ export default function ManageAdmin() {
             />
             <Form.Item
               name="phoneNumber"
+              initialValue={newAdmin.phoneNumber}
               rules={[
                 {
                   pattern: new RegExp("^[0-9]{10,12}$"),
@@ -525,6 +557,8 @@ export default function ManageAdmin() {
               <Input
                 id="fld-phone-number-add-admin"
                 placeholder="Enter Your Phone Number"
+                name="phoneNumber"
+                value={newAdmin.phoneNumber}
                 style={{
                   border: "1px solid #707070",
                   padding: "10px 35px",
