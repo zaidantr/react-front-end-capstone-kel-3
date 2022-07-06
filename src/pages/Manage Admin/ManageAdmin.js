@@ -447,10 +447,10 @@ export default function ManageAdmin() {
               rules={[
                 {
                   pattern:
-                    /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,32}$/,
+                    /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,32}$/,
                   message: (
                     <ul>
-                      <li>- At least 8 characters</li>
+                      <li>- At least 6 characters</li>
                       <li>- At least 1 numeric character</li>
                       <li>- At least 1 lowercase character</li>
                       <li>- At least 1 uppercase character</li>
