@@ -28,7 +28,7 @@ export default function ManageAdmin() {
     { name: ["username"], value: "Ant Design" },
     { name: ["password"], value: "Ant Design" },
     { name: ["email"], value: "Ant Design" },
-    { name: ["phone"], value: "Ant Design" },
+    { name: ["phoneNumber"], value: "Ant Design" },
   ]);
   const [newAdmin, setNewAdmin] = useState({
     name: "",
@@ -447,14 +447,14 @@ export default function ManageAdmin() {
               rules={[
                 {
                   pattern:
-                    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/,
+                    /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,32}$/,
                   message: (
                     <ul>
                       <li>- At least 8 characters</li>
                       <li>- At least 1 numeric character</li>
                       <li>- At least 1 lowercase character</li>
                       <li>- At least 1 uppercase character</li>
-                      <li>- At least 1 special character</li>
+                      <li>- At the end must be a string</li>
                     </ul>
                   ),
                 },
