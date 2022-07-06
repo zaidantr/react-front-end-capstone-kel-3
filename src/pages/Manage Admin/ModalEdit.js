@@ -26,8 +26,7 @@ export default function ModalEdit({
 
       <Form
         autoComplete="off"
-        // labelCol={{ span: 10 }}
-        // wrapperCol={{ span: 14 }}
+        fields={editingAdmin}
         onFinish={(values) => {
           console.log({ values });
         }}
@@ -76,7 +75,6 @@ export default function ModalEdit({
               borderRadius: "4px",
               color: "#707070",
             }}
-            value={editingAdmin?.name}
             onChange={(e) => {
               setEditingAdmin((pre) => {
                 return { ...pre, name: e.target.value };
@@ -123,7 +121,6 @@ export default function ModalEdit({
               borderRadius: "4px",
               color: "#707070",
             }}
-            value={editingAdmin?.username}
             onChange={(e) => {
               setEditingAdmin((pre) => {
                 return { ...pre, username: e.target.value };
@@ -177,7 +174,6 @@ export default function ModalEdit({
               borderRadius: "4px",
               color: "#707070",
             }}
-            value={editingAdmin?.password}
             onChange={(e) => {
               setEditingAdmin((pre) => {
                 return { ...pre, password: e.target.value };
@@ -226,7 +222,6 @@ export default function ModalEdit({
               borderRadius: "4px",
               color: "#707070",
             }}
-            value={editingAdmin?.email}
             onChange={(e) => {
               setEditingAdmin((pre) => {
                 return { ...pre, email: e.target.value };
@@ -275,7 +270,6 @@ export default function ModalEdit({
               borderRadius: "4px",
               color: "#707070",
             }}
-            value={editingAdmin?.phoneNumber}
             onChange={(e) => {
               setEditingAdmin((pre) => {
                 return { ...pre, phoneNumber: e.target.value };

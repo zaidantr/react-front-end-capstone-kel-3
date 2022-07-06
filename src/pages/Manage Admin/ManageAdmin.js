@@ -16,7 +16,7 @@ import fldPassword from "../../assets/fld-password.svg";
 import fldName from "../../assets/fld-name.svg";
 import fldEmail from "../../assets/fld-email.svg";
 import fldPhone from "../../assets/fld-phone.svg";
-import ModalEdit from "../../components/modal/ModalEdit";
+import ModalEdit from "./ModalEdit";
 
 export default function ManageAdmin() {
   const [openDelete, setOpenDelete] = useState(false);
@@ -545,7 +545,7 @@ export default function ManageAdmin() {
               initialValue={newAdmin.phoneNumber}
               rules={[
                 {
-                  type: "number",
+                  pattern: new RegExp("^[0-9]{10,12}$"),
                   message: "The input is not valid Phone!",
                 },
                 {
