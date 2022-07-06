@@ -1,48 +1,34 @@
 import "antd/dist/antd.css";
-import "../../App.css";
+import "../App.css";
 import { Table, Button, Modal, Input, Form } from "antd";
 import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
-import "../../components/antd.css";
+import "./antd.css";
 import Button1 from "@mui/material/Button";
-import warning from "../../assets/warning.svg";
-import getAPI from "../../services/api/api";
-import userLogo from "../../assets/user-logo.svg";
-import Sidebar from "../../components/Side Bar/SideBar";
+import warning from "../assets/warning.svg";
+import getAPI from "../services/api/api";
+import userLogo from "../assets/user-logo.svg";
+import Sidebar from "./SideBar";
 import { LockOutlined } from "@ant-design/icons";
 // import { EditOutlined, DeleteOutlined, InfoCircleOutlined} from '@ant-design/icons';
 // import { height } from '@mui/system';
-import fldPassword from "../../assets/fld-password.svg";
-import fldName from "../../assets/fld-name.svg";
-import fldEmail from "../../assets/fld-email.svg";
-import fldPhone from "../../assets/fld-phone.svg";
-import ModalEdit from "../../components/modal/ModalEdit";
+import fldPassword from "../assets/fld-password.svg";
+import fldName from "../assets/fld-name.svg";
+import fldEmail from "../assets/fld-email.svg";
+import fldPhone from "../assets/fld-phone.svg";
+import ModalEdit from "./modal-edit/ModalEdit";
 
 export default function ManageAdmin() {
   const [openDelete, setOpenDelete] = useState(false);
   const [deleteId, setDeleteId] = useState(-1);
   const [isEditing, setIsEditing] = useState(false);
   const [isAddingAdmin, setIsAddingAdmin] = useState(false);
-  const [editingAdmin, setEditingAdmin] = useState([
-    { name: ["name"], value: "Ant Design" },
-    { name: ["username"], value: "Ant Design" },
-    { name: ["password"], value: "Ant Design" },
-    { name: ["email"], value: "Ant Design" },
-    { name: ["phone"], value: "Ant Design" },
-  ]);
-  const [newAdmin, setNewAdmin] = useState({
-    name: "",
-    username: "",
-    password: "",
-    phoneNumber: "",
-  });
-  const [form] = Form.useForm();
+  const [editingAdmin, setEditingAdmin] = useState(null);
+  const [newAdmin, setNewAdmin] = useState({});
 
   // const handleOk = () => {
   //   setOpenDelete(false);
   // };
-
-  form.setFieldsValue(newAdmin);
 
   const handleCancel = () => {
     setOpenDelete(false);
@@ -142,14 +128,7 @@ export default function ManageAdmin() {
 
   const onEditAdmin = (record) => {
     setIsEditing(true);
-    console.log(record);
-    setEditingAdmin([
-      { name: ["name"], value: record.name },
-      { name: ["username"], value: record.username },
-      { name: ["password"], value: record.password },
-      { name: ["email"], value: record.email },
-      { name: ["phoneNumber"], value: record.phoneNumber },
-    ]);
+    setEditingAdmin({ ...record });
   };
 
   const resetEditing = () => {
@@ -158,9 +137,8 @@ export default function ManageAdmin() {
   };
 
   const resetAddAdmin = () => {
-    setNewAdmin({});
     setIsAddingAdmin(false);
-    form.resetFields();
+    setNewAdmin({});
   };
 
   const info = (id) => {
@@ -319,8 +297,9 @@ export default function ManageAdmin() {
           </h1>
 
           <Form
-            form={form}
             autoComplete="off"
+            // labelCol={{ span: 10 }}
+            // wrapperCol={{ span: 14 }}
             onFinish={(values) => {
               console.log(values);
               setDataSource([...dataSource, { ...values }]);
@@ -364,8 +343,6 @@ export default function ManageAdmin() {
                 id="fld-name-add-admin"
                 placeholder="Enter Your Name"
                 placeholderTextColor="#707070"
-                name="name"
-                value={newAdmin.name}
                 style={{
                   border: "1px solid #707070",
                   padding: "10px 35px",
@@ -414,8 +391,6 @@ export default function ManageAdmin() {
               <Input
                 id="fld-username-add-admin"
                 placeholder="Enter Your Username"
-                name="username"
-                value={newAdmin.username}
                 style={{
                   border: "1px solid #707070",
                   padding: "10px 35px",
@@ -467,8 +442,6 @@ export default function ManageAdmin() {
               <Input
                 id="fld-password-add-admin"
                 placeholder="Enter Your Password"
-                name="password"
-                value={newAdmin.password}
                 style={{
                   border: "1px solid #707070",
                   padding: "10px 35px",
@@ -488,7 +461,6 @@ export default function ManageAdmin() {
             </div>
             <img
               src={fldEmail}
-              alt="/"
               style={{
                 position: "absolute",
                 zIndex: "900",
@@ -511,8 +483,6 @@ export default function ManageAdmin() {
               <Input
                 id="fld-email-add-admin"
                 placeholder="@gmail.com"
-                name="email"
-                value={newAdmin.email}
                 style={{
                   border: "1px solid #707070",
                   padding: "10px 35px",
@@ -533,7 +503,6 @@ export default function ManageAdmin() {
 
             <img
               src={fldPhone}
-              alt="/"
               style={{
                 position: "absolute",
                 zIndex: "900",
@@ -542,7 +511,6 @@ export default function ManageAdmin() {
             />
             <Form.Item
               name="phoneNumber"
-              initialValue={newAdmin.phoneNumber}
               rules={[
                 {
                   type: "number",
@@ -557,8 +525,6 @@ export default function ManageAdmin() {
               <Input
                 id="fld-phone-number-add-admin"
                 placeholder="Enter Your Phone Number"
-                name="phoneNumber"
-                value={newAdmin.phoneNumber}
                 style={{
                   border: "1px solid #707070",
                   padding: "10px 35px",
