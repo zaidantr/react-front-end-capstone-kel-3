@@ -105,59 +105,52 @@ export default function Home() {
       marginLeft: '400px',
     }}
     >
-    <h1
-    style={{
-        // backgroundColor: 'black',
-        paddingLeft: 62,
-        paddingRight: 60,
-        paddingTop: '140px',
-        fontSize: '32px',
-        fontWeight: 'bold',
+      <h1
+      style={{
+          // backgroundColor: 'black',
+          paddingLeft: 62,
+          paddingRight: 60,
+          paddingTop: '140px',
+          fontSize: '32px',
+          fontWeight: 'bold',
 
-    }}
-    >Welcome back Super Admin</h1>
+      }}
+      >Welcome back Super Admin</h1>
 
-    <div
-    className='dashboard'
-    style={{
-        display: 'flex',
-        minWidth: 1046,
-        // backgroundColor: 'black',
-        paddingLeft: 62,
-        paddingRight: 60,
-    }}
-    >
-        
-    
-        <div
-        // className='container'
-        style={{
-            width: 295,
-            background: 'linear-gradient(180deg, #F27370 0%, #346BB7 100%)',
-            borderRadius: '8px',
-            display: 'flex',
-            padding: '33px 29.5px',
-        }}
-        >
-            <div 
-            // className='logo'
-            >
-                <img 
-                src={active}
-                style={{
-                    width: '75px',
-                    height: '75px',
-                }}
+      <div
+      className='dashboard'
+      style={{
+          display: 'flex',
+          minWidth: 1046,
+          paddingLeft: 62,
+          paddingRight: 60,
+      }}
+      >
+          <div
+          style={{
+              width: 295,
+              background: 'linear-gradient(180deg, #F27370 0%, #346BB7 100%)',
+              borderRadius: '8px',
+              display: 'flex',
+              padding: '33px 29.5px',
+          }}
+          >
+              <div>
+                  <img 
+                  src={active}
+                  style={{
+                      width: '75px',
+                      height: '75px',
+                  }}
 
-                />
-            </div>
+                  />
+              </div>
 
-            <div 
-            // className='content'
-            style={{
-                marginLeft: '26px',
-            }}
-            >
+              <div 
+              style={{
+                  marginLeft: '26px',
+              }}
+              >
                 <h1
                 style={{
                     fontSize: '36px',
@@ -170,203 +163,189 @@ export default function Home() {
                     color: 'white',
                 }}
                 >Active Users</h6>
-            </div>
-        </div>
-        <div
-        // className='container'
-        style={{
-            width: 295,
-            background: 'linear-gradient(180deg, #F27370 0%, #346BB7 100%)',
-            borderRadius: '8px',
-            display: 'flex',
-            padding: '33px 29.5px',
-            marginLeft: '20px',
-        }}
-        >
-            <div 
-            // className='logo'
+              </div>
+          </div>
+          <div
+          style={{
+              width: 295,
+              background: 'linear-gradient(180deg, #F27370 0%, #346BB7 100%)',
+              borderRadius: '8px',
+              display: 'flex',
+              padding: '33px 29.5px',
+              marginLeft: '20px',
+          }}
+          >
+              <div>
+                  <img 
+                  src={booking} 
+                  style={{
+                      width: '75px',
+                      height: '75px',
+                  }}
+                  />
+              </div>
 
-            >
-                <img 
-                src={booking} 
-                style={{
-                    width: '75px',
-                    height: '75px',
-                }}
-                />
-            </div>
+              <div 
+              style={{
+                  marginLeft: '26px',
+              }}
+              >
+                  <h1
+                  style={{
+                      fontSize: '36px',
+                      color: 'white',
+                  }}
+                  >200</h1>
+                  <h6
+                  style={{
+                      fontSize: '20px',
+                      color: 'white',
+                  }}
+                  >Total Booking</h6>
+              </div>
+          </div>
 
-            <div 
-            // className='content'
-            style={{
-                marginLeft: '26px',
-            }}
-            >
-                <h1
-                style={{
-                    fontSize: '36px',
-                    color: 'white',
-                }}
-                >200</h1>
-                <h6
-                style={{
-                    fontSize: '20px',
-                    color: 'white',
-                }}
-                >Total Booking</h6>
-            </div>
-        </div>
+          <div
+          style={{
+              width: 295,
+              background: 'linear-gradient(180deg, #F27370 0%, #346BB7 100%)',
+              borderRadius: '8px',
+              display: 'flex',
+              padding: '33px 29.5px',
+              marginLeft: '20px',
+          }}
+          >
+              <div>
+                  <img 
+                  src={admin}
+                  style={{
+                      width: '75px',
+                      height: '75px',
+                  }}
 
-        <div
-        // className='container'
-        style={{
-            width: 295,
-            background: 'linear-gradient(180deg, #F27370 0%, #346BB7 100%)',
-            borderRadius: '8px',
-            display: 'flex',
-            padding: '33px 29.5px',
-            marginLeft: '20px',
-        }}
-        >
-            <div 
-            // className='logo'
-            >
-                <img 
-                src={admin}
-                style={{
-                    width: '75px',
-                    height: '75px',
-                }}
+                  />
+              </div>
 
-                />
-            </div>
+              <div 
+              style={{
+                  marginLeft: '26px',
+              }}
+              >
+                  <h1
+                  style={{
+                      fontSize: '36px',
+                      color: 'white',
+                  }}
+                  >200</h1>
+                  <h6
+                  style={{
+                      fontSize: '20px',
+                      color: 'white',
+                  }}
+                  >Total Admin</h6>
+              </div>
+          </div>
 
-            <div 
-            // className='content'
-            style={{
-                marginLeft: '26px',
-            }}
-            >
-                <h1
-                style={{
-                    fontSize: '36px',
-                    color: 'white',
-                }}
-                >200</h1>
-                <h6
-                style={{
-                    fontSize: '20px',
-                    color: 'white',
-                }}
-                >Total Admin</h6>
-            </div>
-        </div>
+      </div>
 
-    </div>
-
-    <div 
-    className='table'
-    style={{
-        minWidth: 1046,
-        // backgroundColor: 'black',
-        paddingLeft: 62,
-        paddingRight: 60,
-        paddingTop: 56,
-        marginLeft: '20px',
-    }}>
-
-      <h1
+      <div 
+      className='table'
+      style={{
+          minWidth: 1046,
+          paddingLeft: 62,
+          paddingRight: 60,
+          paddingTop: 56,
+          marginLeft: '20px',
+      }}>
+        <h1
         style={{
           fontSize: "32px",
           fontWeight: "bold",
-          // fontFamily: "Roboto",
         }}
         >
         Total Joined Class
-      </h1>
-
-        <div
-             style={{
-              border: '1px solid #F27370',
-              paddingLeft: 23,
-              paddingRight: 23,
-            }}
-        >
+        </h1>
 
           <div
-            style={{
-              display: 'flex',
-              paddingTop: '30px',
-              color: 'black',
-            }}
-            >
-            <div 
-            style={{
-              display: 'flex',
-            }}
-            >
-              <a>
-              <img
-              src={filter}
               style={{
-                marginTop: '3px',
-                width: '20px',
-                height: '20px',
+                border: '1px solid #F27370',
+                paddingLeft: 23,
+                paddingRight: 23,
               }}
-              />
-              </a>
-
-              <h1
-              style={{
-                flexDirection: 'row',
-                fontSize: '16px',
-                color: '#F27370',
-                marginLeft: '10px',
-              }}
-              >Filter</h1>
-            </div>
-
+          >
             <div
-            style={{
-              margin: 'auto',
-              paddingBottom: '30px',
-              marginRight: '20px',
-              // float: 'right',
-            }}
-            >
-              <img
-              src={search}
               style={{
-                position: 'absolute',
-                zIndex: '900',
-                padding: '11.75px 0 12.75px 17.75px'
+                display: 'flex',
+                paddingTop: '30px',
+                color: 'black',
               }}
-              />
-              <Input
-                placeholder="Search"
-                allowClear
+              >
+              <div 
+              style={{
+                display: 'flex',
+              }}
+              >
+                <a>
+                <img
+                src={filter}
                 style={{
-                  width: '233px',
-                  border:' 1px solid #F27370',
-                  borderRadius: '4px',        
-                  padding: '7.5px 39px', 
+                  marginTop: '3px',
+                  width: '20px',
+                  height: '20px',
+                }}
+                />
+                </a>
+
+                <h1
+                style={{
+                  flexDirection: 'row',
+                  fontSize: '16px',
+                  color: '#F27370',
+                  marginLeft: '10px',
+                }}
+                >Filter</h1>
+              </div>
+
+              <div
+              style={{
+                margin: 'auto',
+                paddingBottom: '30px',
+                marginRight: '20px',
               }}
-              />
+              >
+                <img
+                src={search}
+                style={{
+                  position: 'absolute',
+                  zIndex: '900',
+                  padding: '11.75px 0 12.75px 17.75px'
+                }}
+                />
+                <Input
+                  placeholder="Search"
+                  allowClear
+                  style={{
+                    width: '233px',
+                    border:' 1px solid #F27370',
+                    borderRadius: '4px',        
+                    padding: '7.5px 39px', 
+                }}
+                />
+              </div>
+
             </div>
-
+            
+              <Table
+              columns={columns}
+              dataSource={dataSource}
+              style={{
+                // paddingTop: 30,
+                margin: 0,
+              }}
+              ></ Table>
           </div>
-          
-            <Table
-            columns={columns}
-            dataSource={dataSource}
-            style={{
-              // paddingTop: 30,
-              margin: 0,
-            }}
-            ></ Table>
-        </div>
 
-    </div>
+      </div>
     </div>
     </>
   );

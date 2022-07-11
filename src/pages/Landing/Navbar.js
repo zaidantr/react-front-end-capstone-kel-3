@@ -21,7 +21,6 @@ export default function Navbar() {
                 margin: '25px 0 25px 60px',
              }}
              />
-
             </div>
             <div
             style={{
@@ -37,7 +36,6 @@ export default function Navbar() {
                     margin: '25px 0 25px 60px',
                     fontSize: '16px',
                     fontWeight: '400',
-
                 }}
                 >
                     <li
@@ -52,7 +50,8 @@ export default function Navbar() {
                     <li
                     style={{
                         marginLeft: '69px',
-                    }}                    >
+                    }}                    
+                    >
                         <a>
                             About
                         </a>
@@ -60,7 +59,8 @@ export default function Navbar() {
                     <li
                     style={{
                         marginLeft: '69px',
-                    }}                    >
+                    }}                    
+                    >
                         <a>
                             Class
                         </a>
@@ -68,7 +68,8 @@ export default function Navbar() {
                     <li
                     style={{
                         marginLeft: '69px',
-                    }}                    >
+                    }}                    
+                    >
                         <a>
                             Download
                         </a>
@@ -79,6 +80,6 @@ export default function Navbar() {
         </div>
 
     </div>
-         );
-    }
+    );
+}
      

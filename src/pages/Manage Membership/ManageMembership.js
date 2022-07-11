@@ -23,7 +23,6 @@ export default function ManageMembership() {
   };
 
 // Tabel 1
-
 const [dataSource1, setDataSource1] = useState([
   {
     id: '1',
@@ -105,7 +104,6 @@ const columns1= [
 
 
 // Tabel 2
-
 const [dataSource2, setDataSource2] = useState([
   {
     id: '1',
@@ -217,7 +215,6 @@ const info = (id) => {
         color: "#F27370",
         backgroundColor: "white",
         borderRadius: "8px",
-        // paddingBottom: '2px',
       },
     },
     content: (
@@ -300,7 +297,6 @@ const handleDecline = () => {
           />
       </div>
 
-      
       <div
       style={{
         border: '1px solid #F27370',

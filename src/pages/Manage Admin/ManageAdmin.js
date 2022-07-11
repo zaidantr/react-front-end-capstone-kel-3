@@ -38,10 +38,6 @@ export default function ManageAdmin() {
   });
   const [form] = Form.useForm();
 
-  // const handleOk = () => {
-  //   setOpenDelete(false);
-  // };
-
   form.setFieldsValue(newAdmin);
 
   const handleCancel = () => {
@@ -210,8 +206,6 @@ export default function ManageAdmin() {
     });
   };
 
-  // console.log(editingAdmin.name, "editingAdmin");
-
   return (
     <>
       <div
@@ -225,7 +219,6 @@ export default function ManageAdmin() {
         style={{
           marginLeft: "400px",
           minWidth: 1046,
-          // backgroundColor: 'black',
           paddingLeft: 62,
           paddingRight: 60,
           paddingTop: 170,
@@ -234,8 +227,6 @@ export default function ManageAdmin() {
         <h1
           style={{
             fontSize: "2rem",
-            // fontWeight: "bold",
-            // fontFamily: "Roboto",
           }}
         >
           Manage Admin
@@ -253,15 +244,11 @@ export default function ManageAdmin() {
               display: "flex",
               paddingRight: "44.5px",
               paddingTop: "25px",
-              // width: "12px",
-              // height: "12px",
             }}
           >
             <h1
               style={{
                 fontSize: "2rem",
-                // fontWeight: "bold",
-                // fontFamily: "Roboto",
               }}
             >
               List Admin
@@ -372,12 +359,6 @@ export default function ManageAdmin() {
                   borderRadius: "4px",
                   color: "#707070",
                 }}
-                // value={editingAdmin?.name}
-                // onChange={(e) => {
-                //   setNewAdmin((pre) => {
-                //     return { ...pre, name: e.target.value };
-                //   });
-                // }}
               />
             </Form.Item>
 

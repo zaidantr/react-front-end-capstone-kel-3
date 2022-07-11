@@ -132,19 +132,12 @@ export default function ManageOfflineBooking() {
           color: "#F27370",
           backgroundColor: "white",
           borderRadius: "8px",
-          // paddingBottom: '2px',
         },
       },
       content: (
         <div
         style={{
           fontSize: '20px',
-          // lineHeight: '23px',
-          // fontFamily: 'Roboto',
-          // fontWeight: '400px',
-          // fontStyle: 'normal',
-          // color: '#585858',
-          // paddingTop:'34px',
         }}
         >
           <h1 
@@ -178,7 +171,6 @@ export default function ManageOfflineBooking() {
     <div style={{
           minWidth: 1046,
           marginLeft: '400px',
-          // backgroundColor: 'black',
           paddingLeft: 62,
           paddingRight: 60,
           paddingTop: 187,

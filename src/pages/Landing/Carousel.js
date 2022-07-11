@@ -21,7 +21,6 @@ export default function Testimony() {
     <div
     style={{
         width: '1440px',
-
     }}
     >
         <div
@@ -53,8 +52,7 @@ export default function Testimony() {
             >Thousand of gym classes, all in one app</p>
         </div>
         
-        <div
-        >
+        <div>
         <Slider {...settings}>
           <div
           className="container"
@@ -104,7 +102,6 @@ export default function Testimony() {
             <p>Weightlifting is the sport of Strength, Power, Speed and Precision. </p>
             <button>Join Now</button>
           </div>
-
         </Slider>
       </div>
 

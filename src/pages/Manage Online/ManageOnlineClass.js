@@ -12,8 +12,6 @@ import fldTime from '../../assets/fld-time.svg';
 import fldPrice from '../../assets/fld-price.svg';
 import getAPI from "../../services/api/api";
 import Sidebar from '../../components/Side Bar/SideBar';
-// import { EditOutlined, DeleteOutlined, InfoCircleOutlined} from '@ant-design/icons';
-// import { height } from '@mui/system';
 
 export default function ManageOnlineClass() {
   const [openDelete, setOpenDelete] = useState(false);
@@ -225,7 +223,6 @@ export default function ManageOnlineClass() {
         <div style={{
           minWidth: 1046,
           marginLeft: '400px',
-          // backgroundColor: 'black',
           paddingLeft: 62,
           paddingRight: 60,
           paddingTop: 170,
@@ -390,7 +387,6 @@ export default function ManageOnlineClass() {
             <Input 
             id='fld-edit-date-offline-class'
             placeholder='dd/mm/yyyy' 
-            // format={dateFormat}
             style={{
               border: '1px solid #707070',
               padding: '10px 35px',
@@ -398,7 +394,6 @@ export default function ManageOnlineClass() {
               color: '#707070',
               width: '100%',
             }}               
-            // Masih error pas ngasih datanya        
             value={editingOnlineClass?.date} 
             onChange={(e) => {
               setEditingOnlineClass((pre) => {
@@ -791,11 +786,6 @@ export default function ManageOnlineClass() {
               borderRadius: '4px',
               color: '#707070'
             }}            
-            // onChange={(e) => {
-            //   setNewOnlineClass((pre) => {
-            //     return {...pre, time: e.target.value };
-            //   });
-            // }}
             />
           </Form.Item>
 
@@ -832,11 +822,6 @@ export default function ManageOnlineClass() {
               borderRadius: '4px',
               color: '#707070'
             }}            
-            // onChange={(e) => {
-            //   setNewOnlineClass((pre) => {
-            //     return {...pre, location: e.target.value };
-            //   });
-            // }}
             />
           </Form.Item>
 
@@ -877,11 +862,6 @@ export default function ManageOnlineClass() {
               borderRadius: '4px',
               color: '#707070'
             }}            
-            // onChange={(e) => {
-            //   setNewOnlineClass((pre) => {
-            //     return {...pre, price: e.target.value };
-            //   });
-            // }}
             />
           </Form.Item>
 
@@ -917,11 +897,6 @@ export default function ManageOnlineClass() {
               borderRadius: '4px',
               color: '#707070'
             }}            
-            // onChange={(e) => {
-            //   setNewOnlineClass((pre) => {
-            //     return {...pre, description: e.target.value };
-            //   });
-            // }}
             />
           </Form.Item>
 
@@ -936,10 +911,6 @@ export default function ManageOnlineClass() {
         id='btn-save-add-offline-class'
         type="primary"
         htmlType="submit"
-        // onClick={() => {
-        //   setDataSource([...dataSource, newOnlineClass]);
-        //   resetAddOnlineClass();
-        //   }}
           style={{
             width: '100%',
             marginBottom: '15px',

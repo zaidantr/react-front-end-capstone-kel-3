@@ -6,7 +6,6 @@ export default function About() {
     <div
     style={{
         width: '1440px',
-
     }}
     >
         <div
@@ -85,7 +84,6 @@ export default function About() {
 
             </div>
         </div>
-        
     </div>
   )
 }

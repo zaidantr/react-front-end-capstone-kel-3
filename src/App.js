@@ -4,7 +4,6 @@ import Login from "./pages/Login/Login";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { ConfigProvider } from 'antd';
 
-// import VerticalTabs from "./components/VerticalTabs";
 import Home from './pages/Home/Home'
 import ManageAdmin from './pages/Manage Admin/ManageAdmin'
 import ManageMembership from './pages/Manage Membership/ManageMembership'
@@ -12,7 +11,6 @@ import ManageOfflineClass from "./pages/Manage Offline/ManageOfflineClass";
 import ManageOfflineBooking from "./pages/Manage Offline/ManageOfflineBooking";
 import ManageOnlineClass from "./pages/Manage Online/ManageOnlineClass";
 import ManageOnlineBooking from "./pages/Manage Online/ManageOnlineBooking";
-import Manage from './pages/Manage Admin/Manage'
 import LandingPage from "./pages/Landing/LandingPage";
 
 ConfigProvider.config({
@@ -40,10 +38,8 @@ function App() {
         <ConfigProvider>
         <Router>
           <Routes>
-            {/* <Route path="/" element={<VerticalTabs />} /> */}
             <Route path="/" element={<LandingPage />} />
             <Route path="/home" element={<Home />} />
-
             <Route path="/login" element={<Login />} />
             <Route path="/admin" element={<ManageAdmin />} />
             <Route path="/membership" element={<ManageMembership />} />
@@ -51,7 +47,6 @@ function App() {
             <Route path="/offline-class-booking" element={<ManageOfflineBooking />} />
             <Route path="/online-class" element={<ManageOnlineClass />} />
             <Route path="/online-class-booking" element={<ManageOnlineBooking />} />
-            <Route path="/manage" element={<Manage />} />
           </Routes>
         </Router>
         </ConfigProvider>

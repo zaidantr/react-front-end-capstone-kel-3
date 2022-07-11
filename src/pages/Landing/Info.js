@@ -7,7 +7,6 @@ export default function Info() {
     <div
     style={{
         width: '1440px',
-
     }}
     >
         <div
@@ -109,9 +108,7 @@ export default function Info() {
             }}
             >Choose your schedule class with A-A Gym platfrom</p>
             </div>
-
         </div>
     </div>
-
   )
 }

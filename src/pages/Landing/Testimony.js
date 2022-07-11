@@ -7,16 +7,13 @@ import foto3 from '../../assets/foto3-testi.svg'
 import foto4 from '../../assets/foto4-testi.svg'
 
 export default function Testimony() {
-    
   return (
     <>
     <div
     style={{
         width: '1440px',
-
     }}
     >
-    
         <div
         style={{
             width: '1096px',
@@ -393,7 +390,6 @@ export default function Testimony() {
                         </div>
                     </div>  
             </div>
-                
         </div>
     </div>
     </>
