@@ -1,6 +1,6 @@
 import 'antd/dist/antd.css';
 import '../../App.css';
-import {Table, Button, Modal, Input, Form, Select, DatePicker, TimePicker } from 'antd';
+import {Table, Button, Modal, Input, Form, DatePicker, TimePicker } from 'antd';
 import { Box } from "@mui/system";
 import { useEffect, useState} from 'react';
 import '../../components/antd.css';
@@ -16,7 +16,6 @@ import Sidebar from '../../components/Side Bar/SideBar';
 // import { height } from '@mui/system';
 
 export default function ManageOnlineClass() {
-  const { Option } = Select;
   const [openDelete, setOpenDelete] = useState(false);
   const [deleteId, setDeleteId] = useState(-1);
   const [isEditing, setIsEditing] = useState(false);
@@ -194,7 +193,6 @@ export default function ManageOnlineClass() {
         <div
         style={{
           fontSize: '20px',
-
         }}
         >
           <h1 
@@ -214,7 +212,6 @@ export default function ManageOnlineClass() {
     });
   };
 
-  // const dateFormat = 'DD/MM/YYYY';
 
   return (
     <>
