@@ -1,6 +1,6 @@
 import 'antd/dist/antd.css';
 import '../../App.css';
-import {Table, Button, Modal, Input, Form, DatePicker } from 'antd';
+import {Table, Button, Modal, Input, Form, Select, DatePicker, TimePicker } from 'antd';
 import { Box } from "@mui/system";
 import { useEffect, useState} from 'react';
 import '../../components/antd.css';
@@ -16,17 +16,37 @@ import Sidebar from '../../components/Side Bar/SideBar';
 // import { height } from '@mui/system';
 
 export default function ManageOnlineClass() {
+  const { Option } = Select;
   const [openDelete, setOpenDelete] = useState(false);
   const [deleteId, setDeleteId] = useState(-1);
   const [isEditing, setIsEditing] = useState(false);
   const [isAddingOnlineClass, setIsAddingOnlineClass] = useState(false);
-  const [editingOnlineClass, setEditingOnlineClass] = useState(null);
-  const [newOnlineClass, setNewOnlineClass] = useState({});
+  const [editingOnlineClass, setEditingOnlineClass] = useState([
+    { name: ["nameClass"], value: "Ant Design" },
+    { name: ["trainer"], value: "Ant Design" },
+    { name: ["date"], value: "Ant Design" },
+    { name: ["time"], value: "Ant Design" },
+    { name: ["location"], value: "Ant Design" },
+    { name: ["price"], value: "Ant Design" },
+    { name: ["description"], value: "Ant Design" },
+  ]);
 
+  const [newOnlineClass, setNewOnlineClass] = useState({
+    nameClass: "",
+    trainer: "",
+    date: "",
+    location: "",
+    price: "",
+    description: "",
+  });
 
-  const handleOk = () => {
-    setOpenDelete(false);
-  };
+  const [form] = Form.useForm();
+
+  // const handleOk = () => {
+  //   setOpenDelete(false);
+  // };
+
+  form.setFieldsValue(newOnlineClass);
 
   const handleCancel = () => {
     setOpenDelete(false);
@@ -81,7 +101,7 @@ export default function ManageOnlineClass() {
     {
       key: 8,
       title: 'Actions',
-      render:(record) => {
+      render:(_, record) => {
         return <>
           <Button 
           id='btn-view-online-class'
@@ -130,7 +150,15 @@ export default function ManageOnlineClass() {
 
   const onEditOnlineClass = (record) => {
     setIsEditing(true);
-    setEditingOnlineClass({...record});
+    setEditingOnlineClass([
+      { name: ["nameClass"], value: record.nameClass },
+      { name: ["trainer"], value: record.trainer },
+      { name: ["date"], value: record.date },
+      { name: ["time"], value: record.time },
+      { name: ["location"], value: record.location },
+      { name: ["price"], value: record.price },
+      { name: ["description"], value: record.description },
+      ]);
   }
 
   const resetEditing=() => {
@@ -141,6 +169,7 @@ export default function ManageOnlineClass() {
   const resetAddOnlineClass=() => {
     setIsAddingOnlineClass(false);
     setNewOnlineClass({});
+    form.resetFields();
   }
 
   const info = (id) => {
@@ -159,19 +188,13 @@ export default function ManageOnlineClass() {
           color: "#F27370",
           backgroundColor: "white",
           borderRadius: "8px",
-          // paddingBottom: '2px',
         },
       },
       content: (
         <div
         style={{
           fontSize: '20px',
-          // lineHeight: '23px',
-          // fontFamily: 'Roboto',
-          // fontWeight: '400px',
-          // fontStyle: 'normal',
-          // color: '#585858',
-          // paddingTop:'34px',
+
         }}
         >
           <h1 
@@ -191,7 +214,7 @@ export default function ManageOnlineClass() {
     });
   };
 
-  const dateFormat = 'DD/MM/YYYY';
+  // const dateFormat = 'DD/MM/YYYY';
 
   return (
     <>
@@ -370,7 +393,7 @@ export default function ManageOnlineClass() {
             <Input 
             id='fld-edit-date-offline-class'
             placeholder='dd/mm/yyyy' 
-            format={dateFormat}
+            // format={dateFormat}
             style={{
               border: '1px solid #707070',
               padding: '10px 35px',
@@ -581,6 +604,7 @@ export default function ManageOnlineClass() {
         title=""
         visible={isAddingOnlineClass}
         footer={null}
+        onCancel={resetAddOnlineClass}
         >
         
         <h1
@@ -590,7 +614,20 @@ export default function ManageOnlineClass() {
           }}
         >Add Class</h1>
 
-          <Form.Item
+        <Form
+            form={form}
+            autoComplete="off"
+            onFinish={(values) => {
+              console.log(values);
+              setDataSource([...dataSource, { ...values }]);
+              resetAddOnlineClass();
+            }}
+            onFinishFailed={(error) => {
+              console.log({ error });
+            }}
+            style={{
+              width: "100%",
+            }}
           >
             <div 
             style={{
@@ -598,7 +635,7 @@ export default function ManageOnlineClass() {
               marginBottom: '5px',              
             }}
             >Name Class</div>
-            <img
+          <img
               src={fldClass}
               style={{
                 position: 'absolute',
@@ -606,27 +643,35 @@ export default function ManageOnlineClass() {
                 padding: '15px 0 18.5px 17.5px'
               }}
               />
+          <Form.Item
+          name="nameClass"
+          rules={[
+            {
+              required: true,
+              message: "Please enter the name class",
+            },
+          ]}
+          >
             <Input 
             id='fld-add-name-offline-class'
             placeholder='Edit Your Name Class' 
+            name="nameClass"
+            value={newOnlineClass.name}
             style={{
               border: '1px solid #707070',
               padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070'
             }}            
-            value={editingOnlineClass?.nameClass} 
-            onChange={(e) => {
-              setNewOnlineClass((pre) => {
-                return {...pre, nameClass: e.target.value };
-              });
-            }}
+            // value={editingOnlineClass?.nameClass} 
+            // onChange={(e) => {
+            //   setNewOnlineClass((pre) => {
+            //     return {...pre, nameClass: e.target.value };
+            //   });
+            // }}
             />
           </Form.Item>
-
-          <Form.Item
-          >
-             <div 
+          <div 
             style={{
               fontSize: '20px',
               marginBottom: '5px',              
@@ -640,27 +685,31 @@ export default function ManageOnlineClass() {
                 padding: '15px 0 18.5px 17.5px'
               }}
             />
+          <Form.Item
+          name="trainer"
+          rules={[
+            {
+              required: true,
+              message: "Please enter the trainer",
+            },
+          ]}
+          >
+            
             <Input 
             id='fld-add-trainer-offline-class'
-            placeholder='Enter Your CLass Trainer' 
+            placeholder='Enter Your Class Trainer' 
+            name='trainer'
+            value={newOnlineClass.trainer}
             style={{
               border: '1px solid #707070',
               padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070'
             }} 
-            value={editingOnlineClass?.trainer} 
-            onChange={(e) => {
-              setNewOnlineClass((pre) => {
-                return {...pre, trainer: e.target.value };
-              });
-            }}
             />
           </Form.Item>
           
-          <Form.Item
-          >
-             <div 
+          <div 
             style={{
               fontSize: '20px',
               marginBottom: '5px',
@@ -674,10 +723,22 @@ export default function ManageOnlineClass() {
                 padding: '15px 0 18.5px 17.5px'
               }}
             />
+          <Form.Item
+          name="date"
+          rules={[
+            {
+              required: true,
+              message: "Please enter date",
+            },
+          ]}
+          >
+             
             <Input 
             id='fld-add-date-offline-class'
             placeholder='dd/mm/yyyy' 
-            format={dateFormat}
+            name="date"
+            value={newOnlineClass.date}
+            // format={dateFormat}
             style={{
               border: '1px solid #707070',
               padding: '10px 35px',
@@ -686,18 +747,16 @@ export default function ManageOnlineClass() {
               width: '100%'
             }}             
             // Masih error pas ngasih data nya   
-            value={editingOnlineClass?.date} 
-            onChange={(e) => {
-              setNewOnlineClass((pre) => {
-                return {...pre, date: e.target.value };
-              });
-            }}
+            // value={editingOnlineClass?.date} 
+            // onChange={(e) => {
+            //   setNewOnlineClass((pre) => {
+            //     return {...pre, date: e.target.value };
+            //   });
+            // }}
             />
           </Form.Item>
 
-          <Form.Item
-          >
-             <div 
+          <div 
             style={{
               fontSize: '20px',
               marginBottom: '5px',              
@@ -711,123 +770,161 @@ export default function ManageOnlineClass() {
                 padding: '15px 0 18.5px 17.5px'
               }}
               />
+          <Form.Item
+          name="time"
+          rules={[
+            {
+              required: true,
+              message: "Please enter the time",
+            },
+            {
+              required: ('(2[0-3]|[01]?[0-9]):([0-5]?[0-9])'),
+              message: "Please enter valid time",
+            },
+          ]}
+          >
             <Input 
             id='fld-add-time-offline-class'
             placeholder='19.00' 
-            value={editingOnlineClass?.time} 
+            name="time"
+            value={newOnlineClass.time} 
             style={{
               border: '1px solid #707070',
               padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070'
             }}            
-            onChange={(e) => {
-              setNewOnlineClass((pre) => {
-                return {...pre, time: e.target.value };
-              });
-            }}
+            // onChange={(e) => {
+            //   setNewOnlineClass((pre) => {
+            //     return {...pre, time: e.target.value };
+            //   });
+            // }}
             />
           </Form.Item>
 
+          <div 
+         style={{
+           fontSize: '20px',
+           marginBottom: '5px',              
+         }}
+         >Location</div>
+         <img
+           src={fldClass}
+           style={{
+             position: 'absolute',
+             zIndex: '900',
+             padding: '15px 0 18.5px 17.5px'
+           }}
+         />
           <Form.Item
+          name="location"
+          rules={[
+            {
+              required: true,
+              message: "Please enter the location",
+            },
+          ]}
           >
-             <div 
-            style={{
-              fontSize: '20px',
-              marginBottom: '5px',              
-            }}
-            >Location</div>
-            <img
-              src={fldClass}
-              style={{
-                position: 'absolute',
-                zIndex: '900',
-                padding: '15px 0 18.5px 17.5px'
-              }}
-            />
             <Input 
             id='fld-add-location-offline-class'
             placeholder='Enter Your Location' 
-            value={editingOnlineClass?.location} 
+            value={newOnlineClass.location} 
             style={{
               border: '1px solid #707070',
               padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070'
             }}            
-            onChange={(e) => {
-              setNewOnlineClass((pre) => {
-                return {...pre, location: e.target.value };
-              });
-            }}
+            // onChange={(e) => {
+            //   setNewOnlineClass((pre) => {
+            //     return {...pre, location: e.target.value };
+            //   });
+            // }}
             />
           </Form.Item>
 
+          <div 
+         style={{
+           fontSize: '20px',
+           marginBottom: '5px',              
+         }}
+         >Price</div>
+         <img
+           src={fldPrice}
+           style={{
+             position: 'absolute',
+             zIndex: '900',
+             padding: '15px 0 18.5px 17.5px'
+           }}
+         />
           <Form.Item
+          name="price"
+          rules={[
+            {
+              required: true,
+              message: "Please enter the price",
+            },
+            {
+              pattern: new RegExp ('(?=.*[0-9])'),
+              message: "Please enter valid price",
+            },
+          ]}
           >
-             <div 
-            style={{
-              fontSize: '20px',
-              marginBottom: '5px',              
-            }}
-            >Price</div>
-            <img
-              src={fldPrice}
-              style={{
-                position: 'absolute',
-                zIndex: '900',
-                padding: '15px 0 18.5px 17.5px'
-              }}
-            />
             <Input 
             id='fld-add-price-offline-class'
             placeholder='Rp.' 
-            value={editingOnlineClass?.price} 
+            value={newOnlineClass.price} 
             style={{
               border: '1px solid #707070',
               padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070'
             }}            
-            onChange={(e) => {
-              setNewOnlineClass((pre) => {
-                return {...pre, price: e.target.value };
-              });
-            }}
+            // onChange={(e) => {
+            //   setNewOnlineClass((pre) => {
+            //     return {...pre, price: e.target.value };
+            //   });
+            // }}
             />
           </Form.Item>
 
+          <div 
+         style={{
+           fontSize: '20px',
+           marginBottom: '5px',              
+         }}
+         >Description</div>
+         <img
+           src={fldClass}
+           style={{
+             position: 'absolute',
+             zIndex: '900',
+             padding: '15px 0 18.5px 17.5px'
+           }}
+         />
           <Form.Item
-          >
-             <div 
-            style={{
-              fontSize: '20px',
-              marginBottom: '5px',              
-            }}
-            >Description</div>
-            <img
-              src={fldClass}
-              style={{
-                position: 'absolute',
-                zIndex: '900',
-                padding: '15px 0 18.5px 17.5px'
-              }}
-            />
+          name="description"
+          rules={[
+            {
+              required: true,
+              message: "Please enter the description",
+            },
+          ]}          >
             <Input 
             id='fld-add-description-offline-class'
             placeholder='Enter Your Description' 
-            value={editingOnlineClass?.description} 
+            value={newOnlineClass.description} 
             style={{
               border: '1px solid #707070',
               padding: '10px 35px',
               borderRadius: '4px',
               color: '#707070'
             }}            
-            onChange={(e) => {
-              setNewOnlineClass((pre) => {
-                return {...pre, description: e.target.value };
-              });
-            }}
+            // onChange={(e) => {
+            //   setNewOnlineClass((pre) => {
+            //     return {...pre, description: e.target.value };
+            //   });
+            // }}
             />
           </Form.Item>
 
@@ -841,10 +938,11 @@ export default function ManageOnlineClass() {
         <Button
         id='btn-save-add-offline-class'
         type="primary"
-        onClick={() => {
-          setDataSource([...dataSource, newOnlineClass]);
-          resetAddOnlineClass();
-          }}
+        htmlType="submit"
+        // onClick={() => {
+        //   setDataSource([...dataSource, newOnlineClass]);
+        //   resetAddOnlineClass();
+        //   }}
           style={{
             width: '100%',
             marginBottom: '15px',
@@ -872,6 +970,7 @@ export default function ManageOnlineClass() {
           CANCEL
         </Button>
       </div>
+      </Form>
         </Modal>
 
         <Modal 
