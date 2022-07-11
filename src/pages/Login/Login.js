@@ -25,12 +25,30 @@ export default function Login() {
 console.log(inputs)
     return (
         <div className='h-screen bg-login-bg bg-cover bg-no-repeat'>
-            <div className='container mx-auto h-full flex flex-1 justify-center items-center'>
-                <div className='w-full max-w-lg '>
-                    <div className=' leading-loose'>
-                        <form className='max-w-sm m-4 p-10 backdrop-blur-md bg-white/40 rounded shadow-xl'>
+            <div className=' mx-auto h-full flex flex-1 justify-center items-center'
+            
+            >
+                <div className='w-full max-w-lg '
+                
+                >
+                    <div className=' leading-loose'
+                    
+                    >
+                        <form className=' m-4 p-10 backdrop-blur-md bg-white/40 rounded shadow-xl'
+                        style={{
+                            background: 'rgba(253, 253, 253, 0.2)',
+                            boxShadow: '0px 2px 2px 10px rgba(0, 0, 0, 0.05)',
+                            backdropFilter: 'blur(40px)',
+                            borderRadius: '16px',
+                            width: '520px',
+                            height: '400px',
+                        }}
+                        >
 
-                            <div className='flex justify-center items-center'>
+                            <div 
+                            className='flex justify-center items-center'
+                            
+                            >
                                 <img className=' w-16 h-16 fill-baseorange' src={logogym} 
                                 style={{
                                     width: '243px',
