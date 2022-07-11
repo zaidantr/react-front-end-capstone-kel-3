@@ -13,6 +13,7 @@ export default function ModalEdit({
   resetEditing,
 }) {
   console.log(editingAdmin);
+  const [form] = Form.useForm();
   return (
     <Modal title="" visible={isEditing} footer={null} onCancel={resetEditing}>
       <h1
@@ -27,6 +28,7 @@ export default function ModalEdit({
       <Form
         autoComplete="off"
         fields={editingAdmin}
+        form={form}
         onFinish={(values) => {
           console.log({ values });
         }}
@@ -75,7 +77,7 @@ export default function ModalEdit({
               borderRadius: "4px",
               color: "#707070",
             }}
-            onChange={(e) => {
+            onFieldsChange={(e) => {
               setEditingAdmin((pre) => {
                 return { ...pre, name: e.target.value };
               });
@@ -121,7 +123,7 @@ export default function ModalEdit({
               borderRadius: "4px",
               color: "#707070",
             }}
-            onChange={(e) => {
+            onFieldschange={(e) => {
               setEditingAdmin((pre) => {
                 return { ...pre, username: e.target.value };
               });
@@ -174,7 +176,7 @@ export default function ModalEdit({
               borderRadius: "4px",
               color: "#707070",
             }}
-            onChange={(e) => {
+            onFieldsChange={(e) => {
               setEditingAdmin((pre) => {
                 return { ...pre, password: e.target.value };
               });
@@ -222,7 +224,7 @@ export default function ModalEdit({
               borderRadius: "4px",
               color: "#707070",
             }}
-            onChange={(e) => {
+            onFieldsChange={(e) => {
               setEditingAdmin((pre) => {
                 return { ...pre, email: e.target.value };
               });
@@ -270,7 +272,7 @@ export default function ModalEdit({
               borderRadius: "4px",
               color: "#707070",
             }}
-            onChange={(e) => {
+            onValuesChange={(e) => {
               setEditingAdmin((pre) => {
                 return { ...pre, phoneNumber: e.target.value };
               });
@@ -287,18 +289,21 @@ export default function ModalEdit({
           <Button
             id="btn-save-edit-admin"
             type="primary"
-            onClick={() => {
-              setDataSource((pre) => {
-                return pre.map((admin) => {
-                  if (admin.id === editingAdmin.id) {
-                    return editingAdmin;
-                  } else {
-                    return admin;
-                  }
-                });
-              });
-              resetEditing();
-            }}
+            htmlType="submit"
+            
+            // onClick={() => {
+            //   setEditingAdmin((pre) => {
+            //     return pre.map((admin) => {
+            //       if (admin.value === editingAdmin.value) {
+            //         return editingAdmin.value;
+            //       } else {
+            //         return admin;
+            //       }
+            //     });
+            //   });
+            //   resetEditing();
+            // }}
+            
             style={{
               width: "100%",
               marginBottom: "15px",
