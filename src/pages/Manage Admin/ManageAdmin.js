@@ -4,6 +4,7 @@ import { Table, Button, Modal, Input, Form } from "antd";
 import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
 import "../../components/antd.css";
+import AdminServices from "../../services/Admins.services";
 import Button1 from "@mui/material/Button";
 import warning from "../../assets/warning.svg";
 import getAPI from "../../services/api/api";
@@ -28,13 +29,16 @@ export default function ManageAdmin() {
     { name: ["username"], value: "Ant Design" },
     { name: ["password"], value: "Ant Design" },
     { name: ["email"], value: "Ant Design" },
-    { name: ["phoneNumber"], value: "Ant Design" },
+    { name: ["contact"], value: "Ant Design" },
   ]);
   const [newAdmin, setNewAdmin] = useState({
     name: "",
     username: "",
+    address: "",
+    email: '',
+    contact: "",
     password: "",
-    phoneNumber: "",
+    
   });
   const [form] = Form.useForm();
 
@@ -47,9 +51,52 @@ export default function ManageAdmin() {
   const [dataSource, setDataSource] = useState([]);
 
   useEffect(() => {
-    const api = getAPI(true);
-    api.getAdminData().then((data) => setDataSource(data));
+    retrieveAdmins();
   }, []);
+
+  const retrieveAdmins = () => {
+    AdminServices.fetchAdmin()
+      .then(response => {
+          const getAdmin = response.data
+          setDataSource(getAdmin);
+        console.log(response);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const handleAddAdmin = async (e) => {
+    setIsAddingAdmin(true);
+    e.preventDefault();
+    const data = {
+      name: newAdmin.name,
+      username: newAdmin.username,
+      password: newAdmin.password,
+      contact: newAdmin.contact,
+      email: newAdmin.email,
+      address: newAdmin.address,
+    }
+    AdminServices.addAdmin(data) .then(response => {
+      console.log(response);
+      retrieveAdmins();
+    }  ).catch(err => {
+      console.log(err);
+    } ).finally(() => {
+      setIsAddingAdmin(false);
+    } )
+    console.log(data)
+  }
+
+  const handleDelete = () => {
+    AdminServices.deleteAdminById(dataSource.id)
+      .then(response => {
+        console.log(response);
+        retrieveAdmins();
+      } ) .catch(err => {
+        console.log(err);
+      } )
+  }
 
   const columns = [
     {
@@ -76,7 +123,13 @@ export default function ManageAdmin() {
     {
       key: "5",
       title: "Phone Number",
-      dataIndex: "phoneNumber",
+      dataIndex: "contact",
+      hidden: true,
+    },
+    {
+      key: "6",
+      title: "Address",
+      dataIndex: "address",
       hidden: true,
     },
     {
@@ -101,9 +154,7 @@ export default function ManageAdmin() {
             </Button>
             <Button
               id="btn-edit-admin"
-              onClick={() => {
-                onEditAdmin(record);
-              }}
+              // onClick = {() => { handleEditAdmin(record.id) } }
               style={{
                 border: "1px solid #F27370",
                 borderRadius: "4px",
@@ -144,7 +195,7 @@ export default function ManageAdmin() {
       { name: ["username"], value: record.username },
       { name: ["password"], value: record.password },
       { name: ["email"], value: record.email },
-      { name: ["phoneNumber"], value: record.phoneNumber },
+      { name: ["contact"], value: record.contact },
     ]);
   };
 
@@ -160,7 +211,7 @@ export default function ManageAdmin() {
   };
 
   const info = (id) => {
-    const viewData = dataSource.find((item) => item.id === id);
+    const viewData = dataSource.data.find((item) => item.id === id);
     console.log(viewData, "data");
     Modal.info({
       icon: "",
@@ -197,7 +248,7 @@ export default function ManageAdmin() {
             Email <br></br> {viewData.email}
           </p>
           <p>
-            Phone Number <br></br> {viewData.phoneNumber}
+            Phone Number <br></br> {viewData.contact}
           </p>
         </div>
       ),
@@ -272,7 +323,7 @@ export default function ManageAdmin() {
 
           <Table
             columns={columns}
-            dataSource={dataSource}
+            dataSource={dataSource.data}
             style={{
               // paddingTop: 30,
               margin: 0,
@@ -326,7 +377,7 @@ export default function ManageAdmin() {
                 marginBottom: "5px",
               }}
             >
-              Name Admin
+              Admin Name
             </div>
 
             <img
@@ -343,13 +394,14 @@ export default function ManageAdmin() {
               rules={[
                 {
                   required: true,
-                  message: "Please enter your name",
+                  message: "Please enter name",
                 },
               ]}
             >
               <Input
+                onChange = {(e) => { setNewAdmin({ ...newAdmin, name: e.target.value }) }}
                 id="fld-name-add-admin"
-                placeholder="Enter Your Name"
+                placeholder="Enter Name"
                 placeholderTextColor="#707070"
                 name="name"
                 value={newAdmin.name}
@@ -392,9 +444,10 @@ export default function ManageAdmin() {
                 },
               ]}
             >
-              <Input
+              <Input 
+                onChange = {(e) => { setNewAdmin({ ...newAdmin, username: e.target.value }) }}
                 id="fld-username-add-admin"
-                placeholder="Enter Your Username"
+                placeholder="Enter Username"
                 name="username"
                 value={newAdmin.username}
                 style={{
@@ -446,6 +499,7 @@ export default function ManageAdmin() {
               ]}
             >
               <Input
+                onChange = {(e) => { setNewAdmin({ ...newAdmin, password: e.target.value }) }}
                 id="fld-password-add-admin"
                 placeholder="Enter Your Password"
                 name="password"
@@ -490,6 +544,7 @@ export default function ManageAdmin() {
               ]}
             >
               <Input
+                onChange = {(e) => { setNewAdmin({ ...newAdmin, email: e.target.value }) }}
                 id="fld-email-add-admin"
                 placeholder="@gmail.com"
                 name="email"
@@ -522,8 +577,8 @@ export default function ManageAdmin() {
               }}
             />
             <Form.Item
-              name="phoneNumber"
-              initialValue={newAdmin.phoneNumber}
+              name="contact"
+              initialValue={newAdmin.contact}
               rules={[
                 {
                   pattern: new RegExp("^[0-9]{10,12}$"),
@@ -536,10 +591,53 @@ export default function ManageAdmin() {
               ]}
             >
               <Input
+                onChange ={(e) => { setNewAdmin({ ...newAdmin, contact: e.target.value }) }}
                 id="fld-phone-number-add-admin"
                 placeholder="Enter Your Phone Number"
-                name="phoneNumber"
-                value={newAdmin.phoneNumber}
+                name="contact"
+                value={newAdmin.contact}
+                style={{
+                  border: "1px solid #707070",
+                  padding: "10px 35px",
+                  borderRadius: "4px",
+                  color: "#707070",
+                }}
+              />
+            </Form.Item>
+            <div
+              style={{
+                fontSize: "20px",
+                marginBottom: "5px",
+              }}
+            >
+              Admin Address
+            </div>
+
+            <img
+              src={fldName}
+              alt="address"
+              style={{
+                position: "absolute",
+                zIndex: "900",
+                padding: "15px 0 18.5px 17.5px",
+              }}
+            />
+            <Form.Item
+              name="name"
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter name",
+                },
+              ]}
+            >
+              <Input 
+                onChange={(e) => { setNewAdmin({ ...newAdmin, address: e.target.value }) }}
+                id="fld-address-add-admin"
+                placeholder="Enter Address"
+                placeholderTextColor="#707070"
+                name="address"
+                value={newAdmin.address}
                 style={{
                   border: "1px solid #707070",
                   padding: "10px 35px",
@@ -555,6 +653,7 @@ export default function ManageAdmin() {
               }}
             >
               <Button
+              onClick={handleAddAdmin}
                 id="btn-save-add-admin"
                 type="primary"
                 htmlType="submit"
@@ -612,12 +711,8 @@ export default function ManageAdmin() {
                 marginRight: "20px",
                 padding: "7px 10px",
               }}
-              onClick={() => {
-                setOpenDelete(false);
-                setDataSource((pre) => {
-                  return pre.filter((admin) => admin.id !== deleteId);
-                });
-              }}
+              onClick={() => handleDelete(dataSource.id)}
+              
             >
               Delete
             </Button1>
