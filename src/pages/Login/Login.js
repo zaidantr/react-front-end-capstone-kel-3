@@ -6,23 +6,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
 export default function Login() {
-    const [inputs, setInputs] = useState([
-        {
-            label: "Username",
-            name: "username",
-            type: "text",
-            value: "",
-            placeholder: "Enter your Username",
-        },
-        {
-            label: "Password",
-            name: "password",
-            type: "password",
-            value: "",
-            placeholder: "Enter your Password",
-        }
-    ])
-console.log(inputs)
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
     return (
         <div 
         className='h-screen bg-login-bg bg-cover bg-no-repeat'
@@ -82,10 +67,10 @@ console.log(inputs)
                                     <input 
                                     id='fld-input-username-login'
                                     className='w-full pl-8 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white'
-                                    placeholder={inputs[0].placeholder}
-                                    type={inputs[0].type}
-                                    value={inputs[0].value}
-                                    onChange={(e) => setInputs([...inputs], inputs[0].value = e.target.value)}
+                                    placeholder="Please Input Your Username"
+                                    type="text"
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
                                     />
                                 </div>
 
@@ -110,10 +95,10 @@ console.log(inputs)
                                     <input 
                                     id='fld-input-password-login'
                                     className='w-full pl-8 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white'
-                                    placeholder={inputs[1].placeholder}
-                                    type={inputs[1].type}
-                                    value={inputs[1].value}
-                                    onChange={(e) => setInputs([...inputs], inputs[1].value = e.target.value)}
+                                    placeholder="Please input your Password"
+                                    type="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
                                     />
                                 </div>
                             </div>
