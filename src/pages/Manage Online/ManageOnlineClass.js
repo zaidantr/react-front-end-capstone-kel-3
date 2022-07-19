@@ -13,6 +13,9 @@ import fldPrice from '../../assets/fld-price.svg';
 import getAPI from "../../services/api/api";
 import Sidebar from '../../components/Side Bar/SideBar';
 
+// API
+import OnlineClassServices from "../../services/OnlineClass.services";
+
 export default function ManageOnlineClass() {
   const [openDelete, setOpenDelete] = useState(false);
   const [deleteId, setDeleteId] = useState(-1);
@@ -29,12 +32,14 @@ export default function ManageOnlineClass() {
   ]);
 
   const [newOnlineClass, setNewOnlineClass] = useState({
-    nameClass: "",
-    trainer: "",
-    date: "",
-    location: "",
-    price: "",
-    description: "",
+    name: "Tes Hardcode",
+    idInstructor: {
+      id: "4",
+    },
+    startAt: "11/12/2022",
+    location: "Zoom Meet",
+    price: "100000",
+    description: "Cuma Tes",
   });
 
   const [form] = Form.useForm();
@@ -51,36 +56,70 @@ export default function ManageOnlineClass() {
 
   const [dataSource, setDataSource] = useState([]);
 
+
   useEffect(() => {
-    const api = getAPI(true);
-    api.getOfflineClassData().then((data) => setDataSource(data));
+    retrieveOnlineClass();
   }, []);
+
+  const retrieveOnlineClass = () => {
+    OnlineClassServices.fetchOnlineClass()
+      .then(response => {
+          const GetOnlineClass = response.data
+          setDataSource(GetOnlineClass);
+        console.log(response);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const handleAddOnlineClass = async (e) => {
+    setIsAddingOnlineClass(true);
+    e.preventDefault();
+    const classData = {
+      name: newOnlineClass.name,
+      startAt: newOnlineClass.startAt,
+      location: newOnlineClass.location,
+      price: newOnlineClass.price,
+      description: newOnlineClass.description,
+      idInstructor: newOnlineClass.idInstructor.name,
+    }
+    OnlineClassServices.AddOnlineClass(classData) .then(response => {
+      console.log(response);
+      retrieveOnlineClass();
+    }  ).catch(err => {
+      console.log(err);
+    } ).finally(() => {
+      setIsAddingOnlineClass(false);
+    } )
+    console.log(classData)
+  }
 
   const columns = [
     {
       key: '1',
       title: 'Name Class',
-      dataIndex: 'nameClass',
+      dataIndex: 'name',
     },
     {
       key: '2',
       title: 'Trainer',
-      dataIndex: 'trainer',
+      dataIndex: 'idInstructor.name',
     },
     {
       key: '3',
-      title: 'Date',
-      dataIndex: 'date',
+      title: 'Start Date',
+      dataIndex: 'startAt',
     },
     {
       key: '4',
       title: 'Price',
-      dataIndex: 'price',
+      dataIndex: 'price'.toLocaleString(),
     },
     {
       key: '5',
       title: 'Time',
-      dataIndex: 'time',
+      dataIndex: 'startAt',
       hidden: true,
     },
     {
@@ -149,7 +188,7 @@ export default function ManageOnlineClass() {
     setIsEditing(true);
     setEditingOnlineClass([
       { name: ["nameClass"], value: record.nameClass },
-      { name: ["trainer"], value: record.trainer },
+      { name: ["trainer"], value: record.idInstructor },
       { name: ["date"], value: record.date },
       { name: ["time"], value: record.time },
       { name: ["location"], value: record.location },
@@ -170,7 +209,7 @@ export default function ManageOnlineClass() {
   }
 
   const info = (id) => {
-    const viewData = dataSource.find(item =>  item.id === id)
+    const viewData = dataSource.data.find(item =>  item.id === id)
     console.log(viewData, 'data')
     Modal.info({
 
@@ -196,11 +235,11 @@ export default function ManageOnlineClass() {
           <h1 
           style={{ fontSize: "26px" }}
           >View Class</h1>
-          <p>Name Class <br></br> {viewData.nameClass} </p>
+          <p>Name Class <br></br> {viewData.name} </p>
           <p>Trainer <br></br> {viewData.trainer}</p>
-          <p>Date <br></br> {viewData.date}</p>
+          <p>Date <br></br> {viewData.startAt.toLocaleString()}</p>
           <p>Time <br></br> {viewData.time}</p>
-          <p>Price <br></br> {viewData.price}</p>
+          <p>Price <br></br>Rp. {viewData.price.toLocaleString()}</p>
           <p>Location <br></br> {viewData.location}</p>
           <p>Description <br></br> {viewData.description}</p>
         </div>
@@ -278,7 +317,7 @@ export default function ManageOnlineClass() {
           
             <Table
             columns={columns}
-            dataSource={dataSource}
+            dataSource={dataSource.data}
             style={{
               // paddingTop: 30,
               margin: 0,
@@ -309,6 +348,7 @@ export default function ManageOnlineClass() {
             }}
             >Name Class</div>
             <img
+            // src={require('../../assets/images/icon-name-class.png')}
               src={fldClass}
               style={{
                 position: 'absolute',
@@ -908,6 +948,7 @@ export default function ManageOnlineClass() {
       >
         
         <Button
+        onClick={handleAddOnlineClass}
         id='btn-save-add-offline-class'
         type="primary"
         htmlType="submit"
