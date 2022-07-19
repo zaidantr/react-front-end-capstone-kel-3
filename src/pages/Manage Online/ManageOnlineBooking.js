@@ -1,6 +1,7 @@
 import { Box } from "@mui/system";
 import { Space, Table, Tag, Button, Modal, Input, Form } from "antd";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import OnlineClassServices from "../../services/OnlineClass.services";
 import Button1 from "@mui/material/Button";
 import warning from '../../assets/warning.svg';
 import Sidebar from "../../components/Side Bar/SideBar";
@@ -9,28 +10,30 @@ export default function ManageOnlineBooking() {
   const [openDelete, setOpenDelete] = useState(false);
   const [deleteId, setDeleteId] = useState(-1);
   const [dataSource, setDataSource] = useState([
-  {
-    id: '1',
-    username: 'John123',
-    class: 'Cardio',
-    date: '12/02/2022',
-    status : ['Active'],
-  },
-  {
-    id: '2',
-    username: 'John123',
-    class: 'Cardio',
-    date: '12/02/2022',
-    status : ['Expired'],
-  },
-  {
-    id: '3',
-    username: 'John123',
-    class: 'Cardio',
-    date: '12/02/2022',
-    status : ['Active'],
-  },
+    {
+      id: "id",
+      username: "idUser.username",
+      class: "createdAt",
+    }
   ]);
+
+
+  useEffect(() => {
+    retrieveBookingOnline();
+  }, []);
+
+  const retrieveBookingOnline = () => {
+    OnlineClassServices.GetBookingOnline()
+      .then(response => {
+          const GetBookingOnline = response.data
+          const filteredData = GetBookingOnline.data.data?.filter(booking => booking.type === "online" )
+          setDataSource(filteredData);
+        console.log(response.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   const handleOk = () => {
     setOpenDelete(false);
@@ -43,38 +46,38 @@ export default function ManageOnlineBooking() {
   const columns = [
     {
       title: 'Username',
-      dataIndex: 'username',
+      dataIndex: 'username = idUser.username',
       key: 'username',
     },
     {
       title: 'Class',
-      dataIndex: 'class',
+      dataIndex: 'class = classId.name',
       key: 'name',
     },
     {
       title: 'Date',
-      dataIndex: 'date',
+      dataIndex: 'createdAt',
       key: 'date',
     },
-    {
-      title: 'Status',
-      key: 'status',
-      dataIndex: 'status',
-      render: (_, { status }) => (
-        <>
-          {status.map((isActive) => {
-            return (
-              <h1 style={{
-                color: isActive === "Active" ? '#17E243' : '#F60000'
-                }} 
-                >
-                {isActive}
-              </h1>
-            );
-          })}
-        </>
-      ),
-    },
+    // {
+    //   title: 'Status',
+    //   key: 'status',
+    //   dataIndex: 'status',
+    //   render: (_, { status }) => (
+    //     <>
+    //       {status.map((isActive) => {
+    //         return (
+    //           <h1 style={{
+    //             color: isActive === "Active" ? '#17E243' : '#F60000'
+    //             }} 
+    //             >
+    //             {isActive}
+    //           </h1>
+    //         );
+    //       })}
+    //     </>
+    //   ),
+    // },
     {
       key: 4,
           title: 'Actions',
